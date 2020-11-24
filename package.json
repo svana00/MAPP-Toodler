@@ -36,5 +36,10 @@
     "eslint-plugin-react-hooks": "^4.2.0"
   },
   "private": true,
-  "name": "Toodler"
+  "name": "Toodler",
+  "rnpm": {
+      "assets": [
+        "./assets/fonts/"
+      ]
+    }
 }

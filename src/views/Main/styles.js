@@ -3,6 +3,7 @@ import { backgroundPink, white } from '../../styles/colors';
 
 export default StyleSheet.create({
   container: {
+    fontFamily: 'Alice-Regular',
     flex: 1,
     padding: 20,
     backgroundColor: '#ECA18B',
