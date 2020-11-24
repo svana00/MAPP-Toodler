@@ -1,20 +1,14 @@
 import React from 'react';
-import AppContainer from './src/routes';
 import moment from 'moment';
-moment.locale('en')
+import AppContainer from './src/routes';
+
+moment.locale('en');
 
 export default function App() {
   return (
     <AppContainer />
   );
 }
-
-
-
-
-
-
-
 
 // import { StatusBar } from 'expo-status-bar';
 // import React from 'react';
