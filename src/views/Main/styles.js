@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { darkerBlue, graniteGray } from '../../styles/colors';
+import { backgroundPink, white } from '../../styles/colors';
 
 export default StyleSheet.create({
   container: {
@@ -10,26 +10,29 @@ export default StyleSheet.create({
     justifyContent: 'space-around',
   },
   header: {
-		textAlign: 'center',
+    textAlign: 'center',
     justifyContent: 'space-around',
-		fontSize: 40,
+    fontSize: 40,
   },
   paragraph: {
     textAlign: 'center',
     color: 'white',
+    fontSize: 25,
+    paddingRight: 40,
+    paddingLeft: 40,
   },
   button: {
-		marginTop: 30,
+    marginTop: 30,
     paddingTop: 10,
     paddingBottom: 10,
-		paddingLeft: 20,
+    paddingLeft: 20,
     paddingRight: 20,
-		borderColor: 'white',
+    borderColor: 'white',
     borderWidth: 2,
-    backgroundColor: graniteGray,
+    backgroundColor: white,
   },
   buttonText: {
-    color: 'white',
+    color: 'black',
   },
   logo: {
     width: 235,

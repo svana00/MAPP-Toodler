@@ -8,10 +8,10 @@ import styles from './styles';
 const Main = ({ navigation:{navigate}}) => (
   <View style={styles.container}>
     <Image source={logo} style={styles.logo} />
-    <Text style={styles.header}>Toodler</Text>
-    <Text style={styles.paragraph}>So simple a toddler could use it</Text>
+    <Text style={styles.header}>toodler</Text>
+    <Text style={styles.paragraph}>SO SIMPLE, A CHILD COULD USE IT</Text>
     <TouchableHighlight style={styles.button}>
-      <Text style={styles.buttonText}>Get Started</Text>
+      <Text style={styles.buttonText}>GET STARTED</Text>
     </TouchableHighlight>
   </View>
 );

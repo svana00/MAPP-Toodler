@@ -1,1 +1,2 @@
-export const backgroudPink = '#ECA18B'
+export const backgroundPink = '#ECA18B';
+export const white = '#FFFFFF';
