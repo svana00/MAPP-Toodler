@@ -1,8 +1,7 @@
 import React from 'react';
 import moment from 'moment';
-import AppContainer from './src/routes';
 
-import {AppLoading} from "expo";
+import { AppLoading } from 'expo';
 
 import {
   useFonts, Alice_400Regular
@@ -14,28 +13,26 @@ import {
   IBMPlexSans_400Regular,
   IBMPlexSans_500Medium,
   IBMPlexSans_700Bold,
-} from '@expo-google-fonts/ibm-plex-sans'
-
+} from '@expo-google-fonts/ibm-plex-sans';
+import Boards from './src/views/Boards';
 
 moment.locale('en');
 
-
 export default function App() {
-
-  let [fontsLoaded, error] = useFonts({
+  const [fontsLoaded, error] = useFonts({
     Alice: Alice_400Regular,
     IBMLight: IBMPlexSans_300Light,
     IBMRegular: IBMPlexSans_400Regular,
     IBMMedium: IBMPlexSans_500Medium,
-    IBMBold: IBMPlexSans_700Bold
+    IBMBold: IBMPlexSans_700Bold,
   });
 
   if (!fontsLoaded) {
-    return <AppLoading/>;
+    return <AppLoading />;
   }
 
   return (
-    <AppContainer />
+    <Boards />
   );
 }
 
