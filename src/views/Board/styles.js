@@ -5,7 +5,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: '#ECA18B',
+    backgroundColor: backgroundPink,
     alignItems: 'center',
     justifyContent: 'space-evenly',
   },
@@ -13,7 +13,7 @@ export default StyleSheet.create({
     marginTop: 10,
     flex: 1,
     padding: 20,
-    backgroundColor: '#ECA18B',
+    backgroundColor: backgroundPink,
     alignItems: 'center',
   },
   header: {
@@ -21,7 +21,7 @@ export default StyleSheet.create({
     fontSize: 45,
     color: 'white',
     paddingTop: 8,
-    fontFamily:'Alice'
+    fontFamily: 'Alice',
   },
   downArrow: {
     width: 20,
@@ -29,15 +29,15 @@ export default StyleSheet.create({
   },
   leftArrow: {
     width: 20,
-    height:20
+    height: 20,
   },
   plus: {
-    width:20,
-    height:20
+    width: 20,
+    height: 20,
   },
   dot: {
-    width:15,
-    height:15
+    width: 15,
+    height: 15,
   },
   paragraph: {
     textAlign: 'center',
@@ -45,14 +45,14 @@ export default StyleSheet.create({
     fontSize: 25,
     paddingRight: 40,
     paddingLeft: 40,
-    fontFamily: 'IBMMedium'
+    fontFamily: 'IBMMedium',
   },
   whiteContainer: {
     flex: 3,
     padding: 20,
     backgroundColor: white,
     alignItems: 'center',
-    justifyContent: 'space-evenly'
-  }
+    justifyContent: 'space-evenly',
+  },
 
 });
