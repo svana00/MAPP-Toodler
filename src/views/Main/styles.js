@@ -3,7 +3,6 @@ import { backgroundPink, white } from '../../styles/colors';
 
 export default StyleSheet.create({
   container: {
-    fontFamily: 'Alice-Regular',
     flex: 1,
     padding: 20,
     backgroundColor: '#ECA18B',
@@ -22,6 +21,7 @@ export default StyleSheet.create({
     fontSize: 45,
     color: 'white',
     paddingTop: 8,
+    fontFamily:'Alice'
   },
   paragraph: {
     textAlign: 'center',
@@ -29,6 +29,7 @@ export default StyleSheet.create({
     fontSize: 25,
     paddingRight: 40,
     paddingLeft: 40,
+    fontFamily: 'Alice'
   },
   button: {
     marginTop: 30,
@@ -42,6 +43,7 @@ export default StyleSheet.create({
   },
   buttonText: {
     color: 'black',
+    fontFamily:'IBMBold'
   },
   logo: {
     width: 235,
