@@ -26,10 +26,10 @@ export default StyleSheet.create({
   paragraph: {
     textAlign: 'center',
     color: 'black',
-    fontSize: 25,
+    fontSize: 20,
     paddingRight: 40,
     paddingLeft: 40,
-    fontFamily: 'Alice'
+    fontFamily: 'IBMThin'
   },
   button: {
     marginTop: 30,

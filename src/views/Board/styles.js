@@ -38,6 +38,21 @@ export default StyleSheet.create({
   dot: {
     width:15,
     height:15
+  },
+  paragraph: {
+    textAlign: 'center',
+    color: 'black',
+    fontSize: 25,
+    paddingRight: 40,
+    paddingLeft: 40,
+    fontFamily: 'IBMMedium'
+  },
+  whiteContainer: {
+    flex: 3,
+    padding: 20,
+    backgroundColor: white,
+    alignItems: 'center',
+    justifyContent: 'space-evenly'
   }
 
 });
