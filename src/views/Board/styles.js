@@ -23,30 +23,36 @@ export default StyleSheet.create({
     paddingTop: 8,
     fontFamily:'Alice'
   },
+  downArrow: {
+    width: 20,
+    height: 20,
+  },
+  leftArrow: {
+    width: 20,
+    height:20
+  },
+  plus: {
+    width:20,
+    height:20
+  },
+  dot: {
+    width:15,
+    height:15
+  },
   paragraph: {
     textAlign: 'center',
     color: 'black',
-    fontSize: 20,
+    fontSize: 25,
     paddingRight: 40,
     paddingLeft: 40,
-    fontFamily: 'IBMThin'
+    fontFamily: 'IBMMedium'
   },
-  button: {
-    marginTop: 30,
-    paddingTop: 10,
-    paddingBottom: 10,
-    paddingLeft: 20,
-    paddingRight: 20,
-    borderColor: 'black',
-    borderWidth: 2,
+  whiteContainer: {
+    flex: 3,
+    padding: 20,
     backgroundColor: white,
-  },
-  buttonText: {
-    color: 'black',
-    fontFamily:'IBMBold'
-  },
-  logo: {
-    width: 235,
-    height: 250,
+    alignItems: 'center',
+    justifyContent: 'space-evenly'
   }
+
 });

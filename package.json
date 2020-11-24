@@ -9,10 +9,14 @@
     "lint": "node ./node_modules/eslint/bin/eslint.js **/*.jsx"
   },
   "dependencies": {
+    "@expo-google-fonts/alice": "^0.1.0",
+    "@expo-google-fonts/ibm-plex-sans": "^0.1.0",
+    "@expo-google-fonts/inter": "^0.1.0",
     "@react-native-community/masked-view": "0.1.10",
     "expo": "~39.0.2",
     "expo-status-bar": "~1.0.2",
     "moment": "^2.29.1",
+    "prop-types": "^15.7.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.4.tar.gz",
@@ -35,5 +39,10 @@
     "eslint-plugin-react-hooks": "^4.2.0"
   },
   "private": true,
-  "name": "Toodler"
+  "name": "Toodler",
+  "rnpm": {
+    "assets": [
+      "./assets/fonts/"
+    ]
+  }
 }
