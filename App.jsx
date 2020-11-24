@@ -1,12 +1,12 @@
 import React from 'react';
 import moment from 'moment';
 
+
 import { AppLoading } from 'expo';
 
 import {
-  useFonts, Alice_400Regular
-} from '@expo-google-fonts/alice'
-
+  useFonts, Alice_400Regular,
+} from '@expo-google-fonts/alice';
 
 import {
   IBMPlexSans_300Light,
@@ -14,7 +14,7 @@ import {
   IBMPlexSans_500Medium,
   IBMPlexSans_700Bold,
 } from '@expo-google-fonts/ibm-plex-sans';
-import Boards from './src/views/Boards';
+import AppContainer from './src/routes';
 
 moment.locale('en');
 
@@ -32,7 +32,7 @@ export default function App() {
   }
 
   return (
-    <Boards />
+    <AppContainer />
   );
 }
 
