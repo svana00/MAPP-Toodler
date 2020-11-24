@@ -1,7 +1,6 @@
 import React from 'react';
 import moment from 'moment';
 
-
 import { AppLoading } from 'expo';
 
 import {
