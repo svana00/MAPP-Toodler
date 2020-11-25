@@ -8,9 +8,9 @@ import Headings from '../../styles/headings'
 const TaskThumbnail = ({
  id, name, description, isFinished
 }) => (
-    <View { [ styles.container !hasSelectedImages ? { color: 'rgba(155, 155, 155, .5)' } : {} ] }>Delete</Text>>
+    <View style={ [ styles.container, !hasSelectedImages ? { color: 'rgba(155, 155, 155, .5)' } : {} ] }>
       <Text style={Headings.h3}>{name}</Text>
-      <Text style={Headings.h4}> {description} Text>
+      <Text style={Headings.h4}> {description} </Text>
     </View>
 );
 

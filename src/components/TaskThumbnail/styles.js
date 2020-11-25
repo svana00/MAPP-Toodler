@@ -2,12 +2,13 @@ import { StyleSheet } from 'react-native';
 import { backgroundPink } from '../../styles/colors';
 
 export default StyleSheet.create({
-    toolbar: {
+    container: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
         height: 80,
-        backgroundColor: darkerBlue
+        backgroundColor: backgroundPink,
+
     },
     toolbarAction: {
         flex: 1,

@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-//import GalleryList from '../../components/GalleryList';
+import TaskList from '../../components/TaskList';
 //import AddModal from '../../components/AddModal';
 import Spinner from '../../components/Spinner';
 //import { getAllTasks, addImage, remove } from '../../services/fileService';
@@ -30,10 +30,10 @@ class Tasks extends React.Component {
 
 
     async componentDidMount() {
-      await this.getItems();
+      await this.__getItems();
     }
 
-    async getItems() {
+    async __getItems() {
         this.setState({ loadingTasks: true});
         const tasks = data.tasks.filter(tasks => tasks.listId == this.listId );
         this.setState({loadingTasks: false, tasks})
@@ -60,7 +60,7 @@ class Tasks extends React.Component {
         return (
           <View style={{ flex:1 }}>
               //hasSelectedTasks, onAdd, onRemove, listName
-              <Toolbar
+              <taskToolbar
                   hasSelectedTasks={ selectedTasks.length > 0 }
                   onAdd={ () => this.setState({ isAddModalOpen: true }) }
                   onRemove={ () => this.deleteSelectedTasks() }

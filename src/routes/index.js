@@ -7,8 +7,8 @@ import Boards from '../views/Boards';
 import Tasks from '../views/Tasks';
 
 export default createAppContainer(createStackNavigator({
-  Tasks,
   Main,
   Boards,
   Board,
+  Tasks
 }));
