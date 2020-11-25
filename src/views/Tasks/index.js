@@ -9,7 +9,7 @@ import * as colors from '../../styles/colors';
 import { headings } from '../../styles';
 
 
-class Tasks extends React.component {
+class Tasks extends React.Component {
     static navigationOptions = {
       title: 'Tasks'
     }

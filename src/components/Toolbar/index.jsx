@@ -4,7 +4,12 @@ import styles from './styles';
 
 const Toolbar = ({ onAdd }) => (
   <View styleName="horizontal" style={styles.toolbar}>
-    <Text>All Boards</Text>
+    <View style={styles.toolbarAction}>
+      <Text>i</Text>
+    </View>
+    <View style={styles.toolbarAction}>
+      <Text>Boards Overview</Text>
+    </View>
     <TouchableHighlight style={styles.toolbarAction} onPress={onAdd}>
       <Text style={styles.toolbarActionText}>Add board</Text>
     </TouchableHighlight>
