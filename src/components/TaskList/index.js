@@ -1,26 +1,19 @@
-
 import React from 'react';
 import { View, FlatList } from 'react-native';
-import ImageThumbnail from '../ImageThumbnail';
 import styles from './styles';
+import BoardThumbnail from '../BoardThumbnail';
 
-const GalleryList = ({ tasks, selectedTasks, onLongPress }) => (
-  <View style={ styles.listContainer }>
-      <FlatList
-          numColumns={ 1 }
-          data={ tasks }
-          extraData={ selectedImages }
-          renderItem={ ({ item: { file, name } }) => {
-              return (
-                  <ImageThumbnail
-                      isSelected={ selectedImages.indexOf(name) !== -1 }
-                      onLongPress={ onLongPress }
-                      name={ name }
-                      file={ file } />
-              );
-          } }
-          keyExtractor={ image => image.name } />
+const BoardList = ({ boards }) => (
+  <View style={styles.listContainer}>
+    <FlatList
+      numColumns={1}
+      data={boards}
+      renderItem={({ item: { id, name, thumbnailPhoto } }) => (
+        <BoardThumbnail id={id} name={name} thumbnailPhoto={thumbnailPhoto} />
+      )}
+      keyExtractor={(board) => board.id}
+    />
   </View>
 );
 
-export default GalleryList;
+export default BoardList;
