@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, TouchableHighlight, Text } from 'react-native';
+import PropTypes from 'prop-types';
 import styles from './styles';
 
 const Toolbar = ({ onAdd }) => (
@@ -15,5 +16,9 @@ const Toolbar = ({ onAdd }) => (
     </TouchableHighlight>
   </View>
 );
+
+Toolbar.propTypes = {
+  onAdd: PropTypes.func.isRequired,
+};
 
 export default Toolbar;
