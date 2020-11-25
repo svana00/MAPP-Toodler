@@ -10,13 +10,15 @@ import styles from './styles';
 
 class Board extends React.Component {
   state = {
-    currentBoard: '',
+    currentId: 1,
+    currentName: '',
   }
   async componentDidMount() {
     // load board
     const {navigation} = this.props;
-    const id = navigation.getParam('boardId', '');
-    console.log(id);
+    const currentId = navigation.getParam('boardId', '');
+    const currentName = navigation.getParam('boardName', '');
+    this.setState({currentId, currentName })
   }
   render() {
     const {currentBoard} = this.state;

@@ -5,9 +5,10 @@ export default StyleSheet.create({
   toolbar: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     height: 80,
     backgroundColor: backgroundPink,
+    border: 'black',
   },
   toolbarAction: {
     flex: 1,

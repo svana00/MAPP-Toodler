@@ -10,6 +10,10 @@ import * as colors from '../../styles/colors';
 import { headings } from '../../styles/headings';
 import data from '../../resources/data.json';
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> da088810e7bffeda46bc3c8ee4882522bad3e76b
 class Tasks extends React.Component {
     static navigationOptions = {
       title: 'Tasks'
