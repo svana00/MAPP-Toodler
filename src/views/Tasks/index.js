@@ -2,14 +2,15 @@ import React from 'react';
 import { View, Text } from 'react-native';
 //import GalleryList from '../../components/GalleryList';
 //import AddModal from '../../components/AddModal';
-//import Spinner from '../../components/Spinner';
+import Spinner from '../../components/Spinner';
 //import { getAllTasks, addImage, remove } from '../../services/fileService';
 //import { takePhoto, selectFromCameraRoll } from '../../services/imageService';
+import taskToolbar from '../../components/taskToolbar';
 import * as colors from '../../styles/colors';
-import { headings } from '../../styles';
+import { headings } from '../../styles/headings';
+import data from '../../resources/data.json';
 
-
-class Tasks extends React.component {
+class Tasks extends React.Component {
     static navigationOptions = {
       title: 'Tasks'
     }
@@ -17,6 +18,9 @@ class Tasks extends React.component {
     state = {
       //All tasks within the application directory
       tasks: [],
+      //just while testing
+      listId: 1,
+      listName: "Test to begin with",
       //selected tasks
       selectedTasks: [],
       loadingTasks: true,
@@ -25,25 +29,56 @@ class Tasks extends React.component {
 
 
     async componentDidMount() {
-      await this.__fecthItems();
+      await this.getItems();
     }
 
-    async __fecthItems() {
+    async getItems() {
         this.setState({ loadingTasks: true});
-        const tasks = await getAllTasks();
+        const tasks = data.tasks.filter(tasks => tasks.listId == this.listId );
         this.setState({loadingTasks: false, tasks})
     }
 
-    onTaksLongPress(name) {
+    onTaskLongPress(id) {
       const { selectedTasks } = this.state;
-      if (selectedTasks.indefOf(name) !== -1){
+      if (selectedTasks.indefOf(id) !== -1){
         //The task is already in the list
-        this.setState({selectedTasks: selectedTasks.filter(task => task!=name)});
+        this.setState({selectedTasks: selectedTasks.filter(task => task!=id)});
       } else {
         // Add a new image
-        this.setState({selectedTasks: [...selectedTasks, name]})
+        this.setState({selectedTasks: [...selectedTasks, id]});
       }
+  }
 
+  async deleteSelectedTasks() {
+    const {selectedTasks, tasks} = this.state;
+    this.setState({loadingImages: true})
+  }
+
+      render() {
+        const { selectedTasks, loadingTasks, tasks, isAddModalOpen, listName } = this.state;
+        return (
+          <View style={{ flex:1 }}>
+              //hasSelectedTasks, onAdd, onRemove, listName
+              <Toolbar
+                  hasSelectedTasks={ selectedTasks.length > 0 }
+                  onAdd={ () => this.setState({ isAddModalOpen: true }) }
+                  onRemove={ () => this.deleteSelectedTasks() }
+                  listName = { listName }/>
+              {
+                  loadingTasks
+                  ?
+                  <Spinner />
+                  :
+                  <>
+                      <TaskList
+                          tasks = { tasks }
+                          selectedTasks = { selectedTasks }
+                          onLongPress = {id => this.onTaskLongPress(id)} />
+                  </>
+               }
+
+            </View>
+        );
     }
 }
 
