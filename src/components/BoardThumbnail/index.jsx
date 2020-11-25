@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Image, View, Text, TouchableOpacity, ImageBackground,
+  View, Text, TouchableOpacity, ImageBackground,
 } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import styles from './styles';

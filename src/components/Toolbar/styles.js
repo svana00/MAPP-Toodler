@@ -16,7 +16,10 @@ export default StyleSheet.create({
   },
   toolbarActionText: {
     fontWeight: 'bold',
-    color: 'white',
+    color: 'black',
     fontSize: 16,
+  },
+  clear: {
+    color: 'transparent',
   },
 });
