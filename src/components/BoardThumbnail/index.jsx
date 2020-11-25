@@ -1,20 +1,24 @@
 import React from 'react';
-import { Image, View, Text, TouchableOpacity } from 'react-native';
+import {
+  Image, View, Text, TouchableOpacity, ImageBackground
+} from 'react-native';
 import {withNavigation} from 'react-navigation';
 import styles from './styles';
 
 const BoardThumbnail = ({
  id, name, thumbnailPhoto, navigation: { navigate }
 }) => (
-  <TouchableOpacity onPress={() => navigate('Board', { boardId: id })}>
-    <View>
-      <Text>{name}</Text>
-      <Image
-        style={styles.image}
-        resizeMode="cover"
-        source={{ uri: thumbnailPhoto }}
-      />
-    </View>
+
+  <TouchableOpacity onPress={() => navigate('Board', { boardId: id, boardName: name })}>
+
+    <ImageBackground source={{ uri: thumbnailPhoto }} style={styles.image} resizeMode="cover">
+      <View style={{
+        position: 'absolute', top: 20, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center'
+      }}
+      >
+        <Text>{name}</Text>
+      </View>
+    </ImageBackground>
   </TouchableOpacity>
 );
 
