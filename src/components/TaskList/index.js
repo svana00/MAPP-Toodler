@@ -21,7 +21,7 @@ const TaskList = ({ tasks, selectedTasks, onLongPress }) => (
               onLongPress = {onLongPress}/>
         );
       }}
-      keyExtractor={task => task.id}
+      keyExtractor={task => task.id.toString()}
     />
   </View>
 );

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import TaskList from '../../components/TaskList';
-//import AddModal from '../../components/AddModal';
+import AddTask from '../../components/AddTask';
 import Spinner from '../../components/Spinner';
 //import { getAllTasks, addImage, remove } from '../../services/fileService';
 //import { takePhoto, selectFromCameraRoll } from '../../services/imageService';
@@ -31,6 +31,10 @@ class Tasks extends React.Component {
 
 
     async componentDidMount() {
+      // const {navigation} = this.props;
+      // const listId = navigation.getParam('listId', '');
+      // const listName = navigation.getParam('listName', '');
+      // this.setState({listId, listName })
       await this.__getItems();
     }
 
@@ -52,13 +56,24 @@ class Tasks extends React.Component {
       }
   }
 
-      async deleteSelectedTasks() {
-        const {selectedTasks, tasks} = this.state;
-        this.setState({loadingImages: true})
+    async deleteSelectedTasks() {
+      const {selectedTasks, tasks} = this.state;
+      this.setState({loadingImages: true})
+    }
+
+    async makeTask(task) {
+      await this.addTask(task);
+    }
+    async addTask(task) {
+      this.setState({loadingImages: true})
+      const {tasks, listId } = this.state;
+      const id = tasks.length + 1;
+      const newTask = {id: id.toString(), name: task.name, description: task.description, isFinished: false, ListId: listId};
+      this.setState({tasks: [...tasks,newTask], loadingImages: false, isAddModalOpen: false});
     }
 
       render() {
-        const { selectedTasks, loadingTasks, tasks, isCreateBoardModalOpen, listName } = this.state;
+        const { selectedTasks, loadingTasks, tasks, isAddModalOpen, listName } = this.state;
         return (
           <View style={{ flex:1 }}>
               <TaskToolbar
@@ -78,7 +93,11 @@ class Tasks extends React.Component {
                           onLongPress = {id => this.onTaskLongPress(id)} />
                   </>
                }
-            </View>
+               <AddTask
+                  isOpen={isAddModalOpen}
+                  closeModal = {() => this.setState({isAddModalOpen: false})}
+                  addTask = {task => this.makeTask(task)}/>
+          </View>
         );
     }
 }

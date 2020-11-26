@@ -8,7 +8,11 @@ const ListList = ({ lists, boardId }) => (
     <FlatList
       numColumns={1}
       data={lists.filter((list) => list.boardId === boardId)}
-      renderItem={({ item: { id, name, color, boardId } }) => (
+      renderItem={({
+        item: {
+          id, name, color, boardId,
+        },
+      }) => (
         <BoardThumbnail id={id} name={name} color={color} boardId={boardId} />
       )}
       keyExtractor={(list) => list.id.toString()}
