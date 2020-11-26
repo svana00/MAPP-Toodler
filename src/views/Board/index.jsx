@@ -10,6 +10,7 @@ import styles from './styles';
 import ListList from './../../components/ListList';
 import Toolbar from '../../components/Toolbar';
 import data from '../../resources/data.json';
+import AnimatedBottomSheet from '../../components/AnimatedBottomSheet';
 
 
 
@@ -34,7 +35,6 @@ class Board extends React.Component {
       isAddModalOpen
       } = this.state;
 
-
     return (
       <View style={{ flex: 1 }}>
         <Toolbar
@@ -43,10 +43,7 @@ class Board extends React.Component {
         <ListList
           lists={ data.lists }
           boardId={ currentId }/>
-          <TouchableHighlight style={styles.button} onPress={() => navigate('ActionSheetExample')}>
-            <Text>Click me!</Text>
-          </TouchableHighlight>
-        </View>
+      </View>
     );
   }
 }
