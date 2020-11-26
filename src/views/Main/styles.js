@@ -29,7 +29,6 @@ export default StyleSheet.create({
     fontSize: 20,
     paddingRight: 40,
     paddingLeft: 40,
-    fontFamily: 'IBMThin'
   },
   button: {
     marginTop: 30,

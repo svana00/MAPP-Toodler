@@ -43,6 +43,9 @@ class Board extends React.Component {
         <ListList
           lists={ data.lists }
           boardId={ currentId }/>
+          <TouchableHighlight style={styles.button} onPress={() => navigate('ActionSheetExample')}>
+            <Text>Click me!</Text>
+          </TouchableHighlight>
         </View>
     );
   }
