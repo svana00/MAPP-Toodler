@@ -8,6 +8,7 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     height: 80,
     backgroundColor: backgroundPink,
+    borderColor: 'black',
   },
   toolbarAction: {
     flex: 1,

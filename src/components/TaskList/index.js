@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, FlatList } from 'react-native';
-//import styles from './styles';
+import styles from './styles';
 import TaskThumbnail from '../TaskThumbnail';
 
 const TaskList = ({ tasks, selectedTasks, onLongPress }) => (
-  <View>
+  <View style={styles.listContainer}>
     <FlatList
       numColumns={1}
       data={ tasks }
@@ -16,10 +16,12 @@ const TaskList = ({ tasks, selectedTasks, onLongPress }) => (
               name={ name }
               description={ description }
               isFinished={ isFinished }
-              listId = { listId } />
+              listId = { listId }
+              isSelected={ selectedTasks.indexOf(id) !== -1}
+              onLongPress = {onLongPress}/>
         );
       }}
-      keyExtractor={task => task.id.toString()}
+      keyExtractor={task => task.id}
     />
   </View>
 );
