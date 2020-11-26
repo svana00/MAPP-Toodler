@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, FlatList } from 'react-native';
+import { View, FlatList, Button } from 'react-native';
 import styles from './styles';
 import BoardThumbnail from '../BoardThumbnail';
 
@@ -10,12 +10,16 @@ const BoardList = ({ boards, deleteBoard }) => (
       numColumns={1}
       data={boards}
       renderItem={({ item: { id, name, thumbnailPhoto } }) => (
-        <BoardThumbnail
-          id={id}
-          name={name}
-          thumbnailPhoto={thumbnailPhoto}
-          deleteBoard={deleteBoard}
-        />
+        <View>
+          <BoardThumbnail
+            id={id}
+            name={name}
+            thumbnailPhoto={thumbnailPhoto}
+            deleteBoard={deleteBoard}
+          />
+          <Button color="red" title="Delete Board" onPress={() => { deleteBoard(id); }} />
+          <Button color="green" title="Edit Board" onPress={() => { deleteBoard(id); }} />
+        </View>
       )}
       keyExtractor={(board) => board.id.toString()}
     />
