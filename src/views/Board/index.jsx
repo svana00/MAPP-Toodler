@@ -7,11 +7,18 @@ import leftArrow from '../../resources/leftArrow.png';
 import downArrow from '../../resources/downArrow.png';
 import dot from '../../resources/dot.png';
 import styles from './styles';
+import ListList from './../../components/ListList';
+import Toolbar from '../../components/Toolbar';
+import data from '../../resources/data.json';
+
+
+
 
 class Board extends React.Component {
   state = {
-    currentId: 1,
+    currentId:0,
     currentName: '',
+    isAddModalOpen: false,
   }
   async componentDidMount() {
     // load board
@@ -21,23 +28,23 @@ class Board extends React.Component {
     this.setState({currentId, currentName })
   }
   render() {
-    const {currentBoard} = this.state;
+    const {
+      currentId,
+      currentName,
+      isAddModalOpen
+      } = this.state;
+
+
     return (
-      <View style={styles.container}>
-        <View style={styles.smallContainer}>
-          <Image source={plus} style={styles.plus} />
-          <Image source={downArrow} style={styles.downArrow} />
-          <Image source={leftArrow} style={styles.leftArrow} />
-          <Image source={dot} style={styles.dot} />
-          <Image source={dot} style={styles.dot} />
-          <Image source={dot} style={styles.dot} />
-          <Text style={styles.header}>Hello</Text>
+      <View style={{ flex: 1 }}>
+        <Toolbar
+        onAdd = { () => this.setState({isAddModalOpen: true}) }
+        title={currentName}/>
+        <ListList
+          lists={ data.lists }
+          boardId={ currentId }/>
         </View>
-        <View style={styles.whiteContainer}>
-          <Text style={styles.paragraph}> Task 1</Text>
-        </View>
-      </View>
-    )
+    );
   }
 }
 

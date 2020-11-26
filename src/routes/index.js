@@ -10,5 +10,5 @@ export default createAppContainer(createStackNavigator({
   Main,
   Boards,
   Board,
-  Tasks
+  Tasks,
 }));

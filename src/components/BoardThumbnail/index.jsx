@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
-  Image, View, Text, TouchableOpacity, ImageBackground,
+  View, Text, TouchableOpacity, ImageBackground,
 } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import styles from './styles';
@@ -21,5 +22,14 @@ const BoardThumbnail = ({
     </ImageBackground>
   </TouchableOpacity>
 );
+
+BoardThumbnail.propTypes = {
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  thumbnailPhoto: PropTypes.string.isRequired,
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default withNavigation(BoardThumbnail);
