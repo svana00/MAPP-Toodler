@@ -57,7 +57,7 @@ class CreateBoard extends React.Component {
 }
 
 CreateBoard.propTypes = {
-  isOpen: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   takePhoto: PropTypes.func.isRequired,
