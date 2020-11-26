@@ -5,9 +5,11 @@ export default StyleSheet.create({
   toolbar: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     height: 80,
     backgroundColor: backgroundPink,
+    borderWidth: 1,
+    borderColor: 'black'
   },
   toolbarAction: {
     flex: 1,
@@ -18,4 +20,11 @@ export default StyleSheet.create({
     color: 'white',
     fontSize: 16,
   },
+  toolbarHeading: {
+    flex: 1,
+    paddingLeft: 6,
+    fontWeight: '900',
+    color: 'white',
+    fontSize: 20
+  }
 });

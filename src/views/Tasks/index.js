@@ -5,10 +5,11 @@ import TaskList from '../../components/TaskList';
 import Spinner from '../../components/Spinner';
 //import { getAllTasks, addImage, remove } from '../../services/fileService';
 //import { takePhoto, selectFromCameraRoll } from '../../services/imageService';
-import taskToolbar from '../../components/taskToolbar';
+import TaskToolbar from '../../components/taskToolbar';
 import * as colors from '../../styles/colors';
 import { headings } from '../../styles/headings';
 import data from '../../resources/data.json';
+import Toolbar from '../../components/Toolbar';
 
 
 class Tasks extends React.Component {
@@ -21,7 +22,7 @@ class Tasks extends React.Component {
       tasks: [],
       //just while testing
       listId: 1,
-      listName: "Test to begin with",
+      listName: "Must see!",
       //selected tasks
       selectedTasks: [],
       loadingTasks: true,
@@ -35,13 +36,14 @@ class Tasks extends React.Component {
 
     async __getItems() {
         this.setState({ loadingTasks: true});
-        const tasks = data.tasks.filter(tasks => tasks.listId == this.listId );
+        const { listId } = this.state
+        const tasks = await data.tasks.filter(tasks => tasks.listId == listId);
         this.setState({loadingTasks: false, tasks})
     }
 
     onTaskLongPress(id) {
       const { selectedTasks } = this.state;
-      if (selectedTasks.indefOf(id) !== -1){
+      if (selectedTasks.indexOf(id) !== -1){
         //The task is already in the list
         this.setState({selectedTasks: selectedTasks.filter(task => task!=id)});
       } else {
@@ -50,17 +52,17 @@ class Tasks extends React.Component {
       }
   }
 
-  async deleteSelectedTasks() {
-    const {selectedTasks, tasks} = this.state;
-    this.setState({loadingImages: true})
-  }
+      async deleteSelectedTasks() {
+        const {selectedTasks, tasks} = this.state;
+        this.setState({loadingImages: true})
+    }
 
       render() {
         const { selectedTasks, loadingTasks, tasks, isAddModalOpen, listName } = this.state;
+        console.log(selectedTasks)
         return (
           <View style={{ flex:1 }}>
-              //hasSelectedTasks, onAdd, onRemove, listName
-              <taskToolbar
+              <TaskToolbar
                   hasSelectedTasks={ selectedTasks.length > 0 }
                   onAdd={ () => this.setState({ isAddModalOpen: true }) }
                   onRemove={ () => this.deleteSelectedTasks() }
@@ -77,7 +79,6 @@ class Tasks extends React.Component {
                           onLongPress = {id => this.onTaskLongPress(id)} />
                   </>
                }
-
             </View>
         );
     }

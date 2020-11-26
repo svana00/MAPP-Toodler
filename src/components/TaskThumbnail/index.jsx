@@ -1,17 +1,24 @@
 import React from 'react';
 import { Image, View, Text, TouchableOpacity } from 'react-native';
-import {withNavigation} from 'react-navigation';
+import { AntDesign } from '@expo/vector-icons';
 import styles from './styles';
-import Headings from '../../styles/headings'
 
 
-const TaskThumbnail = ({
- id, name, description, isFinished
-}) => (
-    <View style={ [ styles.container, !hasSelectedImages ? { color: 'rgba(155, 155, 155, .5)' } : {} ] }>
-      <Text style={Headings.h3}>{name}</Text>
-      <Text style={Headings.h4}> {description} </Text>
+const TaskThumbnail = ({ id, name, description, isFinished, onLongPress,isSelected}) => (
+    <TouchableOpacity
+        onLongPress = {() => onLongPress(id)}>
+
+        {
+          isSelected ? <AntDesign name="checkcircleo" style = {styles.checkmark} />
+          :
+          <></>
+        }
+
+    <View style={[styles.container, { opacity: isSelected ? .5 : 1 }]}>
+      <Text style = {styles.toolbarActionText}>task: {name} {"\n"} description: {description}</Text>
     </View>
+
+    </TouchableOpacity>
 );
 
 export default TaskThumbnail;

@@ -3,20 +3,27 @@ import { backgroundPink } from '../../styles/colors';
 
 export default StyleSheet.create({
     container: {
-        flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
         height: 80,
-        backgroundColor: backgroundPink,
+        backgroundColor: 'white',
+        borderColor: 'black',
+        borderWidth:1,
+        margin: 10
 
-    },
-    toolbarAction: {
-        flex: 1,
-        alignItems: 'center'
     },
     toolbarActionText: {
         fontWeight: 'bold',
-        color: 'white',
+        textAlign: 'center',
+        flexWrap: 'wrap',
+        color: 'black',
         fontSize: 16
+    },
+    checkmark: {
+        position: 'absolute',
+        top: 15,
+        right: 15,
+        fontSize: 16,
+        color: 'black'
     }
 });
