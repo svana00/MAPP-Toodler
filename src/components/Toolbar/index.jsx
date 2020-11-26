@@ -3,13 +3,13 @@ import { View, TouchableHighlight, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import styles from './styles';
 
-const Toolbar = ({ onAdd }) => (
+const Toolbar = ({ onAdd, title }) => (
   <View styleName="horizontal" style={styles.toolbar}>
     <View style={styles.toolbarAction}>
       <Text style={styles.clear}>i</Text>
     </View>
     <View style={styles.toolbarAction}>
-      <Text style={styles.toolbarActionText}>Boards Overview</Text>
+      <Text style={styles.toolbarActionText}>{title}</Text>
     </View>
     <TouchableHighlight style={styles.toolbarAction} onPress={onAdd}>
       <Text style={styles.toolbarActionText}>+</Text>

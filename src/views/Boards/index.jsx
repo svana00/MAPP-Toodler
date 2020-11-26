@@ -47,7 +47,8 @@ class Boards extends React.Component {
     return (
       <View style={{ flex: 1 }}>
         <Toolbar
-            onAdd={ () => this.setState({ isCreateBoardModalOpen: true }) } />
+            onAdd={ () => this.setState({ isCreateBoardModalOpen: true }) }
+            title ='Boards Overview'/>
         <BoardList
             boards={boards} />
         <CreateBoard
