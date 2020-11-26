@@ -4,13 +4,18 @@ import { View, FlatList } from 'react-native';
 import styles from './styles';
 import BoardThumbnail from '../BoardThumbnail';
 
-const BoardList = ({ boards }) => (
+const BoardList = ({ boards, deleteBoard }) => (
   <View style={styles.listContainer}>
     <FlatList
       numColumns={1}
       data={boards}
       renderItem={({ item: { id, name, thumbnailPhoto } }) => (
-        <BoardThumbnail id={id} name={name} thumbnailPhoto={thumbnailPhoto} />
+        <BoardThumbnail
+          id={id}
+          name={name}
+          thumbnailPhoto={thumbnailPhoto}
+          deleteBoard={deleteBoard}
+        />
       )}
       keyExtractor={(board) => board.id.toString()}
     />
@@ -23,6 +28,7 @@ BoardList.propTypes = {
     name: PropTypes.string.isRequired,
     thumbnailPhoto: PropTypes.string.isRequired,
   })).isRequired,
+  deleteBoard: PropTypes.func.isRequired,
 };
 
 export default BoardList;

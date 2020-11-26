@@ -49,11 +49,20 @@ class Boards extends React.Component {
       );
     } else {
       this.addBoardToState(name, thumbnailPhoto);
+      Alert.alert(`${name} has been created!`);
       this.setState({
         isCreateBoardModalOpen: false,
         thumbnailPhoto: '',
       });
     }
+  }
+
+  deleteBoard(id) {
+    const { boards } = this.state;
+    this.setState({
+      // Only retrieve images which were NOT part of the selected images list
+      boards: boards.filter((board) => board.id !== id),
+    });
   }
 
   render() {
@@ -66,6 +75,7 @@ class Boards extends React.Component {
         />
         <BoardList
           boards={boards}
+          deleteBoard={(id) => this.deleteBoard(id)}
         />
         <CreateBoard
           isOpen={isCreateBoardModalOpen}
