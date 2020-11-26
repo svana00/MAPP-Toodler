@@ -21,8 +21,8 @@ class Tasks extends React.Component {
       //All tasks within the application directory
       tasks: [],
       //just while testing
-      listId: 1,
-      listName: "Must see!",
+      listId: "",
+      listName: "",
       //selected tasks
       selectedTasks: [],
       loadingTasks: true,
@@ -31,14 +31,15 @@ class Tasks extends React.Component {
 
 
     async componentDidMount() {
-      // const {navigation} = this.props;
-      // const listId = navigation.getParam('listId', '');
-      // const listName = navigation.getParam('listName', '');
-      // this.setState({listId, listName })
+      const {navigation} = this.props;
+      const listId = navigation.getParam('listId', '');
+      const listName = navigation.getParam('listName', '');
+      await this.setState({listId, listName })
       await this.__getItems();
     }
 
     async __getItems() {
+        console.log(this.state.listId, this.state.listName)
         this.setState({ loadingTasks: true});
         const { listId } = this.state
         const tasks = await data.tasks.filter(tasks => tasks.listId == listId);
