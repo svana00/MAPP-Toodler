@@ -17,7 +17,12 @@ export default StyleSheet.create({
   toolbarActionText: {
     fontWeight: 'bold',
     color: 'black',
-    fontSize: 16,
+    fontSize: 20,
+  },
+  toolbarAddText: {
+    fontWeight: 'bold',
+    color: 'green',
+    fontSize: 25,
   },
   clear: {
     color: 'transparent',

@@ -10,15 +10,22 @@ const BoardList = ({ boards, deleteBoard }) => (
       numColumns={1}
       data={boards}
       renderItem={({ item: { id, name, thumbnailPhoto } }) => (
-        <View>
+        <View style={styles.boardContainer}>
           <BoardThumbnail
             id={id}
             name={name}
             thumbnailPhoto={thumbnailPhoto}
             deleteBoard={deleteBoard}
           />
-          <Button color="red" title="Delete Board" onPress={() => { deleteBoard(id); }} />
-          <Button color="green" title="Edit Board" onPress={() => { deleteBoard(id); }} />
+          <View style={styles.buttonContainer}>
+            <View style={styles.buttonItem}>
+              <Button color="red" title="Delete Board" onPress={() => { deleteBoard(id); }} />
+            </View>
+
+            <View style={styles.buttonItem}>
+              <Button color="green" title="Edit Board" onPress={() => { deleteBoard(id); }} />
+            </View>
+          </View>
         </View>
       )}
       keyExtractor={(board) => board.id.toString()}
