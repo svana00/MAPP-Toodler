@@ -1,37 +1,68 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { View, Text } from 'react-native';
 import Toolbar from '../../components/Toolbar';
 import data from '../../resources/data.json';
-import AddModal from '../../components/AddModal';
+import CreateBoard from '../../components/CreateBoard';
 import BoardList from '../../components/BoardList';
+import {takePhoto, selectFromCameraRoll} from '../../services/imageService';
+import { addBoard } from '../../actions/boards';
 
 class Boards extends React.Component {
   state = {
     boards: data.boards,
-    isAddModalOpen: false,
+    isCreateBoardModalOpen: false,
+    thumbnailPhoto: '',
   }
-  takePhoto() {
 
+  async takePhoto() {
+      const photo = await takePhoto();
+      if (photo.length > 0) { await this.addImage(photo); }
   }
-  selectFromCameraRoll() {
 
+  async selectFromCameraRoll() {
+      const photo = await selectFromCameraRoll();
+      if (photo.length > 0) { await this.addImage(photo); }
   }
+
+  async addBoard(name) {
+    const { thumbnailPhoto } = this.state;
+    const { addBoardToState } = this.props;
+    if (thumbnailPhoto === '') {
+      Alert.alert(
+        'A photo is is required!',
+        'You can add a photo by selecting the camera or albom icon',
+      );
+    } else {
+      addBoardToState(name, thumbnailPhoto);
+      this.setState({
+        isAddModalOpen: false,
+        thumbnailPhoto: '',
+      });
+    }
+  }
+
   render() {
-    const {boards, isAddModalOpen} = this.state;
+    const {boards, isCreateBoardModalOpen} = this.state;
     return (
       <View style={{ flex: 1 }}>
         <Toolbar
-        onAdd = {() => this.setState({isAddModalOpen: true })}/>
+            onAdd={ () => this.setState({ isCreateBoardModalOpen: true }) } />
         <BoardList
-        boards={boards} />
-        <AddModal
-        isOpen={isAddModalOpen}
-        closeModal={() => setState({isAddModalOpen: false})}
-        takePhoto={() => this.takePhoto()}
-        selectFromCameraRoll={() => this.selectFromCameraRoll()}/>
+            boards={boards} />
+        <CreateBoard
+          isOpen={isCreateBoardModalOpen}
+          closeModal={() => this.setState({isCreateBoardModalOpen: false})}
+          takePhoto={() => this.takePhoto()}
+          selectFromCameraRoll={() => this.selectFromCameraRoll()}
+          onSubmit={(name) => this.addBoard(name)}/>
       </View>
     );
   }
 }
+
+Boards.propTypes = {
+  addBoardToState: PropTypes.func.isRequired,
+};
 
 export default Boards;

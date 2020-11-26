@@ -56,7 +56,7 @@ class Tasks extends React.Component {
   }
 
       render() {
-        const { selectedTasks, loadingTasks, tasks, isAddModalOpen, listName } = this.state;
+        const { selectedTasks, loadingTasks, tasks, isCreateBoardModalOpen, listName } = this.state;
         return (
           <View style={{ flex:1 }}>
               //hasSelectedTasks, onAdd, onRemove, listName
