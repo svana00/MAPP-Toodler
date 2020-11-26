@@ -4,7 +4,9 @@ import { TouchableOpacity } from 'react-native';
 import Modal from '../Modal';
 import styles from './styles';
 
-const AddModal  = ({ isOpen, closeModal, takePhoto, selectFromCameraRoll }) => (
+const AddModal = ({
+  isOpen, closeModal, takePhoto, selectFromCameraRoll,
+}) => (
 
   <Modal
     isOpen={isOpen}
