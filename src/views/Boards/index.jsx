@@ -42,7 +42,7 @@ class Boards extends React.Component {
         return singleBoard;
       });
       this.setState({
-        boards: newBoards, isAddBoardModalOpen: false, isBeingModified: false, currentId: '',
+        boards: newBoards, isAddBoardModalOpen: false, isBeingModified: false, currentId: 0,
       });
     }
   }
@@ -71,10 +71,10 @@ class Boards extends React.Component {
 
   async addBoard(name) {
     const { thumbnailPhoto } = this.state;
-    if (thumbnailPhoto === '') {
+    if (thumbnailPhoto === '' || name === '') {
       Alert.alert(
-        'Photo needs to be added.',
-        'You can add a photo by selecting the camera or album icon',
+        'Blank fields',
+        'You can not have any blank fields except description, Please fill it all in',
       );
     } else {
       this.addBoardToState(name, thumbnailPhoto);

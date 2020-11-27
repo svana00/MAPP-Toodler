@@ -32,6 +32,7 @@ class AddBoardModal extends React.Component {
     const {
       isOpen, closeModal, takePhoto, selectFromCameraRoll,
     } = this.props;
+    const { name } = this.state;
     return (
       <Modal
         isOpen={isOpen}
@@ -42,6 +43,7 @@ class AddBoardModal extends React.Component {
         </Text>
         <TextInput
           onChangeText={(text) => this.setState({ name: text })}
+          value={name}
           placeholder="My board name"
           maxLength={29}
         />
@@ -58,7 +60,7 @@ class AddBoardModal extends React.Component {
         <TouchableHighlight
           onPress={() => { this.handlePress(); }}
         >
-          <Text>Create Board</Text>
+          <Text>Submit Changes</Text>
         </TouchableHighlight>
       </Modal>
     );
