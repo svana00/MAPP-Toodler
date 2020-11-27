@@ -67,11 +67,6 @@ class EditListModal extends React.Component {
         <TouchableHighlight
           style={styles.button}
           onPress={() => {
-            console.log(
-              selectedList.id,
-              this.state.name ? this.state.name : name,
-              colour || selectedList.color,
-            );
             onModify(
               selectedList.id,
               this.state.name ? this.state.name : name,
