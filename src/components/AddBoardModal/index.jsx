@@ -12,14 +12,25 @@ class AddBoardModal extends React.Component {
     super(props);
     this.state = {
       name: '',
-      thumbnailPhoto: '',
     };
   }
 
-  render() {
-    const { name, thumbnailPhoto } = this.state;
+  handlePress() {
+    const { name } = this.state;
     const {
-      id, isOpen, closeModal, takePhoto, selectFromCameraRoll, onSubmit, modify, onModify,
+      id, onModify, modify, onSubmit,
+    } = this.props;
+    if (modify) {
+      onModify(id, name);
+    } else {
+      onSubmit(name);
+    }
+    this.setState({ name: '' });
+  }
+
+  render() {
+    const {
+      isOpen, closeModal, takePhoto, selectFromCameraRoll,
     } = this.props;
     return (
       <Modal
@@ -45,7 +56,7 @@ class AddBoardModal extends React.Component {
           <Entypo style={styles.icon} name="image" />
         </TouchableOpacity>
         <TouchableHighlight
-          onPress={() => { modify ? onModify({id, name, thumbnailPhoto}) : onSubmit({name}); }}
+          onPress={() => { this.handlePress(); }}
         >
           <Text>Create Board</Text>
         </TouchableHighlight>

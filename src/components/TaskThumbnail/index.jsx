@@ -2,6 +2,7 @@ import React from 'react';
 import {
   View, Text, TouchableOpacity,
 } from 'react-native';
+import PropTypes from 'prop-types';
 import { AntDesign, FontAwesome } from '@expo/vector-icons';
 import styles from './styles';
 
@@ -39,5 +40,16 @@ const TaskThumbnail = ({
   </TouchableOpacity>
 
 );
+
+TaskThumbnail.propTypes = {
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  isFinished: PropTypes.bool.isRequired,
+  onLongPress: PropTypes.func.isRequired,
+  isSelected: PropTypes.bool.isRequired,
+  flipFinished: PropTypes.func.isRequired,
+  onModify: PropTypes.func.isRequired,
+};
 
 export default TaskThumbnail;
