@@ -31,9 +31,10 @@ class AddBoardModal extends React.Component {
 
   render() {
     const {
-      isOpen, closeModal, takePhoto, selectFromCameraRoll,
+      isOpen, closeModal, takePhoto, selectFromCameraRoll, oldName, oldDescription, isBeingModified,
     } = this.props;
     const { name, description } = this.state;
+
     return (
       <Modal
         isOpen={isOpen}
@@ -46,14 +47,14 @@ class AddBoardModal extends React.Component {
           <TextInput
             onChangeText={(text) => this.setState({ name: text })}
             value={name}
-            placeholder="My board name"
+            placeholder={isBeingModified ? oldName : 'Enter name'}
             maxLength={29}
             style={styles.textInput}
           />
           <TextInput
             onChangeText={(text) => this.setState({ description: text })}
             value={description}
-            placeholder="Description of board (optional)"
+            placeholder={isBeingModified ? oldDescription : 'Enter description (optional)'}
             maxLength={40}
             style={styles.textInput}
           />
@@ -81,6 +82,8 @@ class AddBoardModal extends React.Component {
 
 AddBoardModal.propTypes = {
   id: PropTypes.number.isRequired,
+  oldName: PropTypes.string.isRequired,
+  oldDescription: PropTypes.string,
   isOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
@@ -88,6 +91,9 @@ AddBoardModal.propTypes = {
   selectFromCameraRoll: PropTypes.func.isRequired,
   modify: PropTypes.bool.isRequired,
   onModify: PropTypes.func.isRequired,
+  isBeingModified: PropTypes.bool.isRequired,
 };
+
+AddBoardModal.defaultProps = { oldDescription: '' };
 
 export default AddBoardModal;

@@ -21,6 +21,7 @@ Toolbar.propTypes = {
   onAdd: PropTypes.func.isRequired,
   title: PropTypes.string,
 };
+
 Toolbar.defaultProps = { title: 'Overview' };
 
 export default Toolbar;

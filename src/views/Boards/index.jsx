@@ -15,13 +15,19 @@ class Boards extends React.Component {
       isAddBoardModalOpen: false,
       isBeingModified: false,
       currentId: 0,
+      selectedBoard: { id: 0, name: '', description: '' },
       thumbnailPhoto: '',
       nextBoardId: 3,
       isConfirmationOpen: false,
     };
   }
 
-  setupModify(id) {
+  setupModify(id, name, description, thumbnailPhoto) {
+    this.setState({
+      selectedBoard: {
+        id, name, description, thumbnailPhoto,
+      },
+    });
     this.setState({ currentId: id, isBeingModified: true, isAddBoardModalOpen: true });
   }
 
@@ -116,7 +122,12 @@ class Boards extends React.Component {
 
   render() {
     const {
-      currentId, boards, isAddBoardModalOpen, isBeingModified, isConfirmationOpen,
+      currentId,
+      boards,
+      isAddBoardModalOpen,
+      isBeingModified,
+      isConfirmationOpen,
+      selectedBoard,
     } = this.state;
     return (
       <View style={{ flex: 1 }}>
@@ -127,10 +138,12 @@ class Boards extends React.Component {
         <BoardList
           boards={boards}
           onDelete={(id) => this.setupDelete(id)}
-          onModify={(id) => this.setupModify(id)}
+          onModify={(id, name, description) => this.setupModify(id, name, description)}
         />
         <AddBoardModal
-          id={currentId}
+          id={selectedBoard.id}
+          oldDescription={selectedBoard.description}
+          oldName={selectedBoard.name}
           isOpen={isAddBoardModalOpen}
           closeModal={() => this.setState({ isAddBoardModalOpen: false })}
           takePhoto={() => this.takePhoto()}
@@ -138,6 +151,7 @@ class Boards extends React.Component {
           onSubmit={(name, description) => this.addBoard(name, description)}
           modify={isBeingModified}
           onModify={(id, name, description) => this.modify(id, name, description)}
+          isBeingModified={isBeingModified}
         />
         <ConfirmationModal
           isOpen={isConfirmationOpen}
