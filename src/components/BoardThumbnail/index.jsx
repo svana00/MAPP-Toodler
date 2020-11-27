@@ -11,7 +11,7 @@ const BoardThumbnail = ({
 }) => {
   let text;
   if (description) {
-    text = <Text style={styles.boardTitle}>{description}</Text>;
+    text = <Text style={styles.description}>{description}</Text>;
   }
   return (
     <View>

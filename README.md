@@ -1,7 +1,5 @@
 # MAPP Group 25
 
-![impostor]
-
 ## Description
 
 First assignment in MAPP.
