@@ -76,8 +76,17 @@ class Tasks extends React.Component {
       this.setState({loadingImages: true})
       const {tasks, listId } = this.state;
       const id = tasks.length + 1;
-      const newTask = {id: id.toString(), name: task.name, description: task.description, isFinished: false, ListId: listId};
-      this.setState({tasks: [...tasks,newTask], loadingImages: false, isAddModalOpen: false});
+      if (task.name.length == 0 || task.description.length == 0){
+        Alert.alert(
+          'Blank fields',
+          'You can not have any blank fields, Please fill it all in',
+          [{text: 'Understood'}]
+        );
+      }
+      else {
+        const newTask = {id: id.toString(), name: task.name, description: task.description, isFinished: false, ListId: listId};
+        this.setState({tasks: [...tasks,newTask], loadingImages: false, isAddModalOpen: false});
+      }
     }
 
     async flipFinished(id) {
@@ -89,9 +98,7 @@ class Tasks extends React.Component {
           }
           else {
             tasks[i].isFinished = true;
-
           }
-
         }
       }
       await this.setState(tasks)
@@ -124,7 +131,6 @@ class Tasks extends React.Component {
 
       render() {
         const { currentId, selectedTasks, loadingTasks, tasks, isAddModalOpen, listName,isBeingModified } = this.state;
-        console.log("pls", tasks)
         return (
           <View style={{ flex:1 }}>
               <TaskToolbar
