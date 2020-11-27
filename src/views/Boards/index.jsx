@@ -112,7 +112,7 @@ class Boards extends React.Component {
           closeModal={() => this.setState({ isAddBoardModalModalOpen: false })}
           takePhoto={() => this.takePhoto()}
           selectFromCameraRoll={() => this.selectFromCameraRoll()}
-          onSubmit={(name) => this.editBoard(name)}
+          onSubmit={(name) => this.modify(name)}
           modify={isBeingModified}
           onModify={(id) => this.modify(id)}
         />
