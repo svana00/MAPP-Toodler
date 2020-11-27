@@ -7,7 +7,7 @@ import { AntDesign, FontAwesome } from '@expo/vector-icons';
 import styles from './styles';
 
 const TaskThumbnail = ({
-  id, name, description, isFinished, onLongPress, isSelected, flipFinished, onModify
+  id, name, description, isFinished, onLongPress, isSelected, flipFinished, onModify,
 }) => (
   <TouchableOpacity
     onLongPress={() => onLongPress(id)}

@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import Modal from '../Modal';
 import styles from './styles';
 
-
 class EditListModal extends React.Component {
   constructor(props) {
     super(props);
@@ -18,7 +17,7 @@ class EditListModal extends React.Component {
 
   render() {
     const {
-      isOpen, closeModal, onModify, name, color
+      isOpen, closeModal, onModify, name, color,
     } = this.props;
     return (
       <Modal
@@ -66,7 +65,7 @@ class EditListModal extends React.Component {
         <TouchableHighlight
           style={styles.button}
           onPress={() => {
-            onModify(this.state.name, this.state.color? this.state.color : color);
+            onModify(this.state.name, this.state.color ? this.state.color : color);
             this.setState({
               name: '',
               color: '',
