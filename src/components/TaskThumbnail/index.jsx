@@ -16,7 +16,7 @@ const TaskThumbnail = ({
             isFinished ? <AntDesign name="checkcircleo" style={styles.checkmark} />
               : <></>
       }
-      <View style={[styles.container, { opacity: isFinished ? .5 : 1 },{ backgroundColor: isFinished ? backgroundPink : 'white' }]}>
+      <View style={[styles.container, { opacity: isFinished ? 0.5 : 1 }, { backgroundColor: isFinished ? backgroundPink : 'white' }]}>
         <Text style={styles.toolbarActionText}>
           Task:
           {' '}

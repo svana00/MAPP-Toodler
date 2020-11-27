@@ -2,10 +2,17 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   textInput: {
-    textAlign: 'center',
-    fontWeight: 'bold',
-    color: 'black',
-    fontSize: 16,
+    borderColor: 'black',
+    borderWidth: 2,
     width: 200,
-  }
+    textAlign: 'center',
+    margin: 10,
+  },
+  modalTitleText: {
+    fontWeight: 'bold',
+    fontSize: 24,
+    textAlign: 'center',
+    marginBottom: 60,
+    margin: 30,
+  },
 });

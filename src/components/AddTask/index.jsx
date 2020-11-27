@@ -27,6 +27,9 @@ class AddTask extends React.Component {
         isOpen={isOpen}
         closeModal={closeModal}
       >
+        <Text style={styles.modalTitleText}>
+          Add Task
+        </Text>
         <TextInput
           style={styles.textInput}
           placeholder="Please enter the task"

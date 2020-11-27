@@ -5,6 +5,7 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     alignItems: 'center',
+    marginTop: 5,
   },
   boardContainer: {
     borderWidth: 2,
@@ -14,13 +15,13 @@ export default StyleSheet.create({
     borderRadius: 10,
   },
   buttonItem: {
-    padding: 10,
+    padding: 5,
   },
   buttonContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
-    paddingBottom: 5,
+    paddingBottom: 3,
   },
 });

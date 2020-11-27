@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   textInput: {
-    borderColor: 'pink',
+    borderColor: 'black',
     borderWidth: 2,
     width: 200,
     textAlign: 'center',

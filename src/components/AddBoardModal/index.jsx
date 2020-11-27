@@ -40,17 +40,22 @@ class AddBoardModal extends React.Component {
         closeModal={closeModal}
       >
         <View style={styles.modalStyle}>
+          <Text style={styles.modalTitleText}>
+            Create Board
+          </Text>
           <TextInput
             onChangeText={(text) => this.setState({ name: text })}
             value={name}
             placeholder="My board name"
             maxLength={29}
+            style={styles.textInput}
           />
           <TextInput
             onChangeText={(text) => this.setState({ description: text })}
             value={description}
             placeholder="Description of board (optional)"
             maxLength={40}
+            style={styles.textInput}
           />
           <TouchableOpacity
             onPress={() => takePhoto()}
