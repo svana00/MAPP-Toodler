@@ -32,6 +32,7 @@ class ListPickerModal extends React.Component {
           Move task
         </Text>
         <Picker
+          style={{ height: 100, width: 200 }}
           selectedValue={list}
           onValueChange={value => this.updateList(value)}>
           {

@@ -12,7 +12,6 @@ export default StyleSheet.create({
     borderWidth: 2,
   },
   button: {
-    marginTop: 30,
     paddingTop: 10,
     paddingBottom: 10,
     paddingLeft: 20,
@@ -36,6 +35,6 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  
+
 
 });
