@@ -3,7 +3,7 @@ import { View, FlatList } from 'react-native';
 import styles from './styles';
 import ListThumbnail from '../ListThumbnail';
 
-const ListList = ({ lists, boardId}) => (
+const ListList = ({ lists, boardId }) => (
   <View style={styles.listContainer}>
     <FlatList
       numColumns={1}

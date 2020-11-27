@@ -19,7 +19,7 @@ class CreateBoard extends React.Component {
   render() {
     const { name, thumbnailPhoto } = this.state;
     const {
-      id, isOpen, closeModal, takePhoto, selectFromCameraRoll, onSubmit, modify, onModify
+      id, isOpen, closeModal, takePhoto, selectFromCameraRoll, onSubmit, modify, onModify,
     } = this.props;
     return (
       <Modal

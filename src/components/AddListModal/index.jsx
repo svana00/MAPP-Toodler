@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import Modal from '../Modal';
 import styles from './styles';
 
-
 class AddListModal extends React.Component {
   constructor(props) {
     super(props);
@@ -67,7 +66,7 @@ class AddListModal extends React.Component {
         <TouchableHighlight
           style={styles.button}
           onPress={() => {
-            onSubmit(this.state.name, this.state.color);
+            onSubmit(name, color);
             this.setState({
               name: '',
               color: '',
