@@ -10,7 +10,6 @@ import styles from './styles';
 import ListList from './../../components/ListList';
 import Toolbar from '../../components/Toolbar';
 import data from '../../resources/data.json';
-import AnimatedBottomSheet from '../../components/AnimatedBottomSheet';
 import AddListModal from '../../components/AddListModal';
 
 class Board extends React.Component {
@@ -22,12 +21,26 @@ class Board extends React.Component {
     isAddModalOpen: false,
     isEditModalOpen: false,
   }
+
   async componentDidMount() {
     // load board
     const {navigation} = this.props;
     const BoardId = navigation.getParam('boardId', '');
     const currentName = navigation.getParam('boardName', '');
     this.setState({BoardId, currentName});
+  }
+
+  async addListToState(name, color) {
+    let { nextListId, boardId } = this.state;
+    nextListId += 1;
+    const newList = {
+      id: nextListId,
+      name,
+      color,
+      BoardId: boardId
+    };
+    const { lists } = this.state;
+    await this.setState({ lists: [...lists, newList], isAddModalOpen: false, nextListId });
   }
 
    async addList(name, color) {
@@ -76,12 +89,11 @@ class Board extends React.Component {
     return (
       <View style={{ flex: 1 }}>
         <Toolbar
-        onAdd={() => this.setState({ isAddModalOpen: true })}
-        title={currentName}/>
+          onAdd={() => this.setState({ isAddModalOpen: true })}
+          title={currentName}/>
         <ListList
           lists={ lists }
           boardId={ BoardId }/>
-
         <AddListModal
           isOpen={isAddModalOpen}
           closeModal={() => this.setState({ isAddModalOpen: false })}

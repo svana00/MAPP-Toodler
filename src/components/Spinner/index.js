@@ -3,9 +3,9 @@ import { View, ActivityIndicator } from 'react-native';
 import styles from './styles';
 
 const Spinner = () => (
-    <View style={ styles.spinner }>
-        <ActivityIndicator color="black" />
-    </View>
+  <View style={ styles.spinner }>
+    <ActivityIndicator color="black" />
+  </View>
 );
 
 export default Spinner;

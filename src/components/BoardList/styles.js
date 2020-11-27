@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
   listContainer: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
   },
   boardContainer: {
@@ -16,12 +16,13 @@ export default StyleSheet.create({
     borderRadius: 10,
   },
   buttonItem: {
-
+    padding: 10,
   },
   buttonContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
+    paddingBottom: 5,
   },
 });
