@@ -9,11 +9,16 @@ const BoardList = ({ boards, deleteBoard, onModify }) => (
     <FlatList
       numColumns={1}
       data={boards}
-      renderItem={({ item: { id, name, thumbnailPhoto } }) => (
+      renderItem={({
+        item: {
+          id, name, description, thumbnailPhoto,
+        },
+      }) => (
         <View style={styles.boardContainer}>
           <BoardThumbnail
             id={id}
             name={name}
+            description={description}
             thumbnailPhoto={thumbnailPhoto}
             deleteBoard={deleteBoard}
           />
@@ -37,6 +42,7 @@ BoardList.propTypes = {
   boards: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
+    description: PropTypes.string,
     thumbnailPhoto: PropTypes.string.isRequired,
   })).isRequired,
   deleteBoard: PropTypes.func.isRequired,

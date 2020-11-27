@@ -145,6 +145,7 @@ class Tasks extends React.Component {
               </>
             )
           }
+
         <AddTask
           id={currentId}
           isOpen={isAddModalOpen}

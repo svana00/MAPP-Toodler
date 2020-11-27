@@ -17,6 +17,7 @@ class EditListModal extends React.Component {
   render() {
     const {
       isOpen, closeModal, onModify, id, oldName, color,
+
     } = this.props;
 
     // will change into this.state.color at the submit stage

@@ -5,6 +5,7 @@ import {
 import PropTypes from 'prop-types';
 import { AntDesign } from '@expo/vector-icons';
 import styles from './styles';
+import { backgroundPink } from '../../styles/colors';
 
 const TaskThumbnail = ({
   id, name, description, isFinished, flipFinished,
@@ -15,7 +16,7 @@ const TaskThumbnail = ({
             isFinished ? <AntDesign name="checkcircleo" style={styles.checkmark} />
               : <></>
       }
-      <View style={[styles.container, { backgroundColor: isFinished ? 'green' : 'white' }]}>
+      <View style={[styles.container, { opacity: isFinished ? .5 : 1 },{ backgroundColor: isFinished ? backgroundPink : 'white' }]}>
         <Text style={styles.toolbarActionText}>
           Task:
           {' '}
