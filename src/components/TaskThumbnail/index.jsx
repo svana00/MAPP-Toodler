@@ -37,7 +37,6 @@ TaskThumbnail.propTypes = {
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   isFinished: PropTypes.bool.isRequired,
-  isSelected: PropTypes.bool.isRequired,
   flipFinished: PropTypes.func.isRequired,
 };
 
