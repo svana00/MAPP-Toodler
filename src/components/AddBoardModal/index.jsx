@@ -68,9 +68,10 @@ class AddBoardModal extends React.Component {
             <Entypo style={styles.icon} name="image" />
           </TouchableOpacity>
           <TouchableHighlight
+            style={styles.button}
             onPress={() => { this.handlePress(); }}
           >
-            <Text>Submit Changes</Text>
+            <Text style={styles.buttonText}>Submit Changes</Text>
           </TouchableHighlight>
         </View>
       </Modal>
