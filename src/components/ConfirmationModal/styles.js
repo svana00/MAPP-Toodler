@@ -13,12 +13,6 @@ export default StyleSheet.create({
     borderColor: 'white',
     backgroundColor: 'red',
   },
-  cancel: {
-    flex: 1,
-    marginTop: 30,
-    borderColor: 'white',
-    backgroundColor: 'pink',
-  },
   smallContainer: {
     backgroundColor: 'black',
     flexDirection: 'row',
@@ -31,6 +25,12 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
+  },
+  delete: {
+    color: 'red',
+    fontSize: 20,
+    padding: 20,
+    backgroundColor: 'white',
   },
   listContainer: {
     flex: 1,
@@ -53,5 +53,11 @@ export default StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     paddingBottom: 5,
+  },
+  cancel: {
+    color: 'green',
+    fontSize: 20,
+    padding: 20,
+    backgroundColor: 'white',
   },
 });
