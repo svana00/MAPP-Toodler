@@ -16,12 +16,12 @@ class EditListModal extends React.Component {
 
   render() {
     const {
-      isOpen, closeModal, onModify, selectedList,
+      isOpen, closeModal, onModify, id, name, color
     } = this.props;
 
     // will change into this.state.color at the submit stage
-    let colour = selectedList.color;
-    const { name } = selectedList;
+    let colour = color;
+    const oldName = name;
 
     return (
       <Modal
@@ -33,7 +33,7 @@ class EditListModal extends React.Component {
         </Text>
         <TextInput
           onChangeText={(text) => this.setState({ name: text })}
-          placeholder={name}
+          placeholder={oldName}
           maxLength={29}
           style={styles.textInput}
         />
@@ -67,10 +67,15 @@ class EditListModal extends React.Component {
         <TouchableHighlight
           style={styles.button}
           onPress={() => {
+            console.log(
+              id,
+              this.state.name ? this.state.name : oldName,
+              colour,
+            );
             onModify(
-              selectedList.id,
-              this.state.name ? this.state.name : name,
-              colour || selectedList.color,
+              id,
+              this.state.name ? this.state.name : oldName,
+              colour,
             );
             this.setState({ name: '' });
           }}
@@ -86,7 +91,9 @@ EditListModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
   onModify: PropTypes.func.isRequired,
-  selectedList: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired,
 };
 
 export default EditListModal;

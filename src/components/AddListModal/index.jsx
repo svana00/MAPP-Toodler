@@ -65,7 +65,7 @@ class AddListModal extends React.Component {
         <TouchableOpacity
           style={styles.button}
           onPress={() => {
-            onSubmit(name, color);
+            onSubmit(this.state.name, this.state.color);
             this.setState({
               name: '',
               color: '',

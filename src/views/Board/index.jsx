@@ -8,6 +8,7 @@ import Toolbar from '../../components/Toolbar';
 import data from '../../resources/data.json';
 import AddListModal from '../../components/AddListModal';
 import EditListModal from '../../components/EditListModal';
+import ConfirmationModal from '../../components/ConfirmationModal';
 
 class Board extends React.Component {
   constructor(props) {
@@ -19,6 +20,8 @@ class Board extends React.Component {
       selectedList: {},
       isAddModalOpen: false,
       isEditModalOpen: false,
+      isConfirmationOpen: false,
+      selectedId: 0,
     };
   }
 
@@ -31,23 +34,21 @@ class Board extends React.Component {
   }
 
   async addListToState(name, color) {
-    let { nextListId } = this.state;
-    const { boardId } = this.state;
-    nextListId += 1;
+    const { boardId, lists } = this.state;
+    const nextListId = lists.length + 1;
     const newList = {
       id: nextListId,
       name,
       color,
       boardId,
     };
-    const { lists } = this.state;
-    await this.setState({ lists: [...lists, newList], isAddModalOpen: false, nextListId });
+    await this.setState({ lists: [...lists, newList], isAddModalOpen: false });
   }
 
   /* eslint no-param-reassign: ["error", { "props": false }] */
   async addList(name, color) {
     if (color === '') {
-      color = '#FFFFFF';
+      await this.addListToState(name, '#FFFFFF');
     }
     await this.addListToState(name, color);
     Alert.alert(`${name} has been created!`);
@@ -58,8 +59,11 @@ class Board extends React.Component {
 
   async deleteList(listId) {
     const { lists } = this.state;
-    this.setState({
+    await this.setState({
       lists: lists.filter((list) => list.id !== listId),
+    });
+    await this.setState({
+      isConfirmationOpen: false,
     });
   }
 
@@ -85,6 +89,11 @@ class Board extends React.Component {
     await this.setState({ isEditModalOpen: true });
   }
 
+  async prepDelete(id) {
+    await this.setState({ selectedId: id });
+    await this.setState({ isConfirmationOpen: true })
+  }
+
   render() {
     const {
       boardId,
@@ -92,7 +101,9 @@ class Board extends React.Component {
       currentName,
       isAddModalOpen,
       isEditModalOpen,
+      isConfirmationOpen,
       selectedList,
+      selectedId,
     } = this.state;
 
     return (
@@ -104,7 +115,7 @@ class Board extends React.Component {
         <ListList
           lists={lists}
           boardId={boardId}
-          onDelete={(id) => this.deleteList(id)}
+          onDelete={(id) => {this.prepDelete(id); }}
           prepModifying={(id, name, color) => this.prepModifying(id, name, color)}
         />
         <AddListModal
@@ -116,7 +127,14 @@ class Board extends React.Component {
           isOpen={isEditModalOpen}
           closeModal={() => this.setState({ isEditModalOpen: false })}
           onModify={(id, name, color) => this.modifyList(id, name, color)}
-          selectedList={selectedList}
+          id={selectedList.id}
+          color={selectedList.color}
+          name={selectedList.name}
+        />
+        <ConfirmationModal
+          isOpen={isConfirmationOpen}
+          closeModal={() => this.setState({ isConfirmationOpen: false })}
+          onConfirm={() => this.deleteList(selectedId)}
         />
       </View>
     );
