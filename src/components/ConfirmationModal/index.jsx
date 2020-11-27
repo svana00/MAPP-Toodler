@@ -7,7 +7,9 @@ import { AntDesign } from '@expo/vector-icons';
 import Modal from '../Modal';
 import styles from './styles';
 
-const ConfirmationModal = ({ isOpen, closeModal, onCancel, onConfirm}) => (
+const ConfirmationModal = ({
+  isOpen, closeModal, onCancel, onConfirm,
+}) => (
 
   <Modal
     isOpen={isOpen}
@@ -20,12 +22,12 @@ const ConfirmationModal = ({ isOpen, closeModal, onCancel, onConfirm}) => (
     <View style={styles.container}>
       <View style={styles.smallContainer}>
         <View style={styles.cancel}>
-          <TouchableHighlight>
+          <TouchableHighlight onPress={() => { closeModal(); }}>
             <Text style={styles.buttonText}>Cancel</Text>
           </TouchableHighlight>
         </View>
         <View style={styles.confirm}>
-          <TouchableHighlight>
+          <TouchableHighlight onPress={() => { onConfirm(); }}>
             <Text style={styles.buttonText}>Confirm</Text>
           </TouchableHighlight>
         </View>
@@ -39,7 +41,6 @@ const ConfirmationModal = ({ isOpen, closeModal, onCancel, onConfirm}) => (
 ConfirmationModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
-  onCancel: PropTypes.func.isRequired,
   onConfirm: PropTypes.func.isRequired,
 };
 
