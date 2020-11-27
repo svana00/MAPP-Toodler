@@ -76,11 +76,17 @@ class Tasks extends React.Component {
       Alert.alert(
         'Blank fields',
         'You can not have any blank fields, Please fill it all in',
-        [{ text: 'Understood' }]
+        [{ text: 'Understood' }],
       );
     } else {
-      const newTask = {id: id.toString(), name: task.name, description: task.description, isFinished: false, ListId: listId};
-      this.setState({tasks: [...tasks,newTask], isAddModalOpen: false});
+      const newTask = {
+        id: id.toString(),
+        name: task.name,
+        description: task.description,
+        isFinished: false,
+        ListId: listId,
+      };
+      this.setState({ tasks: [...tasks, newTask], isAddModalOpen: false });
     }
   }
 

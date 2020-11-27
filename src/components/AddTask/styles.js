@@ -6,5 +6,6 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     color: 'black',
     fontSize: 16,
+    width: 200,
   }
 });

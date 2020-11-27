@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, FlatList } from 'react-native';
+import { View, FlatList, Button } from 'react-native';
 import PropTypes from 'prop-types';
 import styles from './styles';
 import TaskThumbnail from '../TaskThumbnail';
@@ -17,17 +17,26 @@ const TaskList = ({
           id, name, description, isFinished, listId,
         },
       }) => (
-        <TaskThumbnail
-          id={id}
-          name={name}
-          description={description}
-          isFinished={isFinished}
-          listId={listId}
-          isSelected={selectedTasks.indexOf(id) !== -1}
-          onLongPress={onLongPress}
-          flipFinished={flipFinished}
-          onModify={onModify}
-        />
+        <View style={styles.boardContainer}>
+          <TaskThumbnail
+            id={id}
+            name={name}
+            description={description}
+            isFinished={isFinished}
+            listId={listId}
+            isSelected={selectedTasks.indexOf(id) !== -1}
+            flipFinished={flipFinished}
+          />
+          <View style={styles.buttonContainer}>
+            <View style={styles.buttonItem}>
+              <Button color="red" title="Delete Task"/>
+            </View>
+
+            <View style={styles.buttonItem}>
+              <Button color="green" title="Edit Task" onPress={() => { onModify(id); }} />
+            </View>
+          </View>
+        </View>
       )}
       keyExtractor={(task) => task.id.toString()}
     />
