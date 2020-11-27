@@ -15,7 +15,7 @@ const ConfirmationModal = ({
     isOpen={isOpen}
     closeModal={closeModal}
   >
-    <AntDesign name="closecircleo" size={40} color="red" />
+    <AntDesign name="delete" size={70} color="black" />
     <Text style={styles.modalTitleText}>
       Delete
       {' '}
