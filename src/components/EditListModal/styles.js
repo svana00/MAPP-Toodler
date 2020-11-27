@@ -34,7 +34,7 @@ export default StyleSheet.create({
     marginTop: 50,
     height: 30,
     flexDirection: 'row',
-    alignItems: 'space-between',
+    alignItems: 'center',
   },
   pink: {
     margin: 5,

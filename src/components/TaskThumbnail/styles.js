@@ -6,8 +6,6 @@ export default StyleSheet.create({
     justifyContent: 'center',
     height: 90,
     backgroundColor: 'white',
-    borderColor: 'black',
-    borderWidth: 1,
     margin: 10,
 
   },
@@ -17,20 +15,5 @@ export default StyleSheet.create({
     flexWrap: 'wrap',
     color: 'black',
     fontSize: 16,
-  },
-  checkmark: {
-    position: 'absolute',
-    top: 15,
-    right: 15,
-    fontSize: 16,
-    color: 'black',
-  },
-
-  modify: {
-    position: 'absolute',
-    top: 15,
-    right: 15,
-    fontSize: 16,
-    color: 'black',
   },
 });

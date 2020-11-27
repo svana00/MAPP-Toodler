@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import Modal from '../Modal';
 import styles from './styles';
 
-
 class EditListModal extends React.Component {
   constructor(props) {
     super(props);
