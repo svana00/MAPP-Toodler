@@ -17,5 +17,5 @@ The team consists of 3 people:
 ## Extra functionality
 
 - We have an option to select an image from the camera roll or take a picture both in add and edit for the boards.
-- We have extra confirm button when deleting in all stages.
+- We have extra confirm button when deleting in boards and lists.
 - We have a colour palette when selecting a colour for a list.

@@ -21,7 +21,7 @@ class ListPickerModal extends React.Component {
     const {
       isOpen, closeModal, onSubmit, allLists,
     } = this.props;
-    console.log('here',allLists)
+    console.log('here', allLists);
     return (
       <Modal
         isOpen={isOpen}
