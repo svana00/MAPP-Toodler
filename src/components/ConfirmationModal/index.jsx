@@ -8,7 +8,7 @@ import Modal from '../Modal';
 import styles from './styles';
 
 const ConfirmationModal = ({
-  isOpen, closeModal, onConfirm,
+  isOpen, closeModal, onConfirm, objectName,
 }) => (
 
   <Modal
@@ -17,7 +17,10 @@ const ConfirmationModal = ({
   >
     <AntDesign name="closecircleo" size={40} color="red" />
     <Text style={styles.modalTitleText}>
-      Are You Sure?
+      Delete
+      {' '}
+      {objectName}
+      ?
     </Text>
     <View style={styles.container}>
       <View style={styles.buttonContainer}>
@@ -43,6 +46,11 @@ ConfirmationModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
   onConfirm: PropTypes.func.isRequired,
+  objectName: PropTypes.string,
+};
+
+ConfirmationModal.defaultProps = {
+  objectName: '',
 };
 
 export default ConfirmationModal;

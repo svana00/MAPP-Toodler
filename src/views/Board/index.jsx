@@ -135,6 +135,7 @@ class Board extends React.Component {
           isOpen={isConfirmationOpen}
           closeModal={() => this.setState({ isConfirmationOpen: false })}
           onConfirm={() => this.deleteList(selectedId)}
+          objectName="List"
         />
       </View>
     );
