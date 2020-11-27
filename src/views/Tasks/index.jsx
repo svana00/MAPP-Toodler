@@ -2,9 +2,9 @@ import React from 'react';
 import { View, Alert } from 'react-native';
 import PropTypes from 'prop-types';
 import TaskList from '../../components/TaskList';
+import ListPickerModal from '../../components/ListPickerModal';
 import AddTask from '../../components/AddTask';
 import Spinner from '../../components/Spinner';
-// import { getAllTasks, addImage, remove } from '../../services/fileService';
 import Toolbar from '../../components/Toolbar';
 import data from '../../resources/data.json';
 
@@ -14,6 +14,7 @@ class Tasks extends React.Component {
     this.state = {
       // All tasks within the application directory
       tasks: data.tasks,
+      lists: [],
       // just while testing
       listId: 0,
       nextId: 17,
@@ -23,6 +24,7 @@ class Tasks extends React.Component {
       isAddModalOpen: false,
       currentId: 3,
       isBeingModified: false,
+      isListPickerOpen: false,
     };
   }
 
@@ -32,6 +34,7 @@ class Tasks extends React.Component {
     const listName = navigation.getParam('listName', '');
     await this.setState({ listId, listName });
     await this.getItems();
+    await this.makePicker();
   }
 
   async setupModify(id) {
@@ -43,6 +46,16 @@ class Tasks extends React.Component {
     const { listId } = this.state;
     const tasks = data.tasks.filter((task) => task.listId === listId);
     await this.setState({ loadingTasks: false, tasks });
+  }
+
+  async makePicker() {
+    const dataList = data.lists
+    const finalList = []
+    for (var i in dataList){
+      var add = {label:  dataList[i].name, value: (dataList[i].id + ", " + dataList[i].name)}
+      finalList[i] = add;
+    }
+    await this.setState({lists: finalList});
   }
 
   deleteTask(id) {
@@ -124,7 +137,10 @@ class Tasks extends React.Component {
       isAddModalOpen,
       listName,
       isBeingModified,
+      lists,
+      isListPickerOpen
     } = this.state;
+    console.log("moew", lists)
     return (
       <View style={{ flex: 1 }}>
         <Toolbar
@@ -144,8 +160,7 @@ class Tasks extends React.Component {
                 />
               </>
             )
-          }
-
+        }
         <AddTask
           id={currentId}
           isOpen={isAddModalOpen}
@@ -153,6 +168,12 @@ class Tasks extends React.Component {
           addTask={(task) => this.makeTask(task)}
           modify={isBeingModified}
           onModify={(id) => this.modify(id)}
+        />
+        <ListPickerModal
+          isOpen = {isListPickerOpen}
+          closeModal = {() => this.setState({isListPickerOpen: false})}
+          onSubmit = {() => console.log("HERE DOGGO")}
+          allLists = {lists}
         />
       </View>
     );
@@ -162,6 +183,7 @@ class Tasks extends React.Component {
 Tasks.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
+    getParam: PropTypes.func.isRequired,
   }).isRequired,
 };
 
