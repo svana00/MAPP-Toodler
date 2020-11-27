@@ -38,7 +38,7 @@ class Boards extends React.Component {
     if (board.name.length === 0 || board.thumbnailPhoto.length === 0) {
       Alert.alert(
         'Blank fields',
-        'You can not have any blank fields, Please fill it all in',
+        'Name and thumbnail photo cannot be blank. Please fill them in.',
         [{ text: 'Understood' }],
       );
     } else {
