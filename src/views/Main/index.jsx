@@ -2,6 +2,7 @@ import React from 'react';
 import {
   View, Text, TouchableHighlight, Image,
 } from 'react-native';
+import PropTypes from 'prop-types';
 import logo from '../../resources/logo.png';
 import styles from './styles';
 
@@ -20,5 +21,11 @@ const Main = ({ navigation: { navigate } }) => (
     </View>
   </View>
 );
+
+Main.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default Main;

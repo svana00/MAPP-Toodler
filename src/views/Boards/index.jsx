@@ -11,7 +11,7 @@ class Boards extends React.Component {
     super(props);
     this.state = {
       boards: data.boards,
-      isAddBoardModalModalOpen: false,
+      isAddBoardModalOpen: false,
       isBeingModified: false,
       currentId: 0,
       thumbnailPhoto: '',
@@ -20,11 +20,14 @@ class Boards extends React.Component {
   }
 
   setupModify(id) {
-    this.setState({ currentId: id, isBeingModified: true, isAddBoardModalModalOpen: true });
+    this.setState({ currentId: id, isBeingModified: true, isAddBoardModalOpen: true });
   }
 
-  modify(board) {
-    const { boards } = this.state;
+  /* eslint no-param-reassign: ["error", { "props": false }] */
+  modify(id, name) {
+    const { boards, thumbnailPhoto } = this.state;
+    const board = { id, name, thumbnailPhoto };
+    console.log(board);
     if (board.name.length === 0 || board.thumbnailPhoto.length === 0) {
       Alert.alert(
         'Blank fields',
@@ -32,15 +35,17 @@ class Boards extends React.Component {
         [{ text: 'Understood' }],
       );
     } else {
-      for (let i in boards) {
-        if (boards[i].id == board.id) {
-          boards[i].name = board.name;
-          boards[i].description = board.description;
+      const newBoards = boards.map((singleBoard) => {
+        if (singleBoard.id === board.id) {
+          singleBoard.name = board.name;
+          singleBoard.thumbnailPhoto = thumbnailPhoto;
         }
-      }
-      this.setState({
-        boards, isAddBoardModalModalOpen: false, isBeingModified: false, currentId: '',
+        return singleBoard;
       });
+      this.setState({
+        boards: newBoards, isAddBoardModalOpen: false, isBeingModified: false, currentId: '',
+      });
+      console.log('hello');
     }
   }
 
@@ -63,7 +68,7 @@ class Boards extends React.Component {
       thumbnailPhoto,
     };
     const { boards } = this.state;
-    this.setState({ boards: [...boards, newBoard], isAddBoardModalModalOpen: false, nextBoardId });
+    this.setState({ boards: [...boards, newBoard], isAddBoardModalOpen: false, nextBoardId });
   }
 
   async addBoard(name) {
@@ -75,9 +80,16 @@ class Boards extends React.Component {
       );
     } else {
       this.addBoardToState(name, thumbnailPhoto);
-      Alert.alert(`${name} has been created!`);
+      Alert.alert(
+        'Successful!',
+        `${name} has been created!`,
+        [
+          { text: 'OK', onPress: () => console.log('OK Pressed') },
+        ],
+        { cancelable: false },
+      );
       this.setState({
-        isAddBoardModalModalOpen: false,
+        isAddBoardModalOpen: false,
         thumbnailPhoto: '',
       });
     }
@@ -93,12 +105,12 @@ class Boards extends React.Component {
 
   render() {
     const {
-      currentId, boards, isAddBoardModalModalOpen, isBeingModified,
+      currentId, boards, isAddBoardModalOpen, isBeingModified,
     } = this.state;
     return (
       <View style={{ flex: 1 }}>
         <Toolbar
-          onAdd={() => this.setState({ isAddBoardModalModalOpen: true })}
+          onAdd={() => this.setState({ isAddBoardModalOpen: true })}
           title="My boards"
         />
         <BoardList
@@ -108,13 +120,13 @@ class Boards extends React.Component {
         />
         <AddBoardModal
           id={currentId}
-          isOpen={isAddBoardModalModalOpen}
-          closeModal={() => this.setState({ isAddBoardModalModalOpen: false })}
+          isOpen={isAddBoardModalOpen}
+          closeModal={() => this.setState({ isAddBoardModalOpen: false })}
           takePhoto={() => this.takePhoto()}
           selectFromCameraRoll={() => this.selectFromCameraRoll()}
-          onSubmit={(name) => this.modify(name)}
+          onSubmit={(name) => this.addBoard(name)}
           modify={isBeingModified}
-          onModify={(id) => this.modify(id)}
+          onModify={(id, name) => this.modify(id, name)}
         />
       </View>
     );
