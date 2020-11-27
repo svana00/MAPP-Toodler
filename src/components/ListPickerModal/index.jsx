@@ -22,20 +22,22 @@ class ListPickerModal extends React.Component {
     const {
       isOpen, closeModal, onSubmit, allLists
     } = this.props;
+    console.log("here",allLists)
     return (
       <Modal
         isOpen={isOpen}
         closeModal={closeModal}
       >
         <Text style={styles.modalTitleText}>
-          Move task to another list
+          Move task
         </Text>
         <Picker
+          style={{ height: 100, width: 200 }}
           selectedValue={list}
           onValueChange={value => this.updateList(value)}>
           {
             allLists.map(list => (
-              <Picker.Item label={list.label} value={list.value} />
+              <Picker.Item style = {styles.item} label={list.label} value={list.value} />
               )
             )
           }
@@ -45,9 +47,6 @@ class ListPickerModal extends React.Component {
           style={styles.button}
           onPress={() => {
             onSubmit(this.list);
-            this.setState({
-              list: ''
-            });
           }}
         >
           <Text style={styles.buttonText}>Submit</Text>

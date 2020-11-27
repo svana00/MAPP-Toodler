@@ -17,6 +17,7 @@ export default StyleSheet.create({
     width: winWidth - 100,
     backgroundColor: 'white',
     padding: 40,
+    height: 150,
   },
   divider: {
     marginTop: 10,
