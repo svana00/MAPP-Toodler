@@ -13,7 +13,7 @@ class Tasks extends React.Component {
     super(props);
     this.state = {
       // All tasks within the application directory
-      tasks: [],
+      tasks: data.tasks,
       // just while testing
       listId: 0,
       listName: '',
@@ -32,17 +32,6 @@ class Tasks extends React.Component {
     const listName = navigation.getParam('listName', '');
     await this.setState({ listId, listName });
     await this.getItems();
-  }
-
-  onTaskLongPress(id) {
-    const { selectedTasks } = this.state;
-    if (selectedTasks.indexOf(id) !== -1) {
-      // The task is already in the list
-      this.setState({ selectedTasks: selectedTasks.filter((task) => task !== id) });
-    } else {
-      // Add a new image
-      this.setState({ selectedTasks: [...selectedTasks, id] });
-    }
   }
 
   async setupModify(id) {
@@ -152,7 +141,6 @@ class Tasks extends React.Component {
                 <TaskList
                   tasks={tasks}
                   selectedTasks={selectedTasks}
-                  onLongPress={(id) => this.onTaskLongPress(id)}
                   flipFinished={async (id) => this.flipFinished(id)}
                   onModify={(id) => this.setupModify(id)}
                   onRemove={(id) => this.deleteTask(id)}
