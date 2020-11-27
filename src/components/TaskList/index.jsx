@@ -5,7 +5,7 @@ import styles from './styles';
 import TaskThumbnail from '../TaskThumbnail';
 
 const TaskList = ({
-  tasks, selectedTasks, onLongPress, flipFinished, onModify,
+  tasks, selectedTasks, flipFinished, onModify, onRemove,
 }) => (
   <View style={styles.listContainer}>
     <FlatList
@@ -29,7 +29,7 @@ const TaskList = ({
           />
           <View style={styles.buttonContainer}>
             <View style={styles.buttonItem}>
-              <Button color="red" title="Delete Task"/>
+              <Button color="red" title="Delete Task" onPress={() => { onRemove(id); }} />
             </View>
 
             <View style={styles.buttonItem}>
@@ -58,9 +58,9 @@ TaskList.propTypes = {
     isFinished: PropTypes.bool.isRequired,
     listId: PropTypes.number.isRequired,
   })).isRequired,
-  onLongPress: PropTypes.func.isRequired,
   flipFinished: PropTypes.func.isRequired,
   onModify: PropTypes.func.isRequired,
+  onRemove: PropTypes.func.isRequired,
 };
 
 export default TaskList;
