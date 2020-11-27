@@ -23,13 +23,15 @@ const ConfirmationModal = ({
       <View style={styles.buttonContainer}>
         <View style={styles.buttonItem}>
           <TouchableHighlight onPress={() => { closeModal(); }}>
-            <Text style={{ color: 'green', fontSize: 20 }}>Cancel</Text>
+            <Text style={styles.cancel}>Cancel</Text>
           </TouchableHighlight>
         </View>
 
         <View style={styles.buttonItem}>
           <TouchableHighlight onPress={() => { onConfirm(); }}>
-            <Text style={{ color: 'red', fontSize: 20 }}>Delete</Text>
+            <Text style={styles.delete}>
+              Delete
+            </Text>
           </TouchableHighlight>
         </View>
       </View>
