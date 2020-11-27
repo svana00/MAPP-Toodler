@@ -13,7 +13,7 @@ const TaskThumbnail = ({
   <View>
     <TouchableOpacity onPress={() => flipFinished(id)}>
       {
-            isFinished ? <AntDesign name="checkcircle" style={styles.checkmark} />
+            isFinished ? <AntDesign name="checkcircleo" style={styles.checkmark} />
               : <></>
       }
       <View style={[styles.container, { opacity: isFinished ? .5 : 1 },{ backgroundColor: isFinished ? backgroundPink : 'white' }]}>
