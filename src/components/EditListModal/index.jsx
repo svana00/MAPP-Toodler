@@ -7,7 +7,7 @@ import Modal from '../Modal';
 import styles from './styles';
 
 
-class AddListModal extends React.Component {
+class EditListModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,9 +17,8 @@ class AddListModal extends React.Component {
   }
 
   render() {
-    const { name, color } = this.state;
     const {
-      isOpen, closeModal, onSubmit,
+      isOpen, closeModal, onSubmit, name, color
     } = this.props;
     return (
       <Modal
@@ -27,11 +26,11 @@ class AddListModal extends React.Component {
         closeModal={closeModal}
       >
         <Text style={styles.modalTitleText}>
-          Create List
+          Edit List
         </Text>
         <TextInput
           onChangeText={(text) => this.setState({ name: text })}
-          placeholder="List name"
+          placeholder={name}
           maxLength={29}
           style={styles.textInput}
         />
@@ -67,7 +66,7 @@ class AddListModal extends React.Component {
         <TouchableHighlight
           style={styles.button}
           onPress={() => {
-            onSubmit(name, color);
+            onSubmit(this.state.name, this.state.color? this.state.color : color);
             this.setState({
               name: '',
               color: '',
@@ -81,10 +80,12 @@ class AddListModal extends React.Component {
   }
 }
 
-AddListModal.propTypes = {
+EditListModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired,
 };
 
-export default AddListModal;
+export default EditListModal;

@@ -14,10 +14,9 @@ import AnimatedBottomSheet from '../../components/AnimatedBottomSheet';
 import AddListModal from '../../components/AddListModal';
 
 class Board extends React.Component {
-  state ={
+  state = {
     lists: data.lists,
     BoardId:0,
-    nextListId:0,
     currentName: '',
     selectedList: '',
     isAddModalOpen: false,
@@ -37,7 +36,6 @@ class Board extends React.Component {
     };
     console.log(name, color);
     await this.addListToState(name, color);
-    console.log("hello2");
     Alert.alert(`${name} has been created!`);
     this.setState({
       isAddModalOpen: false,
@@ -45,22 +43,32 @@ class Board extends React.Component {
   }
 
   async addListToState(name, color) {
-    let { nextListId } = this.state;
-    nextListId +=1;
+    let nextListId = this.state.lists.length + 1;
     const newList = {
       id: nextListId,
       name,
       color,
       BoardId: this.state.BoardId
     };
+    console.log(newList);
     const { lists } = this.state;
+    console.log(this.state.lists);
     this.setState({ lists: [...lists, newList], isAddModalOpen: false, nextListId });
   }
 
+  async deleteList(ListId) {
+    const { lists } = this.state;
+    this.setState({loadingTasks: true})
+    this.setState({
+      lists: lists.filter((list) => list.id !== id)
+    })
+
+  }
 
   render() {
     const {
       BoardId,
+      lists,
       currentName,
       isAddModalOpen
       } = this.state;
@@ -71,7 +79,7 @@ class Board extends React.Component {
         onAdd={() => this.setState({ isAddModalOpen: true })}
         title={currentName}/>
         <ListList
-          lists={ data.lists }
+          lists={ lists }
           boardId={ BoardId }/>
 
         <AddListModal
