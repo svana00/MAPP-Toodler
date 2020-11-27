@@ -24,7 +24,7 @@ class Tasks extends React.Component {
       isAddModalOpen: false,
       currentId: 3,
       isBeingModified: false,
-      isListPickerOpen: false,
+      isListPickerOpen: true,
     };
   }
 
@@ -140,7 +140,6 @@ class Tasks extends React.Component {
       lists,
       isListPickerOpen
     } = this.state;
-    console.log("moew", lists)
     return (
       <View style={{ flex: 1 }}>
         <Toolbar
