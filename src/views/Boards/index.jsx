@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { View, Alert } from 'react-native';
 import Toolbar from '../../components/Toolbar';
 import data from '../../resources/data.json';
@@ -18,6 +17,16 @@ class Boards extends React.Component {
     };
   }
 
+  async takePhoto() {
+    const photo = await takePhoto();
+    if (photo.length > 0) { this.setState({ thumbnailPhoto: photo }); }
+  }
+
+  async selectFromCameraRoll() {
+    const photo = await selectFromCameraRoll();
+    if (photo.length > 0) { this.setState({ thumbnailPhoto: photo }); }
+  }
+
   addBoardToState(name, thumbnailPhoto) {
     let { nextBoardId } = this.state;
     nextBoardId += 1;
@@ -30,16 +39,6 @@ class Boards extends React.Component {
     this.setState({ boards: [...boards, newBoard], isCreateBoardModalOpen: false, nextBoardId });
   }
 
-  async takePhoto() {
-    const photo = await takePhoto();
-    if (photo.length > 0) { this.setState({ thumbnailPhoto: photo }); }
-  }
-
-  async selectFromCameraRoll() {
-    const photo = await selectFromCameraRoll();
-    if (photo.length > 0) { this.setState({ thumbnailPhoto: photo }); }
-  }
-
   async addBoard(name) {
     const { thumbnailPhoto } = this.state;
     if (thumbnailPhoto === '') {
@@ -49,11 +48,20 @@ class Boards extends React.Component {
       );
     } else {
       this.addBoardToState(name, thumbnailPhoto);
+      Alert.alert(`${name} has been created!`);
       this.setState({
         isCreateBoardModalOpen: false,
         thumbnailPhoto: '',
       });
     }
+  }
+
+  deleteBoard(id) {
+    const { boards } = this.state;
+    this.setState({
+      // Only retrieve images which were NOT part of the selected images list
+      boards: boards.filter((board) => board.id !== id),
+    });
   }
 
   render() {
@@ -62,10 +70,11 @@ class Boards extends React.Component {
       <View style={{ flex: 1 }}>
         <Toolbar
           onAdd={() => this.setState({ isCreateBoardModalOpen: true })}
-          title="Boards Overview"
+          title="My boards"
         />
         <BoardList
           boards={boards}
+          deleteBoard={(id) => this.deleteBoard(id)}
         />
         <CreateBoard
           isOpen={isCreateBoardModalOpen}

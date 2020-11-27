@@ -49,7 +49,7 @@ class CreateBoard extends React.Component {
             onSubmit(name);
           }}
         >
-          <Text>Submit</Text>
+          <Text>Create Board</Text>
         </TouchableHighlight>
       </Modal>
     );

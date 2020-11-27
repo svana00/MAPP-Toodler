@@ -12,7 +12,7 @@ const Toolbar = ({ onAdd, title }) => (
       <Text style={styles.toolbarActionText}>{title}</Text>
     </View>
     <TouchableHighlight style={styles.toolbarAction} onPress={onAdd}>
-      <Text style={styles.toolbarActionText}>+</Text>
+      <Text style={styles.toolbarAddText}>+</Text>
     </TouchableHighlight>
   </View>
 );
