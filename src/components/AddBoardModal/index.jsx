@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Entypo } from '@expo/vector-icons';
 import {
-  TouchableOpacity, Text, TextInput, TouchableHighlight,
+  TouchableOpacity, Text, TextInput, TouchableHighlight, View,
 } from 'react-native';
 import Modal from '../Modal';
 import styles from './styles';
@@ -39,36 +39,35 @@ class AddBoardModal extends React.Component {
         isOpen={isOpen}
         closeModal={closeModal}
       >
-        <Text>
-          Enter the desired title for this board
-        </Text>
-        <TextInput
-          onChangeText={(text) => this.setState({ name: text })}
-          value={name}
-          placeholder="My board name"
-          maxLength={29}
-        />
-        <TextInput
-          onChangeText={(text) => this.setState({ description: text })}
-          value={description}
-          placeholder="Description of board"
-          maxLength={40}
-        />
-        <TouchableOpacity
-          onPress={() => takePhoto()}
-        >
-          <Entypo style={styles.icon} name="camera" />
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => selectFromCameraRoll()}
-        >
-          <Entypo style={styles.icon} name="image" />
-        </TouchableOpacity>
-        <TouchableHighlight
-          onPress={() => { this.handlePress(); }}
-        >
-          <Text>Submit Changes</Text>
-        </TouchableHighlight>
+        <View style={styles.modalStyle}>
+          <TextInput
+            onChangeText={(text) => this.setState({ name: text })}
+            value={name}
+            placeholder="My board name"
+            maxLength={29}
+          />
+          <TextInput
+            onChangeText={(text) => this.setState({ description: text })}
+            value={description}
+            placeholder="Description of board (optional)"
+            maxLength={40}
+          />
+          <TouchableOpacity
+            onPress={() => takePhoto()}
+          >
+            <Entypo style={styles.icon} name="camera" />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => selectFromCameraRoll()}
+          >
+            <Entypo style={styles.icon} name="image" />
+          </TouchableOpacity>
+          <TouchableHighlight
+            onPress={() => { this.handlePress(); }}
+          >
+            <Text>Submit Changes</Text>
+          </TouchableHighlight>
+        </View>
       </Modal>
     );
   }
