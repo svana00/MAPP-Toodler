@@ -12,7 +12,7 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 24,
     textAlign: 'center',
-    marginBottom: 60,
+    marginBottom: 40,
     margin: 30,
   },
 });

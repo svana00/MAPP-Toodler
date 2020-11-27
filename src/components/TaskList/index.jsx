@@ -47,7 +47,7 @@ TaskList.propTypes = {
     name: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     isFinished: PropTypes.bool.isRequired,
-    listId: PropTypes.number.isRequired,
+    listId: PropTypes.number,
   })).isRequired,
   flipFinished: PropTypes.func.isRequired,
   onModify: PropTypes.func.isRequired,
