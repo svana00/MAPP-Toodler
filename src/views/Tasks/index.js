@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Alert } from 'react-native';
 import TaskList from '../../components/TaskList';
 import AddTask from '../../components/AddTask';
 import Spinner from '../../components/Spinner';
@@ -26,7 +26,9 @@ class Tasks extends React.Component {
       //selected tasks
       selectedTasks: [],
       loadingTasks: true,
-      isAddModalOpen: false
+      isAddModalOpen: false,
+      currentId: "",
+      isBeingModified: false
     }
 
 
@@ -39,11 +41,10 @@ class Tasks extends React.Component {
     }
 
     async __getItems() {
-        console.log(this.state.listId, this.state.listName)
         this.setState({ loadingTasks: true});
-        const { listId } = this.state
-        const tasks = await data.tasks.filter(tasks => tasks.listId == listId);
-        this.setState({loadingTasks: false, tasks})
+        const { listId} = this.state
+        const tasks = data.tasks.filter(task => task.listId == listId)
+        await this.setState({loadingTasks: false, tasks})
     }
 
     onTaskLongPress(id) {
@@ -59,7 +60,13 @@ class Tasks extends React.Component {
 
     async deleteSelectedTasks() {
       const {selectedTasks, tasks} = this.state;
-      this.setState({loadingImages: true})
+      this.setState({loadingTasks: true})
+      this.setState({
+        selectedTasks: [],
+        tasks: tasks.filter(task => selectedTasks.indexOf(task.id) === -1),
+        loadingTasks: false
+      })
+
     }
 
     async makeTask(task) {
@@ -73,8 +80,51 @@ class Tasks extends React.Component {
       this.setState({tasks: [...tasks,newTask], loadingImages: false, isAddModalOpen: false});
     }
 
+    async flipFinished(id) {
+      const {tasks} = this.state;
+      for (var i in tasks) {
+        if (tasks[i].id == id) {
+          if (tasks[i].isFinished) {
+            tasks[i].isFinished = false;
+          }
+          else {
+            tasks[i].isFinished = true;
+
+          }
+
+        }
+      }
+      await this.setState(tasks)
+    }
+
+    async setupModify(id) {
+      await this.setState({currentId: id, isBeingModified: true, isAddModalOpen: true })
+    }
+
+    async modify(task){
+      const {tasks} = this.state;
+      if (task.name.length == 0 || task.description.length == 0){
+        Alert.alert(
+          'Blank fields',
+          'You can not have any blank fields, Please fill it all in',
+          [{text: 'Understood'}]
+        );
+      }
+      else {
+        for (var i in tasks) {
+          if (tasks[i].id == task.id) {
+            tasks[i].name = task.name;
+            tasks[i].description = task.description;
+          }
+        }
+        await this.setState({tasks:tasks, isAddModalOpen: false, isBeingModified: false, currentId:""})
+        }
+    }
+
+
       render() {
-        const { selectedTasks, loadingTasks, tasks, isAddModalOpen, listName } = this.state;
+        const { currentId, selectedTasks, loadingTasks, tasks, isAddModalOpen, listName,isBeingModified } = this.state;
+        console.log("pls", tasks)
         return (
           <View style={{ flex:1 }}>
               <TaskToolbar
@@ -91,13 +141,19 @@ class Tasks extends React.Component {
                       <TaskList
                           tasks = { tasks }
                           selectedTasks = { selectedTasks }
-                          onLongPress = {id => this.onTaskLongPress(id)} />
+                          onLongPress = {id => this.onTaskLongPress(id)}
+                          flipFinished = {async (id) => this.flipFinished(id)}
+                          onModify = {id => this.setupModify(id)}
+                          />
                   </>
                }
                <AddTask
+                  id= {currentId}
                   isOpen={isAddModalOpen}
                   closeModal = {() => this.setState({isAddModalOpen: false})}
-                  addTask = {task => this.makeTask(task)}/>
+                  addTask = {task => this.makeTask(task)}
+                  modify = {isBeingModified}
+                  onModify = {id => this.modify(id)}/>
           </View>
         );
     }

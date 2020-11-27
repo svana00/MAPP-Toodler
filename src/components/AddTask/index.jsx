@@ -17,7 +17,7 @@ class AddTask extends React.Component {
 
   render() {
     const {name, description} = this.state;
-    const {isOpen, closeModal, addTask} = this.props
+    const {id, isOpen, closeModal, addTask, modify, onModify} = this.props
     return (
       <Modal
         isOpen={isOpen}
@@ -33,7 +33,7 @@ class AddTask extends React.Component {
                 value = {description}
                 onChangeText={text => this.genericInputHandler('description',text)}/>
             <TouchableOpacity
-              onPress={() => addTask({name, description})}>
+              onPress={() => {modify  ? onModify({id, name, description}) : addTask({name, description}) }}>
               <Text>Add Task</Text>
             </TouchableOpacity>
       </Modal>

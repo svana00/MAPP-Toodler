@@ -5,7 +5,7 @@ export default StyleSheet.create({
     container: {
         alignItems: 'center',
         justifyContent: 'center',
-        height: 80,
+        height: 90,
         backgroundColor: 'white',
         borderColor: 'black',
         borderWidth:1,
@@ -20,6 +20,14 @@ export default StyleSheet.create({
         fontSize: 16
     },
     checkmark: {
+        position: 'absolute',
+        top: 15,
+        right: 15,
+        fontSize: 16,
+        color: 'black'
+    },
+
+    modify: {
         position: 'absolute',
         top: 15,
         right: 15,

@@ -3,7 +3,7 @@ import { View, FlatList } from 'react-native';
 import styles from './styles';
 import TaskThumbnail from '../TaskThumbnail';
 
-const TaskList = ({ tasks, selectedTasks, onLongPress }) => (
+const TaskList = ({ tasks, selectedTasks, onLongPress, flipFinished, onModify }) => (
   <View style={styles.listContainer}>
     <FlatList
       numColumns={1}
@@ -18,7 +18,9 @@ const TaskList = ({ tasks, selectedTasks, onLongPress }) => (
               isFinished={ isFinished }
               listId = { listId }
               isSelected={ selectedTasks.indexOf(id) !== -1}
-              onLongPress = {onLongPress}/>
+              onLongPress = {onLongPress}
+              flipFinished = {flipFinished}
+              onModify = {onModify}/>
         );
       }}
       keyExtractor={task => task.id.toString()}
