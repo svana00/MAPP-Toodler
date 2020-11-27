@@ -17,7 +17,7 @@ class Board extends React.Component {
       lists: data.lists,
       boardId: 0,
       currentName: '',
-      selectedList: {},
+      selectedList: { id: 0, color: '', name: '' },
       isAddModalOpen: false,
       isEditModalOpen: false,
       isConfirmationOpen: false,
@@ -91,7 +91,7 @@ class Board extends React.Component {
 
   async prepDelete(id) {
     await this.setState({ selectedId: id });
-    await this.setState({ isConfirmationOpen: true })
+    await this.setState({ isConfirmationOpen: true });
   }
 
   render() {
@@ -115,7 +115,7 @@ class Board extends React.Component {
         <ListList
           lists={lists}
           boardId={boardId}
-          onDelete={(id) => {this.prepDelete(id); }}
+          onDelete={(id) => { this.prepDelete(id); }}
           prepModifying={(id, name, color) => this.prepModifying(id, name, color)}
         />
         <AddListModal
@@ -129,7 +129,7 @@ class Board extends React.Component {
           onModify={(id, name, color) => this.modifyList(id, name, color)}
           id={selectedList.id}
           color={selectedList.color}
-          name={selectedList.name}
+          oldName={selectedList.name}
         />
         <ConfirmationModal
           isOpen={isConfirmationOpen}
@@ -144,6 +144,7 @@ class Board extends React.Component {
 Board.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
+    getParam: PropTypes.func.isRequired,
   }).isRequired,
 };
 

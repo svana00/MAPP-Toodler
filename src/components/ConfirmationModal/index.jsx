@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  TouchableHighlight, Text, View,
+  Text, View, TouchableHighlight,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { AntDesign } from '@expo/vector-icons';
@@ -8,33 +8,32 @@ import Modal from '../Modal';
 import styles from './styles';
 
 const ConfirmationModal = ({
-  isOpen, closeModal, onCancel, onConfirm,
+  isOpen, closeModal, onConfirm,
 }) => (
 
   <Modal
     isOpen={isOpen}
     closeModal={closeModal}
   >
-    <AntDesign name="closecircleo" size={24} color="black" />
+    <AntDesign name="closecircleo" size={40} color="red" />
     <Text style={styles.modalTitleText}>
       Are You Sure?
     </Text>
     <View style={styles.container}>
-      <View style={styles.smallContainer}>
-        <View style={styles.cancel}>
+      <View style={styles.buttonContainer}>
+        <View style={styles.buttonItem}>
           <TouchableHighlight onPress={() => { closeModal(); }}>
-            <Text style={styles.buttonText}>Cancel</Text>
+            <Text style={{ color: 'green', fontSize: 20 }}>Cancel</Text>
           </TouchableHighlight>
         </View>
-        <View style={styles.confirm}>
+
+        <View style={styles.buttonItem}>
           <TouchableHighlight onPress={() => { onConfirm(); }}>
-            <Text style={styles.buttonText}>Confirm</Text>
+            <Text style={{ color: 'red', fontSize: 20 }}>Delete</Text>
           </TouchableHighlight>
         </View>
       </View>
     </View>
-
-    <View style={styles.container} />
   </Modal>
 );
 

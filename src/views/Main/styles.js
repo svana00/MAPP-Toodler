@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { backgroundPink, white } from '../../styles/colors';
+import { white } from '../../styles/colors';
 
 export default StyleSheet.create({
   container: {
@@ -21,7 +21,7 @@ export default StyleSheet.create({
     fontSize: 45,
     color: 'white',
     paddingTop: 8,
-    fontFamily:'Alice'
+    fontFamily: 'Alice'
   },
   paragraph: {
     textAlign: 'center',
