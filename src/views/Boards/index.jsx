@@ -12,9 +12,36 @@ class Boards extends React.Component {
     this.state = {
       boards: data.boards,
       isCreateBoardModalOpen: false,
+      isBeingModified: false,
+      currentId: '',
       thumbnailPhoto: '',
       nextBoardId: 3,
     };
+  }
+
+  setupModify(id) {
+    this.setState({ currentId: id, isBeingModified: true, isCreateBoardModalOpen: true });
+  }
+
+  modify(board) {
+    const { boards } = this.state;
+    if (board.name.length === 0 || board.thumbnailPhoto.length === 0) {
+      Alert.alert(
+        'Blank fields',
+        'You can not have any blank fields, Please fill it all in',
+        [{ text: 'Understood' }],
+      );
+    } else {
+      for (let i in boards) {
+        if (boards[i].id == board.id) {
+          boards[i].name = board.name;
+          boards[i].description = board.description;
+        }
+      }
+      this.setState({
+        boards, isCreateBoardModalOpen: false, isBeingModified: false, currentId: '',
+      });
+    }
   }
 
   async takePhoto() {
@@ -65,7 +92,9 @@ class Boards extends React.Component {
   }
 
   render() {
-    const { boards, isCreateBoardModalOpen } = this.state;
+    const {
+      currentId, boards, isCreateBoardModalOpen, isBeingModified,
+    } = this.state;
     return (
       <View style={{ flex: 1 }}>
         <Toolbar
@@ -75,13 +104,17 @@ class Boards extends React.Component {
         <BoardList
           boards={boards}
           deleteBoard={(id) => this.deleteBoard(id)}
+          onModify={(id) => this.setupModify(id)}
         />
         <CreateBoard
+          id={currentId}
           isOpen={isCreateBoardModalOpen}
           closeModal={() => this.setState({ isCreateBoardModalOpen: false })}
           takePhoto={() => this.takePhoto()}
           selectFromCameraRoll={() => this.selectFromCameraRoll()}
-          onSubmit={(name) => this.addBoard(name)}
+          onSubmit={(name) => this.editBoard(name)}
+          modify={isBeingModified}
+          onModify={(id) => this.modify(id)}
         />
       </View>
     );

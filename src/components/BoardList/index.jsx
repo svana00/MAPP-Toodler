@@ -4,7 +4,7 @@ import { View, FlatList, Button } from 'react-native';
 import styles from './styles';
 import BoardThumbnail from '../BoardThumbnail';
 
-const BoardList = ({ boards, deleteBoard }) => (
+const BoardList = ({ boards, deleteBoard, onModify }) => (
   <View style={styles.listContainer}>
     <FlatList
       numColumns={1}
@@ -23,7 +23,7 @@ const BoardList = ({ boards, deleteBoard }) => (
             </View>
 
             <View style={styles.buttonItem}>
-              <Button color="green" title="Edit Board" onPress={() => { deleteBoard(id); }} />
+              <Button color="green" title="Edit Board" onPress={() => { onModify(id); }} />
             </View>
           </View>
         </View>
@@ -40,6 +40,7 @@ BoardList.propTypes = {
     thumbnailPhoto: PropTypes.string.isRequired,
   })).isRequired,
   deleteBoard: PropTypes.func.isRequired,
+  onModify: PropTypes.func.isRequired,
 };
 
 export default BoardList;

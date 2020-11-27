@@ -12,13 +12,14 @@ class CreateBoard extends React.Component {
     super(props);
     this.state = {
       name: '',
+      thumbnailPhoto: '',
     };
   }
 
   render() {
-    const { name } = this.state;
+    const { name, thumbnailPhoto } = this.state;
     const {
-      isOpen, closeModal, takePhoto, selectFromCameraRoll, onSubmit,
+      id, isOpen, closeModal, takePhoto, selectFromCameraRoll, onSubmit, modify, onModify
     } = this.props;
     return (
       <Modal
@@ -44,10 +45,7 @@ class CreateBoard extends React.Component {
           <Entypo style={styles.icon} name="image" />
         </TouchableOpacity>
         <TouchableHighlight
-          onPress={() => {
-            this.setState({ name: '' });
-            onSubmit(name);
-          }}
+          onPress={() => { modify ? onModify({id, name, thumbnailPhoto}) : onSubmit({name}); }}
         >
           <Text>Create Board</Text>
         </TouchableHighlight>
@@ -57,11 +55,14 @@ class CreateBoard extends React.Component {
 }
 
 CreateBoard.propTypes = {
+  id: PropTypes.number.isRequired,
   isOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   takePhoto: PropTypes.func.isRequired,
   selectFromCameraRoll: PropTypes.func.isRequired,
+  modify: PropTypes.bool.isRequired,
+  onModify: PropTypes.func.isRequired,
 };
 
 export default CreateBoard;
