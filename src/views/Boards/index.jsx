@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Alert } from 'react-native';
 import Toolbar from '../../components/Toolbar';
 import data from '../../resources/data.json';
-import CreateBoard from '../../components/CreateBoard';
+import AddBoardModal from '../../components/AddBoardModal';
 import BoardList from '../../components/BoardList';
 import { takePhoto, selectFromCameraRoll } from '../../services/imageService';
 
@@ -11,7 +11,7 @@ class Boards extends React.Component {
     super(props);
     this.state = {
       boards: data.boards,
-      isCreateBoardModalOpen: false,
+      isAddBoardModalModalOpen: false,
       isBeingModified: false,
       currentId: 0,
       thumbnailPhoto: '',
@@ -20,7 +20,7 @@ class Boards extends React.Component {
   }
 
   setupModify(id) {
-    this.setState({ currentId: id, isBeingModified: true, isCreateBoardModalOpen: true });
+    this.setState({ currentId: id, isBeingModified: true, isAddBoardModalModalOpen: true });
   }
 
   modify(board) {
@@ -39,7 +39,7 @@ class Boards extends React.Component {
         }
       }
       this.setState({
-        boards, isCreateBoardModalOpen: false, isBeingModified: false, currentId: '',
+        boards, isAddBoardModalModalOpen: false, isBeingModified: false, currentId: '',
       });
     }
   }
@@ -63,7 +63,7 @@ class Boards extends React.Component {
       thumbnailPhoto,
     };
     const { boards } = this.state;
-    this.setState({ boards: [...boards, newBoard], isCreateBoardModalOpen: false, nextBoardId });
+    this.setState({ boards: [...boards, newBoard], isAddBoardModalModalOpen: false, nextBoardId });
   }
 
   async addBoard(name) {
@@ -77,7 +77,7 @@ class Boards extends React.Component {
       this.addBoardToState(name, thumbnailPhoto);
       Alert.alert(`${name} has been created!`);
       this.setState({
-        isCreateBoardModalOpen: false,
+        isAddBoardModalModalOpen: false,
         thumbnailPhoto: '',
       });
     }
@@ -93,12 +93,12 @@ class Boards extends React.Component {
 
   render() {
     const {
-      currentId, boards, isCreateBoardModalOpen, isBeingModified,
+      currentId, boards, isAddBoardModalModalOpen, isBeingModified,
     } = this.state;
     return (
       <View style={{ flex: 1 }}>
         <Toolbar
-          onAdd={() => this.setState({ isCreateBoardModalOpen: true })}
+          onAdd={() => this.setState({ isAddBoardModalModalOpen: true })}
           title="My boards"
         />
         <BoardList
@@ -106,10 +106,10 @@ class Boards extends React.Component {
           deleteBoard={(id) => this.deleteBoard(id)}
           onModify={(id) => this.setupModify(id)}
         />
-        <CreateBoard
+        <AddBoardModal
           id={currentId}
-          isOpen={isCreateBoardModalOpen}
-          closeModal={() => this.setState({ isCreateBoardModalOpen: false })}
+          isOpen={isAddBoardModalModalOpen}
+          closeModal={() => this.setState({ isAddBoardModalModalOpen: false })}
           takePhoto={() => this.takePhoto()}
           selectFromCameraRoll={() => this.selectFromCameraRoll()}
           onSubmit={(name) => this.editBoard(name)}

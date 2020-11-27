@@ -7,7 +7,7 @@ import {
 import Modal from '../Modal';
 import styles from './styles';
 
-class CreateBoard extends React.Component {
+class AddBoardModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -54,7 +54,7 @@ class CreateBoard extends React.Component {
   }
 }
 
-CreateBoard.propTypes = {
+AddBoardModal.propTypes = {
   id: PropTypes.number.isRequired,
   isOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
@@ -65,4 +65,4 @@ CreateBoard.propTypes = {
   onModify: PropTypes.func.isRequired,
 };
 
-export default CreateBoard;
+export default AddBoardModal;
