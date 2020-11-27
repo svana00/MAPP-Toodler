@@ -31,7 +31,8 @@ class Board extends React.Component {
   }
 
   async addListToState(name, color) {
-    let { nextListId, boardId } = this.state;
+    let { nextListId } = this.state;
+    const { boardId } = this.state;
     nextListId += 1;
     const newList = {
       id: nextListId,
@@ -48,7 +49,6 @@ class Board extends React.Component {
     if (color === '') {
       color = '#FFFFFF';
     }
-    console.log(name, color);
     await this.addListToState(name, color);
     Alert.alert(`${name} has been created!`);
     this.setState({
@@ -56,26 +56,11 @@ class Board extends React.Component {
     });
   }
 
-  async addListToState(name, color) {
-    let nextListId = this.state.lists.length + 1;
-    const newList = {
-      id: nextListId,
-      name,
-      color,
-      boardId: this.state.boardId
-    };
-    console.log(newList);
+  async deleteList(listId) {
     const { lists } = this.state;
-    console.log(this.state.lists);
-    this.setState({ lists: [...lists, newList], isAddModalOpen: false, nextListId });
-  }
-
-  async deleteList(ListId) {
-    const { lists } = this.state;
-    this.setState({loadingTasks: true});
     this.setState({
-      lists: lists.filter((list) => list.id !== ListId)
-    })
+      lists: lists.filter((list) => list.id !== listId),
+    });
   }
 
   /* eslint no-param-reassign: ["error", { "props": false }] */
