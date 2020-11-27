@@ -46,7 +46,7 @@ class AddTask extends React.Component {
           onPress={() =>
             {modify  ? onModify({id, name, description}) : addTask({name, description}) }}
         >
-          <Text>Submit Changes</Text>
+          <Text style={styles.submitButton}>Submit Changes</Text>
         </TouchableOpacity>
       </Modal>
     );
