@@ -24,9 +24,11 @@ class Boards extends React.Component {
   }
 
   /* eslint no-param-reassign: ["error", { "props": false }] */
-  modify(id, name) {
+  modify(id, name, description) {
     const { boards, thumbnailPhoto } = this.state;
-    const board = { id, name, thumbnailPhoto };
+    const board = {
+      id, name, description, thumbnailPhoto,
+    };
     if (board.name.length === 0 || board.thumbnailPhoto.length === 0) {
       Alert.alert(
         'Blank fields',
@@ -38,6 +40,7 @@ class Boards extends React.Component {
         if (singleBoard.id === board.id) {
           singleBoard.name = board.name;
           singleBoard.thumbnailPhoto = thumbnailPhoto;
+          singleBoard.description = description;
         }
         return singleBoard;
       });
@@ -57,19 +60,20 @@ class Boards extends React.Component {
     if (photo.length > 0) { this.setState({ thumbnailPhoto: photo }); }
   }
 
-  addBoardToState(name, thumbnailPhoto) {
+  addBoardToState(name, description, thumbnailPhoto) {
     let { nextBoardId } = this.state;
     nextBoardId += 1;
     const newBoard = {
       id: nextBoardId,
       name,
+      description,
       thumbnailPhoto,
     };
     const { boards } = this.state;
     this.setState({ boards: [...boards, newBoard], isAddBoardModalOpen: false, nextBoardId });
   }
 
-  async addBoard(name) {
+  async addBoard(name, description) {
     const { thumbnailPhoto } = this.state;
     if (thumbnailPhoto === '' || name === '') {
       Alert.alert(
@@ -77,7 +81,7 @@ class Boards extends React.Component {
         'You can not have any blank fields except description, Please fill it all in',
       );
     } else {
-      this.addBoardToState(name, thumbnailPhoto);
+      this.addBoardToState(name, description, thumbnailPhoto);
       Alert.alert(
         'Successful!',
         `${name} has been created!`,
@@ -122,9 +126,9 @@ class Boards extends React.Component {
           closeModal={() => this.setState({ isAddBoardModalOpen: false })}
           takePhoto={() => this.takePhoto()}
           selectFromCameraRoll={() => this.selectFromCameraRoll()}
-          onSubmit={(name) => this.addBoard(name)}
+          onSubmit={(name, description) => this.addBoard(name, description)}
           modify={isBeingModified}
-          onModify={(id, name) => this.modify(id, name)}
+          onModify={(id, name, description) => this.modify(id, name, description)}
         />
       </View>
     );

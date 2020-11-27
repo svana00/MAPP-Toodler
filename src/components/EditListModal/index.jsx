@@ -16,12 +16,13 @@ class EditListModal extends React.Component {
 
   render() {
     const {
-      isOpen, closeModal, onModify, id, name, color
+      isOpen, closeModal, onModify, id, oldName, color,
+
     } = this.props;
 
     // will change into this.state.color at the submit stage
     let colour = color;
-    const oldName = name;
+    const { name } = this.state;
 
     return (
       <Modal
@@ -67,14 +68,9 @@ class EditListModal extends React.Component {
         <TouchableHighlight
           style={styles.button}
           onPress={() => {
-            console.log(
-              id,
-              this.state.name ? this.state.name : oldName,
-              colour,
-            );
             onModify(
               id,
-              this.state.name ? this.state.name : oldName,
+              name || oldName,
               colour,
             );
             this.setState({ name: '' });
@@ -92,7 +88,7 @@ EditListModal.propTypes = {
   closeModal: PropTypes.func.isRequired,
   onModify: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
+  oldName: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
 };
 

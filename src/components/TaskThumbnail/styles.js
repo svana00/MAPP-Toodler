@@ -17,11 +17,11 @@ export default StyleSheet.create({
     fontSize: 16,
   },
   checkmark: {
-        position: 'absolute',
-        color: 'black',
-        top: 15,
-        right: 15,
-        fontSize: 16,
-        opacity: 1,
-    }
+    position: 'absolute',
+    color: 'black',
+    top: 15,
+    right: 15,
+    fontSize: 16,
+    opacity: 1,
+  },
 });

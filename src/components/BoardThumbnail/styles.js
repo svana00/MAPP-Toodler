@@ -10,6 +10,11 @@ export default StyleSheet.create({
   boardTitle: {
     alignSelf: 'center',
     fontSize: 23,
-    marginLeft: 8,
+  },
+  description: {
+    alignSelf: 'flex-start',
+    fontSize: 15,
+    paddingLeft: 20,
+    marginBottom: 4,
   },
 });
