@@ -79,16 +79,25 @@ class Board extends React.Component {
 
   }
 
-  async modifyList(id, name, color){
-    const list = this.state.lists.filter((list) => list.id === id);
-    list.name = name;
-    list.color = color;
+  modifyList(id, name, color){
+    const {lists} = this.state;
+    const list = {id, name, color};
+
+    const newLists = lists.map((aList) => {
+      if (aList.id === list.id){
+        aList.name = list.name;
+        aList.color = list.color;
+      }
+      return aList;
+    });
+    this.setState({
+      lists: newLists, isEditModalOpen: false
+    });
   }
 
   async prepModifying(id, name, color) {
     await this.setState({ selectedList: {id: id, name: name, color: color} });
     await this.setState({ isEditModalOpen: true });
-    this.modifyList(this.state.selectedList.id, this.state.selectedList.name, this.state.selectedList.color);
   }
 
   render() {
