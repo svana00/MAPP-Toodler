@@ -1,13 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  textInput: {
-    borderColor: 'pink',
-    borderWidth: 2,
-    width: 200,
-    textAlign: 'center',
-  },
-  touchableHightlight: {
+  TouchableOpacity: {
     borderColor: 'black',
     borderWidth: 2,
   },
@@ -27,7 +21,6 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 24,
     textAlign: 'center',
-    margin: 50,
   },
   container: {
     marginTop: 50,
