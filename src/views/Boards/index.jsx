@@ -13,7 +13,7 @@ class Boards extends React.Component {
       boards: data.boards,
       isCreateBoardModalOpen: false,
       isBeingModified: false,
-      currentId: '',
+      currentId: 0,
       thumbnailPhoto: '',
       nextBoardId: 3,
     };
@@ -70,7 +70,7 @@ class Boards extends React.Component {
     const { thumbnailPhoto } = this.state;
     if (thumbnailPhoto === '') {
       Alert.alert(
-        'Photo need to be added.',
+        'Photo needs to be added.',
         'You can add a photo by selecting the camera or album icon',
       );
     } else {

@@ -33,8 +33,8 @@ export default StyleSheet.create({
   container: {
     marginTop:50,
     height: 30,
-    flexDirection:'row',
-    alignItems: 'space-between'
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   pink: {
     margin:5,

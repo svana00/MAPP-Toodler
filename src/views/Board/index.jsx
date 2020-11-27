@@ -14,21 +14,35 @@ import AnimatedBottomSheet from '../../components/AnimatedBottomSheet';
 import AddListModal from '../../components/AddListModal';
 
 class Board extends React.Component {
-  state ={
+  state = {
     lists: data.lists,
-    BoardId:0,
-    nextListId:0,
+    BoardId: 0,
+    nextListId: 8,
     currentName: '',
     selectedList: '',
     isAddModalOpen: false,
     isEditModalOpen: false,
   }
+
   async componentDidMount() {
     // load board
     const {navigation} = this.props;
     const BoardId = navigation.getParam('boardId', '');
     const currentName = navigation.getParam('boardName', '');
     this.setState({BoardId, currentName});
+  }
+
+  async addListToState(name, color) {
+    let { nextListId, boardId } = this.state;
+    nextListId += 1;
+    const newList = {
+      id: nextListId,
+      name,
+      color,
+      BoardId: boardId
+    };
+    const { lists } = this.state;
+    await this.setState({ lists: [...lists, newList], isAddModalOpen: false, nextListId });
   }
 
    async addList(name, color) {
@@ -43,20 +57,6 @@ class Board extends React.Component {
       isAddModalOpen: false,
     });
   }
-
-  async addListToState(name, color) {
-    let { nextListId } = this.state;
-    nextListId +=1;
-    const newList = {
-      id: nextListId,
-      name,
-      color,
-      BoardId: this.state.BoardId
-    };
-    const { lists } = this.state;
-    this.setState({ lists: [...lists, newList], isAddModalOpen: false, nextListId });
-  }
-
 
   render() {
     const {
