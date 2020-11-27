@@ -18,7 +18,7 @@ class Board extends React.Component {
     lists: data.lists,
     boardId:0,
     currentName: '',
-    selectedList: '',
+    selectedList: {},
     isAddModalOpen: false,
     isEditModalOpen: false,
   }
@@ -79,8 +79,16 @@ class Board extends React.Component {
 
   }
 
-  async modifyList(ListId){
+  async modifyList(id, name, color){
+    const list = this.state.lists.filter((list) => list.id === id);
+    list.name = name;
+    list.color = color;
+  }
 
+  async prepModifying(id, name, color) {
+    await this.setState({ selectedList: {id: id, name: name, color: color} });
+    await this.setState({ isEditModalOpen: true });
+    this.modifyList(this.state.selectedList.id, this.state.selectedList.name, this.state.selectedList.color);
   }
 
   render() {
@@ -102,7 +110,7 @@ class Board extends React.Component {
           lists={ lists }
           boardId={ boardId }
           onDelete={(id) => this.deleteList(id)}
-          isModifying= {() => this.setState({ isEditModalOpen: true })}
+          prepModifying= {(id, name, color) => this.prepModifying(id, name, color)}
           />
         <AddListModal
           isOpen={isAddModalOpen}
@@ -113,6 +121,7 @@ class Board extends React.Component {
           isOpen={isEditModalOpen}
           closeModal={() => this.setState({ isEditModalOpen: false })}
           onModify={(id, name, color) => this.modifyList(id, name, color)}
+          selectedList = {this.state.selectedList}
         />
       </View>
     );

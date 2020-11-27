@@ -5,7 +5,7 @@ import styles from './styles';
 import ListThumbnail from '../ListThumbnail';
 
 const ListList = ({
-  lists, boardId, onDelete, isModifying,
+  lists, boardId, onDelete, prepModifying,
 }) => (
   <View style={styles.listContainer}>
     <FlatList
@@ -23,7 +23,7 @@ const ListList = ({
               <Button onPress={() => { onDelete(id); }} color="red" title="Delete List" />
             </View>
             <View style={styles.buttonItem}>
-              <Button onPress={() => { isModifying = true; }} color="green" title="Edit List" />
+              <Button onPress={() => { prepModifying(id, name, color); }} color="green" title="Edit List" />
             </View>
           </View>
         </View>
@@ -41,6 +41,6 @@ ListList.propTypes = {
   })).isRequired,
   boardId: PropTypes.number.isRequired,
   onDelete: PropTypes.func.isRequired,
-  isModifying: PropTypes.bool.isRequired,
+  prepModifying: PropTypes.func.isRequired,
 };
 export default ListList;
