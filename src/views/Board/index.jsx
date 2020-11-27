@@ -63,6 +63,7 @@ class Board extends React.Component {
     });
   }
 
+<<<<<<< HEAD
   /* eslint no-param-reassign: ["error", { "props": false }] */
   modifyList(id, name, color) {
     const { lists } = this.state;
@@ -78,11 +79,18 @@ class Board extends React.Component {
     this.setState({
       lists: newLists, isEditModalOpen: false,
     });
+=======
+  async modifyList(id, name, color){
+    const list = this.state.lists.filter((list) => list.id === id);
+    list.name = name;
+    list.color = color;
+>>>>>>> parent of 0a13c7f... ÞAÐ VIRKAR!!!
   }
 
   async prepModifying(id, name, color) {
     await this.setState({ selectedList: { id, name, color } });
     await this.setState({ isEditModalOpen: true });
+    this.modifyList(this.state.selectedList.id, this.state.selectedList.name, this.state.selectedList.color);
   }
 
   render() {
