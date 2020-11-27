@@ -7,15 +7,15 @@ import { AntDesign } from '@expo/vector-icons';
 import styles from './styles';
 
 const TaskThumbnail = ({
-  id, name, description, isFinished, isSelected, flipFinished,
+  id, name, description, isFinished, flipFinished,
 }) => (
   <View>
     <TouchableOpacity onPress={() => flipFinished(id)}>
       {
-            isSelected ? <AntDesign name="checkcircleo" style={styles.checkmark} />
+            isFinished ? <AntDesign name="checkcircleo" style={styles.checkmark} />
               : <></>
       }
-      <View style={[styles.container, { opacity: isSelected ? 0.5 : 1 }, { backgroundColor: isFinished ? 'green' : 'white' }]}>
+      <View style={[styles.container, { backgroundColor: isFinished ? 'green' : 'white' }]}>
         <Text style={styles.toolbarActionText}>
           Task:
           {' '}

@@ -5,13 +5,12 @@ import styles from './styles';
 import TaskThumbnail from '../TaskThumbnail';
 
 const TaskList = ({
-  tasks, selectedTasks, onLongPress, flipFinished, onModify,
+  tasks, flipFinished, onModify, onRemove,
 }) => (
   <View style={styles.listContainer}>
     <FlatList
       numColumns={1}
       data={tasks}
-      extraData={selectedTasks}
       renderItem={({
         item: {
           id, name, description, isFinished, listId,
@@ -24,12 +23,11 @@ const TaskList = ({
             description={description}
             isFinished={isFinished}
             listId={listId}
-            isSelected={selectedTasks.indexOf(id) !== -1}
             flipFinished={flipFinished}
           />
           <View style={styles.buttonContainer}>
             <View style={styles.buttonItem}>
-              <Button color="red" title="Delete Task"/>
+              <Button color="red" title="Delete Task" onPress={() => { onRemove(id); }} />
             </View>
 
             <View style={styles.buttonItem}>
@@ -51,16 +49,9 @@ TaskList.propTypes = {
     isFinished: PropTypes.bool.isRequired,
     listId: PropTypes.number.isRequired,
   })).isRequired,
-  selectedTasks: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    isFinished: PropTypes.bool.isRequired,
-    listId: PropTypes.number.isRequired,
-  })).isRequired,
-  onLongPress: PropTypes.func.isRequired,
   flipFinished: PropTypes.func.isRequired,
   onModify: PropTypes.func.isRequired,
+  onRemove: PropTypes.func.isRequired,
 };
 
 export default TaskList;
