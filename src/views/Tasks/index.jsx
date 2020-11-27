@@ -4,7 +4,7 @@ import TaskList from '../../components/TaskList';
 import AddTask from '../../components/AddTask';
 import Spinner from '../../components/Spinner';
 // import { getAllTasks, addImage, remove } from '../../services/fileService';
-import TaskToolbar from '../../components/taskToolbar';
+import Toolbar from '../../components/Toolbar';
 import data from '../../resources/data.json';
 
 class Tasks extends React.Component {
@@ -14,13 +14,13 @@ class Tasks extends React.Component {
       // All tasks within the application directory
       tasks: [],
       // just while testing
-      listId: '',
+      listId: 0,
       listName: '',
       // selected tasks
       selectedTasks: [],
       loadingTasks: true,
       isAddModalOpen: false,
-      currentId: '',
+      currentId: 3,
       isBeingModified: false,
     };
   }
@@ -55,12 +55,10 @@ class Tasks extends React.Component {
     await this.setState({ loadingTasks: false, tasks });
   }
 
-  async deleteSelectedTasks() {
-    const { selectedTasks, tasks } = this.state;
-    this.setState({ loadingTasks: true });
+  deleteTask(id) {
+    const { tasks } = this.state;
     this.setState({
-      selectedTasks: [],
-      tasks: tasks.filter((task) => selectedTasks.indexOf(task.id) === -1),
+      tasks: tasks.filter((task) => task.id !== id),
       loadingTasks: false,
     });
   }
@@ -138,10 +136,8 @@ class Tasks extends React.Component {
     } = this.state;
     return (
       <View style={{ flex: 1 }}>
-        <TaskToolbar
-          hasSelectedTasks={selectedTasks.length > 0}
+        <Toolbar
           onAdd={() => this.setState({ isAddModalOpen: true })}
-          onRemove={() => this.deleteSelectedTasks()}
           listName={listName}
         />
         {
@@ -155,6 +151,7 @@ class Tasks extends React.Component {
                   onLongPress={(id) => this.onTaskLongPress(id)}
                   flipFinished={async (id) => this.flipFinished(id)}
                   onModify={(id) => this.setupModify(id)}
+                  onRemove={(id) => this.deleteTask(id)}
                 />
               </>
             )

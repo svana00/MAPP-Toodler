@@ -42,5 +42,6 @@ ListList.propTypes = {
   boardId: PropTypes.number.isRequired,
   onDelete: PropTypes.func.isRequired,
   prepModifying: PropTypes.func.isRequired,
+  isModifying: PropTypes.func.isRequired,
 };
 export default ListList;
