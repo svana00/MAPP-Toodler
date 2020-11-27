@@ -4,7 +4,6 @@ import TaskList from '../../components/TaskList';
 import AddTask from '../../components/AddTask';
 import Spinner from '../../components/Spinner';
 //import { getAllTasks, addImage, remove } from '../../services/fileService';
-//import { takePhoto, selectFromCameraRoll } from '../../services/imageService';
 import TaskToolbar from '../../components/taskToolbar';
 import * as colors from '../../styles/colors';
 import { headings } from '../../styles/headings';
@@ -122,40 +121,40 @@ class Tasks extends React.Component {
     }
 
 
-      render() {
-        const { currentId, selectedTasks, loadingTasks, tasks, isAddModalOpen, listName,isBeingModified } = this.state;
-        console.log("pls", tasks)
-        return (
-          <View style={{ flex:1 }}>
-              <TaskToolbar
-                  hasSelectedTasks={ selectedTasks.length > 0 }
-                  onAdd={ () => this.setState({ isAddModalOpen: true }) }
-                  onRemove={ () => this.deleteSelectedTasks() }
-                  listName = { listName }/>
-              {
-                  loadingTasks
-                  ?
-                  <Spinner />
-                  :
-                  <>
-                      <TaskList
-                          tasks = { tasks }
-                          selectedTasks = { selectedTasks }
-                          onLongPress = {id => this.onTaskLongPress(id)}
-                          flipFinished = {async (id) => this.flipFinished(id)}
-                          onModify = {id => this.setupModify(id)}
-                          />
-                  </>
-               }
-               <AddTask
-                  id= {currentId}
-                  isOpen={isAddModalOpen}
-                  closeModal = {() => this.setState({isAddModalOpen: false})}
-                  addTask = {task => this.makeTask(task)}
-                  modify = {isBeingModified}
-                  onModify = {id => this.modify(id)}/>
-          </View>
-        );
+    render() {
+      const { currentId, selectedTasks, loadingTasks, tasks, isAddModalOpen, listName,isBeingModified } = this.state;
+      console.log("pls", tasks)
+      return (
+        <View style={{ flex:1 }}>
+            <TaskToolbar
+                hasSelectedTasks={ selectedTasks.length > 0 }
+                onAdd={ () => this.setState({ isAddModalOpen: true }) }
+                onRemove={ () => this.deleteSelectedTasks() }
+                listName = { listName }/>
+            {
+                loadingTasks
+                ?
+                <Spinner />
+                :
+                <>
+                    <TaskList
+                        tasks = { tasks }
+                        selectedTasks = { selectedTasks }
+                        onLongPress = {id => this.onTaskLongPress(id)}
+                        flipFinished = {async (id) => this.flipFinished(id)}
+                        onModify = {id => this.setupModify(id)}
+                        />
+                </>
+             }
+             <AddTask
+                id= {currentId}
+                isOpen={isAddModalOpen}
+                closeModal = {() => this.setState({isAddModalOpen: false})}
+                addTask = {task => this.makeTask(task)}
+                modify = {isBeingModified}
+                onModify = {id => this.modify(id)}/>
+        </View>
+      );
     }
 }
 
