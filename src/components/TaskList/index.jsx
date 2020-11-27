@@ -23,7 +23,7 @@ const TaskList = ({ tasks, selectedTasks, onLongPress, flipFinished, onModify })
               onModify = {onModify}/>
         );
       }}
-      keyExtractor={task => task.id.toString()}
+      keyExtractor={(task) => task.id.toString()}
     />
   </View>
 );

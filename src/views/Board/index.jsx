@@ -10,7 +10,6 @@ import styles from './styles';
 import ListList from './../../components/ListList';
 import Toolbar from '../../components/Toolbar';
 import data from '../../resources/data.json';
-import AnimatedBottomSheet from '../../components/AnimatedBottomSheet';
 import AddListModal from '../../components/AddListModal';
 
 class Board extends React.Component {
@@ -61,6 +60,7 @@ class Board extends React.Component {
   render() {
     const {
       BoardId,
+      lists,
       currentName,
       isAddModalOpen
       } = this.state;
@@ -68,12 +68,12 @@ class Board extends React.Component {
     return (
       <View style={{ flex: 1 }}>
         <Toolbar
-        onAdd={() => this.setState({ isAddModalOpen: true })}
-        title={currentName}/>
+          onAdd={() => this.setState({ isAddModalOpen: true })}
+          title={currentName}/>
         <ListList
-          lists={ data.lists }
-          boardId={ BoardId }/>
-
+          lists={ lists }
+          boardId={ BoardId }
+        />
         <AddListModal
           isOpen={isAddModalOpen}
           closeModal={() => this.setState({ isAddModalOpen: false })}
