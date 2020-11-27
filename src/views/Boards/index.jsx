@@ -27,7 +27,6 @@ class Boards extends React.Component {
   modify(id, name) {
     const { boards, thumbnailPhoto } = this.state;
     const board = { id, name, thumbnailPhoto };
-    console.log(board);
     if (board.name.length === 0 || board.thumbnailPhoto.length === 0) {
       Alert.alert(
         'Blank fields',
@@ -45,7 +44,6 @@ class Boards extends React.Component {
       this.setState({
         boards: newBoards, isAddBoardModalOpen: false, isBeingModified: false, currentId: '',
       });
-      console.log('hello');
     }
   }
 

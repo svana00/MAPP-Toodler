@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, FlatList } from 'react-native';
+import PropTypes from 'prop-types';
 import styles from './styles';
 import TaskThumbnail from '../TaskThumbnail';
 
@@ -32,5 +33,25 @@ const TaskList = ({
     />
   </View>
 );
+
+TaskList.propTypes = {
+  tasks: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    isFinished: PropTypes.bool.isRequired,
+    listId: PropTypes.number.isRequired,
+  })).isRequired,
+  selectedTasks: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    isFinished: PropTypes.bool.isRequired,
+    listId: PropTypes.number.isRequired,
+  })).isRequired,
+  onLongPress: PropTypes.func.isRequired,
+  flipFinished: PropTypes.func.isRequired,
+  onModify: PropTypes.func.isRequired,
+};
 
 export default TaskList;
