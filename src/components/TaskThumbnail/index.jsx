@@ -5,6 +5,7 @@ import {
 import PropTypes from 'prop-types';
 import { AntDesign } from '@expo/vector-icons';
 import styles from './styles';
+import { backgroundPink } from '../../styles/colors';
 
 const TaskThumbnail = ({
   id, name, description, isFinished, flipFinished,
@@ -12,10 +13,10 @@ const TaskThumbnail = ({
   <View>
     <TouchableOpacity onPress={() => flipFinished(id)}>
       {
-            isFinished ? <AntDesign name="checkcircleo" style={styles.checkmark} />
+            isFinished ? <AntDesign name="checkcircle" style={styles.checkmark} />
               : <></>
       }
-      <View style={[styles.container, { backgroundColor: isFinished ? 'green' : 'white' }]}>
+      <View style={[styles.container, { opacity: isFinished ? .5 : 1 },{ backgroundColor: isFinished ? backgroundPink : 'white' }]}>
         <Text style={styles.toolbarActionText}>
           Task:
           {' '}
@@ -37,7 +38,6 @@ TaskThumbnail.propTypes = {
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   isFinished: PropTypes.bool.isRequired,
-  isSelected: PropTypes.bool.isRequired,
   flipFinished: PropTypes.func.isRequired,
 };
 
