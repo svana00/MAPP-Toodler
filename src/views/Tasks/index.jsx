@@ -16,6 +16,7 @@ class Tasks extends React.Component {
       tasks: [],
       // just while testing
       listId: 0,
+      nextId: 17,
       listName: '',
       // selected tasks
       selectedTasks: [],
@@ -69,7 +70,7 @@ class Tasks extends React.Component {
   }
 
   async addTask(task) {
-    const { tasks, listId } = this.state;
+    const { tasks, listId, nextId } = this.state;
     const id = tasks.length + 1;
     if (task.name.length === 0 || task.description.length === 0) {
       Alert.alert(
@@ -79,13 +80,13 @@ class Tasks extends React.Component {
       );
     } else {
       const newTask = {
-        id: id.toString(),
+        id: nextId,
         name: task.name,
         description: task.description,
         isFinished: false,
         ListId: listId,
       };
-      this.setState({ tasks: [...tasks, newTask], isAddModalOpen: false });
+      this.setState({ tasks: [...tasks, newTask], isAddModalOpen: false, nextId: nextId + 1});
     }
   }
 
@@ -142,7 +143,7 @@ class Tasks extends React.Component {
       <View style={{ flex: 1 }}>
         <Toolbar
           onAdd={() => this.setState({ isAddModalOpen: true })}
-          listName={listName}
+          title={listName}
         />
         {
           loadingTasks
