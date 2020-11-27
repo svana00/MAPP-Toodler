@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  TouchableHighlight, TextInput, Text, View,
+  TouchableHighlight, TextInput, Text, View, TouchableOpacity,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import Modal from '../Modal';
@@ -60,10 +60,9 @@ class AddListModal extends React.Component {
           <TouchableHighlight onPress={() => this.setState({ color: '#D4C4FB' })}>
             <View style={styles.purple} />
           </TouchableHighlight>
-
         </View>
 
-        <TouchableHighlight
+        <TouchableOpacity
           style={styles.button}
           onPress={() => {
             onSubmit(name, color);
@@ -74,7 +73,7 @@ class AddListModal extends React.Component {
           }}
         >
           <Text style={styles.buttonText}>Submit</Text>
-        </TouchableHighlight>
+        </TouchableOpacity>
       </Modal>
     );
   }

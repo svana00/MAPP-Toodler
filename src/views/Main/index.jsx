@@ -16,7 +16,6 @@ const Main = ({ navigation: { navigate } }) => (
       <Text style={styles.paragraph}>SO SIMPLE, A CHILD COULD USE IT</Text>
       <TouchableHighlight style={styles.button} onPress={() => navigate('Boards')}>
         <Text style={styles.buttonText}>GET STARTED</Text>
-
       </TouchableHighlight>
     </View>
   </View>

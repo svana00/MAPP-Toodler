@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import styles from './styles';
 import ListThumbnail from '../ListThumbnail';
 
-const ListList = ({ lists, boardId }) => (
+const ListList = ({
+  lists, boardId, onDelete, isModifying,
+}) => (
   <View style={styles.listContainer}>
     <FlatList
       numColumns={1}
@@ -18,11 +20,10 @@ const ListList = ({ lists, boardId }) => (
           />
           <View style={styles.buttonContainer}>
             <View style={styles.buttonItem}>
-              <Button color="red" title="Delete List" />
+              <Button onPress={() => { onDelete(id); }} color="red" title="Delete List" />
             </View>
-
             <View style={styles.buttonItem}>
-              <Button color="green" title="Edit List" />
+              <Button onPress={() => { isModifying = true; }} color="green" title="Edit List" />
             </View>
           </View>
         </View>
@@ -39,5 +40,7 @@ ListList.propTypes = {
     color: PropTypes.string.isRequired,
   })).isRequired,
   boardId: PropTypes.number.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  isModifying: PropTypes.bool.isRequired,
 };
 export default ListList;

@@ -11,11 +11,12 @@ import ListList from './../../components/ListList';
 import Toolbar from '../../components/Toolbar';
 import data from '../../resources/data.json';
 import AddListModal from '../../components/AddListModal';
+import EditListModal from '../../components/EditListModal';
 
 class Board extends React.Component {
   state = {
     lists: data.lists,
-    BoardId:0,
+    boardId:0,
     currentName: '',
     selectedList: '',
     isAddModalOpen: false,
@@ -25,9 +26,9 @@ class Board extends React.Component {
   async componentDidMount() {
     // load board
     const {navigation} = this.props;
-    const BoardId = navigation.getParam('boardId', '');
-    const currentName = navigation.getParam('boardName', '');
-    this.setState({BoardId, currentName});
+    const newBoardId = navigation.getParam('boardId', '');
+    const newBoardName = navigation.getParam('boardName', '');
+    this.setState({boardId: newBoardId, currentName: newBoardName});
   }
 
   async addListToState(name, color) {
@@ -37,7 +38,7 @@ class Board extends React.Component {
       id: nextListId,
       name,
       color,
-      BoardId: boardId
+      boardId: boardId
     };
     const { lists } = this.state;
     await this.setState({ lists: [...lists, newList], isAddModalOpen: false, nextListId });
@@ -61,7 +62,7 @@ class Board extends React.Component {
       id: nextListId,
       name,
       color,
-      BoardId: this.state.BoardId
+      boardId: this.state.boardId
     };
     console.log(newList);
     const { lists } = this.state;
@@ -73,33 +74,46 @@ class Board extends React.Component {
     const { lists } = this.state;
     this.setState({loadingTasks: true})
     this.setState({
-      lists: lists.filter((list) => list.id !== id)
+      lists: lists.filter((list) => list.id !== ListId)
     })
+
+  }
+
+  async modifyList(ListId){
 
   }
 
   render() {
     const {
-      BoardId,
+      boardId,
       lists,
       currentName,
-      isAddModalOpen
+      isAddModalOpen,
+      isEditModalOpen,
       } = this.state;
 
     return (
       <View style={{ flex: 1 }}>
         <Toolbar
           onAdd={() => this.setState({ isAddModalOpen: true })}
-          title={currentName}/>
+          title={currentName}
+          />
         <ListList
           lists={ lists }
-          boardId={ BoardId }/>
+          boardId={ boardId }
+          onDelete={(id) => this.deleteList(id)}
+          isModifying= {() => this.setState({ isEditModalOpen: true })}
+          />
         <AddListModal
           isOpen={isAddModalOpen}
           closeModal={() => this.setState({ isAddModalOpen: false })}
           onSubmit={(name, color) => this.addList(name, color)}
         />
-
+        <EditListModal
+          isOpen={isEditModalOpen}
+          closeModal={() => this.setState({ isEditModalOpen: false })}
+          onModify={(id, name, color) => this.modifyList(id, name, color)}
+        />
       </View>
     );
   }
