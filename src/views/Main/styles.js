@@ -21,7 +21,7 @@ export default StyleSheet.create({
     fontSize: 45,
     color: 'white',
     paddingTop: 8,
-    fontFamily: 'Alice'
+    fontFamily: 'Alice',
   },
   paragraph: {
     textAlign: 'center',
@@ -42,10 +42,10 @@ export default StyleSheet.create({
   },
   buttonText: {
     color: 'black',
-    fontFamily:'IBMBold'
+    fontFamily: 'IBMBold',
   },
   logo: {
     width: 235,
     height: 250,
-  }
+  },
 });
