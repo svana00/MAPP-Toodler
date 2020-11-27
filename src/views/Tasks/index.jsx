@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Alert } from 'react-native';
+import PropTypes from 'prop-types';
 import TaskList from '../../components/TaskList';
 import AddTask from '../../components/AddTask';
 import Spinner from '../../components/Spinner';
@@ -26,10 +27,10 @@ class Tasks extends React.Component {
   }
 
   async componentDidMount() {
-    const {navigation} = this.props;
+    const { navigation } = this.props;
     const listId = navigation.getParam('listId', '');
     const listName = navigation.getParam('listName', '');
-    await this.setState({ listId, listName })
+    await this.setState({ listId, listName });
     await this.getItems();
   }
 
@@ -90,19 +91,21 @@ class Tasks extends React.Component {
 
   async flipFinished(id) {
     const { tasks } = this.state;
-    for (var i in tasks) {
-      if (tasks[i].id == id) {
-        if (tasks[i].isFinished) {
-          tasks[i].isFinished = false;
-        }
-        else {
-          tasks[i].isFinished = true;
+    const newTasks = tasks.map((singleTask) => {
+      if (singleTask.id === id) {
+        if (singleTask.isFinished) {
+          singleTask.isFinished = false;
+        } else {
+          singleTask.isFinished = true;
         }
       }
-    }
-    await this.setState(tasks)
+      return singleTask;
+    });
+
+    await this.setState({ tasks: newTasks });
   }
 
+  /* eslint no-param-reassign: ["error", { "props": false }] */
   async modify(task) {
     const { tasks } = this.state;
     if (task.name.length === 0 || task.description.length === 0) {
@@ -112,14 +115,15 @@ class Tasks extends React.Component {
         [{ text: 'Understood' }],
       );
     } else {
-      for (var i in tasks) {
-        if (tasks[i].id == task.id) {
-          tasks[i].name = task.name;
-          tasks[i].description = task.description;
+      const newTasks = tasks.map((singleTask) => {
+        if (singleTask.id === task.id) {
+          singleTask.name = task.name;
+          singleTask.description = task.description;
         }
-      }
-      await this.setState({
-        tasks, isAddModalOpen: false, isBeingModified: false, currentId: '',
+        return singleTask;
+      });
+      this.setState({
+        tasks: newTasks, isAddModalOpen: false, isBeingModified: false, currentId: '',
       });
     }
   }
@@ -168,5 +172,11 @@ class Tasks extends React.Component {
     );
   }
 }
+
+Tasks.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default Tasks;

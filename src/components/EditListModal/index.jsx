@@ -72,7 +72,7 @@ class EditListModal extends React.Component {
               this.state.name ? this.state.name : name,
               colour || selectedList.color,
             );
-            this.setState({name: ''});
+            this.setState({ name: '' });
           }}
         >
           <Text style={styles.buttonText}>Submit</Text>
@@ -86,7 +86,7 @@ EditListModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
   onModify: PropTypes.func.isRequired,
-  selectedList: PropTypes.object.isRequired,
+  selectedList: PropTypes.string.isRequired,
 };
 
 export default EditListModal;

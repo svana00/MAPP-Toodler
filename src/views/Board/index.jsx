@@ -1,34 +1,33 @@
 import React from 'react';
 import {
-  View, Text, TouchableHighlight, Image, ImageBackground, Alert
+  View, Alert,
 } from 'react-native';
-import plus from '../../resources/plus.png';
-import leftArrow from '../../resources/leftArrow.png';
-import downArrow from '../../resources/downArrow.png';
-import dot from '../../resources/dot.png';
-import styles from './styles';
-import ListList from './../../components/ListList';
+import PropTypes from 'prop-types';
+import ListList from '../../components/ListList';
 import Toolbar from '../../components/Toolbar';
 import data from '../../resources/data.json';
 import AddListModal from '../../components/AddListModal';
 import EditListModal from '../../components/EditListModal';
 
 class Board extends React.Component {
-  state = {
-    lists: data.lists,
-    boardId:0,
-    currentName: '',
-    selectedList: {},
-    isAddModalOpen: false,
-    isEditModalOpen: false,
+  constructor(props) {
+    super(props);
+    this.state = {
+      lists: data.lists,
+      boardId: 0,
+      currentName: '',
+      selectedList: {},
+      isAddModalOpen: false,
+      isEditModalOpen: false,
+    };
   }
 
   async componentDidMount() {
     // load board
-    const {navigation} = this.props;
+    const { navigation } = this.props;
     const newBoardId = navigation.getParam('boardId', '');
     const newBoardName = navigation.getParam('boardName', '');
-    this.setState({boardId: newBoardId, currentName: newBoardName});
+    this.setState({ boardId: newBoardId, currentName: newBoardName });
   }
 
   async addListToState(name, color) {
@@ -38,16 +37,17 @@ class Board extends React.Component {
       id: nextListId,
       name,
       color,
-      boardId: boardId
+      boardId,
     };
     const { lists } = this.state;
     await this.setState({ lists: [...lists, newList], isAddModalOpen: false, nextListId });
   }
 
-   async addList(name, color) {
-    if (color == '') {
-      color = "#FFFFFF";
-    };
+  /* eslint no-param-reassign: ["error", { "props": false }] */
+  async addList(name, color) {
+    if (color === '') {
+      color = '#FFFFFF';
+    }
     console.log(name, color);
     await this.addListToState(name, color);
     Alert.alert(`${name} has been created!`);
@@ -72,31 +72,31 @@ class Board extends React.Component {
 
   async deleteList(ListId) {
     const { lists } = this.state;
-    this.setState({loadingTasks: true})
+    this.setState({loadingTasks: true});
     this.setState({
       lists: lists.filter((list) => list.id !== ListId)
     })
-
   }
 
-  modifyList(id, name, color){
-    const {lists} = this.state;
-    const list = {id, name, color};
+  /* eslint no-param-reassign: ["error", { "props": false }] */
+  modifyList(id, name, color) {
+    const { lists } = this.state;
+    const list = { id, name, color };
 
     const newLists = lists.map((aList) => {
-      if (aList.id === list.id){
+      if (aList.id === list.id) {
         aList.name = list.name;
         aList.color = list.color;
       }
       return aList;
     });
     this.setState({
-      lists: newLists, isEditModalOpen: false
+      lists: newLists, isEditModalOpen: false,
     });
   }
 
   async prepModifying(id, name, color) {
-    await this.setState({ selectedList: {id: id, name: name, color: color} });
+    await this.setState({ selectedList: { id, name, color } });
     await this.setState({ isEditModalOpen: true });
   }
 
@@ -107,20 +107,21 @@ class Board extends React.Component {
       currentName,
       isAddModalOpen,
       isEditModalOpen,
-      } = this.state;
+      selectedList,
+    } = this.state;
 
     return (
       <View style={{ flex: 1 }}>
         <Toolbar
           onAdd={() => this.setState({ isAddModalOpen: true })}
           title={currentName}
-          />
+        />
         <ListList
-          lists={ lists }
-          boardId={ boardId }
+          lists={lists}
+          boardId={boardId}
           onDelete={(id) => this.deleteList(id)}
-          prepModifying= {(id, name, color) => this.prepModifying(id, name, color)}
-          />
+          prepModifying={(id, name, color) => this.prepModifying(id, name, color)}
+        />
         <AddListModal
           isOpen={isAddModalOpen}
           closeModal={() => this.setState({ isAddModalOpen: false })}
@@ -130,11 +131,17 @@ class Board extends React.Component {
           isOpen={isEditModalOpen}
           closeModal={() => this.setState({ isEditModalOpen: false })}
           onModify={(id, name, color) => this.modifyList(id, name, color)}
-          selectedList = {this.state.selectedList}
+          selectedList={selectedList}
         />
       </View>
     );
   }
 }
+
+Board.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default Board;
