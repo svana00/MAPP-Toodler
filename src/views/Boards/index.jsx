@@ -94,18 +94,23 @@ class Boards extends React.Component {
       );
     } else {
       this.addBoardToState(name, description, thumbnailPhoto);
-      Alert.alert(
-        'Successful!',
-        `${name} has been created!`,
-        [
-          { text: 'OK', onPress: () => console.log('OK Pressed') },
-        ],
-        { cancelable: false },
-      );
       this.setState({
         isAddBoardModalOpen: false,
         thumbnailPhoto: '',
       });
+      setTimeout(() => {
+        Alert.alert(
+          'Successful!',
+          `${name} has been created!`,
+          [
+            {
+              text: 'OK',
+              onPress: () => {},
+            },
+          ],
+          { cancelable: false },
+        );
+      }, 500);
     }
   }
 

@@ -1,4 +1,4 @@
-const base = {
+export const base = {
   headings: {
     fontWeight: 'bold',
   },
