@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions} from 'react-native';
 import { backgroundPink, white } from '../../styles/colors';
 
 export default StyleSheet.create({

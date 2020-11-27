@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  View, Text, TouchableHighlight, Image,
+  View, Text, TouchableHighlight, Image, ImageBackground, Alert
 } from 'react-native';
 import plus from '../../resources/plus.png';
 import leftArrow from '../../resources/leftArrow.png';
@@ -11,26 +11,56 @@ import ListList from './../../components/ListList';
 import Toolbar from '../../components/Toolbar';
 import data from '../../resources/data.json';
 import AnimatedBottomSheet from '../../components/AnimatedBottomSheet';
-
-
-
+import AddListModal from '../../components/AddListModal';
 
 class Board extends React.Component {
-  state = {
-    currentId:0,
+  state ={
+    lists: data.lists,
+    BoardId:0,
+    nextListId:0,
     currentName: '',
+    selectedList: '',
     isAddModalOpen: false,
+    isEditModalOpen: false,
   }
   async componentDidMount() {
     // load board
     const {navigation} = this.props;
-    const currentId = navigation.getParam('boardId', '');
+    const BoardId = navigation.getParam('boardId', '');
     const currentName = navigation.getParam('boardName', '');
-    this.setState({currentId, currentName })
+    this.setState({BoardId, currentName});
   }
+
+   async addList(name, color) {
+    if (color == '') {
+      color = "#FFFFFF";
+    };
+    console.log(name, color);
+    await this.addListToState(name, color);
+    console.log("hello2");
+    Alert.alert(`${name} has been created!`);
+    this.setState({
+      isAddModalOpen: false,
+    });
+  }
+
+  async addListToState(name, color) {
+    let { nextListId } = this.state;
+    nextListId +=1;
+    const newList = {
+      id: nextListId,
+      name,
+      color,
+      BoardId: this.state.BoardId
+    };
+    const { lists } = this.state;
+    this.setState({ lists: [...lists, newList], isAddModalOpen: false, nextListId });
+  }
+
+
   render() {
     const {
-      currentId,
+      BoardId,
       currentName,
       isAddModalOpen
       } = this.state;
@@ -38,11 +68,18 @@ class Board extends React.Component {
     return (
       <View style={{ flex: 1 }}>
         <Toolbar
-        onAdd = { () => this.setState({isAddModalOpen: true}) }
+        onAdd={() => this.setState({ isAddModalOpen: true })}
         title={currentName}/>
         <ListList
           lists={ data.lists }
-          boardId={ currentId }/>
+          boardId={ BoardId }/>
+
+        <AddListModal
+          isOpen={isAddModalOpen}
+          closeModal={() => this.setState({ isAddModalOpen: false })}
+          onSubmit={(name, color) => this.addList(name, color)}
+        />
+
       </View>
     );
   }
