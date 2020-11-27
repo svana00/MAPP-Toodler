@@ -7,10 +7,10 @@ import { withNavigation } from 'react-navigation';
 import styles from './styles';
 
 const BoardThumbnail = ({
-  id, name, thumbnailPhoto, navigation: { navigate },
+  id, name, description, thumbnailPhoto, navigation: { navigate },
 }) => (
   <View>
-    <TouchableOpacity onPress={() => navigate('Board', { boardId: id, boardName: name })}>
+    <TouchableOpacity onPress={() => navigate('Board', { boardId: id, boardName: name, boardDescription: description })}>
 
       <Image source={{ uri: thumbnailPhoto }} style={styles.image} resizeMode="cover" />
     </TouchableOpacity>
@@ -21,10 +21,15 @@ const BoardThumbnail = ({
 BoardThumbnail.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
+  description: PropTypes.string,
   thumbnailPhoto: PropTypes.string.isRequired,
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
+};
+
+BoardThumbnail.defaultProps = {
+  description: '',
 };
 
 export default withNavigation(BoardThumbnail);

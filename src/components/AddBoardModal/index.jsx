@@ -12,27 +12,28 @@ class AddBoardModal extends React.Component {
     super(props);
     this.state = {
       name: '',
+      description: '',
     };
   }
 
   handlePress() {
-    const { name } = this.state;
+    const { name, description } = this.state;
     const {
       id, onModify, modify, onSubmit,
     } = this.props;
     if (modify) {
-      onModify(id, name);
+      onModify(id, name, description);
     } else {
-      onSubmit(name);
+      onSubmit(name, description);
     }
-    this.setState({ name: '' });
+    this.setState({ name: '', description: '' });
   }
 
   render() {
     const {
       isOpen, closeModal, takePhoto, selectFromCameraRoll,
     } = this.props;
-    const { name } = this.state;
+    const { name, description } = this.state;
     return (
       <Modal
         isOpen={isOpen}
@@ -46,6 +47,12 @@ class AddBoardModal extends React.Component {
           value={name}
           placeholder="My board name"
           maxLength={29}
+        />
+        <TextInput
+          onChangeText={(text) => this.setState({ description: text })}
+          value={description}
+          placeholder="Description of board"
+          maxLength={40}
         />
         <TouchableOpacity
           onPress={() => takePhoto()}
