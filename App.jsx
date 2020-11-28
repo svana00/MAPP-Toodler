@@ -3,15 +3,16 @@ import moment from 'moment';
 
 import { AppLoading } from 'expo';
 
+/* eslint-disable camelcase */
 import {
-  useFonts, Alice400Regular,
+  useFonts, Alice_400Regular,
 } from '@expo-google-fonts/alice';
 
 import {
-  IBMPlexSans300Light,
-  IBMPlexSans400Regular,
-  IBMPlexSans500Medium,
-  IBMPlexSans700Bold,
+  IBMPlexSans_300Light,
+  IBMPlexSans_400Regular,
+  IBMPlexSans_500Medium,
+  IBMPlexSans_700Bold,
 } from '@expo-google-fonts/ibm-plex-sans';
 import AppContainer from './src/routes';
 
@@ -19,11 +20,11 @@ moment.locale('en');
 
 export default function App() {
   const [fontsLoaded] = useFonts({
-    Alice: Alice400Regular,
-    IBMLight: IBMPlexSans300Light,
-    IBMRegular: IBMPlexSans400Regular,
-    IBMMedium: IBMPlexSans500Medium,
-    IBMBold: IBMPlexSans700Bold,
+    Alice: Alice_400Regular,
+    IBMLight: IBMPlexSans_300Light,
+    IBMRegular: IBMPlexSans_400Regular,
+    IBMMedium: IBMPlexSans_500Medium,
+    IBMBold: IBMPlexSans_700Bold,
   });
 
   if (!fontsLoaded) {

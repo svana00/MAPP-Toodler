@@ -106,11 +106,8 @@ class Tasks extends React.Component {
     const navigateTo = list.split(', ');
     const listId = navigateTo[0];
     const listName = navigateTo[1];
-    await Alert.alert(
-      'Moving Task',
-      `you will be moved with the task to "${listName}"`,
-      [{ text: 'Understood' }],
-    );
+
+
     await this.setState({ isListPickerOpen: false, listId, listName });
     await this.getItems();
   }
