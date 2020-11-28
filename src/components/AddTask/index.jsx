@@ -14,7 +14,6 @@ class AddTask extends React.Component {
   }
 
   genericInputHandler(name, value) {
-    console.log("Changing")
     this.setState({ [name]: value });
   }
 

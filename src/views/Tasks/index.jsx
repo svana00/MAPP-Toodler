@@ -152,8 +152,6 @@ class Tasks extends React.Component {
   }
 
   async modify(task) {
-    console.log(task)
-    console.log(task.modifyName.length > 0 || task.modifyDescription.length > 0)
     const {tasks} = this.state;
     if (task.modifyName.length > 0 || task.modifyDescription.length > 0){
       if (task.modifyName.length === 0){
@@ -175,31 +173,6 @@ class Tasks extends React.Component {
         isAddModalOpen: false, isBeingModified: false, currentId: '', name: 'Please enter task', description: 'please enter description' ,
       });
     }
-
-
-
-  // async modify(task) {
-  //   const { tasks } = this.state;
-  //   console.log(task)
-  //   if (task.modifyName.length === 0 || task.modifyDescription.length === 0) {
-  //     Alert.alert(
-  //       'Blank fields',
-  //       'You can not have any blank fields, Please fill it all in',
-  //       [{ text: 'Understood' }],
-  //     );
-  //   } else {
-  //     const newTasks = tasks.map((singleTask) => {
-  //       if (singleTask.id == task.id) {
-  //         singleTask.name = task.modifyName;
-  //         singleTask.description = task.modifyDescription;
-  //       }
-  //       return singleTask;
-  //     });
-  //     this.setState({
-  //       tasks: newTasks, isAddModalOpen: false, isBeingModified: false, currentId: '', name: 'Please enter task', description: 'please enter description' ,
-  //     });
-  //   }
-  // }
 
   render() {
     const {

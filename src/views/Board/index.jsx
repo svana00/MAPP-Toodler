@@ -36,7 +36,6 @@ class Board extends React.Component {
   async addListToState(name, color) {
     const { boardId, lists } = this.state;
     const nextListId = lists.length + 1;
-    console.log(name);
     const newList = {
       id: nextListId,
       name,
