@@ -56,6 +56,7 @@ class Board extends React.Component {
     } else {
       if (color === '') {
         await this.addListToState(name, '#FFFFFF');
+        return;
       }
       await this.addListToState(name, color);
       Alert.alert(`${name} has been created!`);

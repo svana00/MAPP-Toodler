@@ -36,29 +36,30 @@ class AddListModal extends React.Component {
         />
 
         <View style={styles.container}>
-          <TouchableHighlight onPress={() => { this.setState({ color: '#EB9694' }); }}>
-            <View style={styles.pink} />
+
+          <TouchableHighlight onPress={() => this.setState({ color: '#EB9694' })}>
+            <View style={[styles.pink, { borderWidth: (color === '#EB9694' ? 1 : 0) }]} />
           </TouchableHighlight>
           <TouchableHighlight onPress={() => this.setState({ color: '#FAD0C3' })}>
-            <View style={styles.orange} />
+            <View style={[styles.orange, { borderWidth: (color === '#FAD0C3' ? 1 : 0) }]} />
           </TouchableHighlight>
           <TouchableHighlight onPress={() => this.setState({ color: '#FEF3BD' })}>
-            <View style={styles.yellow} />
+            <View style={[styles.yellow, { borderWidth: (color === '#FEF3BD' ? 1 : 0) }]} />
           </TouchableHighlight>
           <TouchableHighlight onPress={() => this.setState({ color: '#C1E1C5' })}>
-            <View style={styles.green} />
+            <View style={[styles.green, { borderWidth: (color === '#C1E1C5' ? 1 : 0) }]} />
           </TouchableHighlight>
           <TouchableHighlight onPress={() => this.setState({ color: '#BEDADC' })}>
-            <View style={styles.bluegreen} />
+            <View style={[styles.bluegreen, { borderWidth: (this.state.color === '#BEDADC' ? 1 : 0) }]} />
           </TouchableHighlight>
           <TouchableHighlight onPress={() => this.setState({ color: '#C4DEF6' })}>
-            <View style={styles.blue} />
+            <View style={[styles.blue, { borderWidth: (this.state.color === '#C4DEF6' ? 1 : 0) }]} />
           </TouchableHighlight>
           <TouchableHighlight onPress={() => this.setState({ color: '#BED3F3' })}>
-            <View style={styles.darkblue} />
+            <View style={[styles.darkblue, { borderWidth: (this.state.color === '#BED3F3' ? 1 : 0) }]} />
           </TouchableHighlight>
           <TouchableHighlight onPress={() => this.setState({ color: '#D4C4FB' })}>
-            <View style={styles.purple} />
+            <View style={[styles.purple, { borderWidth: (this.state.color === '#D4C4FB' ? 1 : 0) }]} />
           </TouchableHighlight>
         </View>
 

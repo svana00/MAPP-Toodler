@@ -11,18 +11,18 @@ class EditListModal extends React.Component {
     super(props);
     this.state = {
       name: '',
+      color: '',
     };
   }
 
   render() {
     const {
-      isOpen, closeModal, onModify, id, oldName, color,
+      isOpen, closeModal, onModify, id, oldName, oldColor
 
     } = this.props;
 
     // will change into this.state.color at the submit stage
-    let colour = color;
-    const { name } = this.state;
+    const { name, color } = this.state;
 
     return (
       <Modal
@@ -33,35 +33,35 @@ class EditListModal extends React.Component {
           Edit List
         </Text>
         <TextInput
-          onChangeText={(text) => this.setState({ name: text })}
+          onChangeText={(text) => this.setState({ name: text})}
           placeholder={oldName}
           maxLength={29}
           style={styles.textInput}
         />
         <View style={styles.container}>
-          <TouchableHighlight onPress={() => { colour = '#EB9694'; }}>
-            <View style={styles.pink} />
+          <TouchableHighlight onPress={() => this.setState({ color: '#EB9694' })}>
+            <View style={[styles.pink, { borderWidth: (color === '#EB9694' ? 1 : 0) }]} />
           </TouchableHighlight>
-          <TouchableHighlight onPress={() => { colour = '#FAD0C3'; }}>
-            <View style={styles.orange} />
+          <TouchableHighlight onPress={() => this.setState({ color: '#FAD0C3' })}>
+            <View style={[styles.orange, { borderWidth: (color === '#FAD0C3' ? 1 : 0) }]} />
           </TouchableHighlight>
-          <TouchableHighlight onPress={() => { colour = '#FEF3BD'; }}>
-            <View style={styles.yellow} />
+          <TouchableHighlight onPress={() => this.setState({ color: '#FEF3BD' })}>
+            <View style={[styles.yellow, { borderWidth: (color === '#FEF3BD' ? 1 : 0) }]} />
           </TouchableHighlight>
-          <TouchableHighlight onPress={() => { colour = '#C1E1C5'; }}>
-            <View style={styles.green} />
+          <TouchableHighlight onPress={() => this.setState({ color: '#C1E1C5' })}>
+            <View style={[styles.green, { borderWidth: (color === '#C1E1C5' ? 1 : 0) }]} />
           </TouchableHighlight>
-          <TouchableHighlight onPress={() => { colour = '#BEDADC'; }}>
-            <View style={styles.bluegreen} />
+          <TouchableHighlight onPress={() => this.setState({ color: '#BEDADC' })}>
+            <View style={[styles.bluegreen, { borderWidth: (color === '#BEDADC' ? 1 : 0) }]} />
           </TouchableHighlight>
-          <TouchableHighlight onPress={() => { colour = '#C4DEF6'; }}>
-            <View style={styles.blue} />
+          <TouchableHighlight onPress={() => this.setState({ color: '#C4DEF6' })}>
+            <View style={[styles.blue, { borderWidth: (color === '#C4DEF6' ? 1 : 0) }]} />
           </TouchableHighlight>
-          <TouchableHighlight onPress={() => { colour = '#BED3F3'; }}>
-            <View style={styles.darkblue} />
+          <TouchableHighlight onPress={() => this.setState({ color: '#BED3F3' })}>
+            <View style={[styles.darkblue, { borderWidth: (color === '#BED3F3' ? 1 : 0) }]} />
           </TouchableHighlight>
-          <TouchableHighlight onPress={() => { colour = '#D4C4FB'; }}>
-            <View style={styles.purple} />
+          <TouchableHighlight onPress={() => this.setState({ color: '#D4C4FB' })}>
+            <View style={[styles.purple, { borderWidth: (color === '#D4C4FB' ? 1 : 0) }]} />
           </TouchableHighlight>
         </View>
 
@@ -71,9 +71,9 @@ class EditListModal extends React.Component {
             onModify(
               id,
               name || oldName,
-              colour,
+              color,
             );
-            this.setState({ name: '' });
+            this.setState({ name: '', color: '' });
           }}
         >
           <Text style={styles.buttonText}>Submit</Text>
@@ -89,7 +89,7 @@ EditListModal.propTypes = {
   onModify: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
   oldName: PropTypes.string.isRequired,
-  color: PropTypes.string.isRequired,
+  oldColor: PropTypes.string.isRequired,
 };
 
 export default EditListModal;
