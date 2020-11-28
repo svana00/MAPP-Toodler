@@ -36,6 +36,7 @@ class Board extends React.Component {
   async addListToState(name, color) {
     const { boardId, lists } = this.state;
     const nextListId = lists.length + 1;
+    console.log(name);
     const newList = {
       id: nextListId,
       name,
@@ -47,14 +48,33 @@ class Board extends React.Component {
 
   /* eslint no-param-reassign: ["error", { "props": false }] */
   async addList(name, color) {
-    if (color === '') {
-      await this.addListToState(name, '#FFFFFF');
+    if (name === '') {
+      Alert.alert(
+        'Blank Name',
+        "You can not have an empty value for a List's name. Please fill it in",
+      );
+    } else {
+      if (color === '') {
+        await this.addListToState(name, '#FFFFFF');
+      }
+      await this.addListToState(name, color);
+      this.setState({
+        isAddModalOpen: false,
+      });
+      setTimeout(() => {
+        Alert.alert(
+          'Successful!',
+          `${name} has been created!`,
+          [
+            {
+              text: 'OK',
+              onPress: () => {},
+            },
+          ],
+          { cancelable: false },
+        );
+      }, 500);
     }
-    await this.addListToState(name, color);
-    Alert.alert(`${name} has been created!`);
-    this.setState({
-      isAddModalOpen: false,
-    });
   }
 
   async deleteList(listId) {

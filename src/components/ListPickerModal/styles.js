@@ -18,8 +18,9 @@ export default StyleSheet.create({
     color: 'white',
   },
   modalTitleText: {
+    padding: 0,
     fontWeight: 'bold',
-    fontSize: 24,
+    fontSize: 20,
     textAlign: 'center',
   },
   container: {
@@ -28,4 +29,8 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+<<<<<<< HEAD
+=======
+
+>>>>>>> e163450e19e4b6b31fc22ffef61c65e5e85ee385
 });

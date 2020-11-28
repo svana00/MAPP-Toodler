@@ -23,10 +23,25 @@ export default StyleSheet.create({
     marginBottom: 2,
   },
   textInput: {
-    borderColor: 'black',
-    borderWidth: 2,
+    borderColor: 'grey',
+    borderWidth: 1,
     width: 200,
     textAlign: 'center',
     margin: 2,
+  },
+  button: {
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 4,
+    paddingRight: 4,
+    marginBottom: 8,
+    borderColor: 'white',
+    borderWidth: 2,
+    backgroundColor: 'green',
+    borderRadius: 10,
+  },
+  buttonText: {
+    fontWeight: 'bold',
+    color: 'white',
   },
 });

@@ -1,9 +1,8 @@
 import React from 'react';
-import {View, Picker, Text, TouchableOpacity} from 'react-native';
+import { Picker, Text, TouchableOpacity } from 'react-native';
+import PropTypes from 'prop-types';
 import Modal from '../Modal';
 import styles from './styles';
-import PropTypes from 'prop-types';
-
 
 class ListPickerModal extends React.Component {
   constructor(props) {
@@ -14,15 +13,19 @@ class ListPickerModal extends React.Component {
     };
   }
 
-  updateList(list){
+  updateList(list) {
     this.setState({ list });
   }
 
   render() {
     const { list } = this.state;
     const {
-      isOpen, closeModal, onSubmit, allLists
+      isOpen, closeModal, onSubmit, allLists,
     } = this.props;
+<<<<<<< HEAD
+=======
+    console.log('here', allLists);
+>>>>>>> e163450e19e4b6b31fc22ffef61c65e5e85ee385
     return (
       <Modal
         isOpen={isOpen}
@@ -32,14 +35,21 @@ class ListPickerModal extends React.Component {
           Move task
         </Text>
         <Picker
-          style={{ height: 100, width: 200 }}
+          style={{ height: 240, width: 200 }}
           selectedValue={list}
-          onValueChange={value => this.updateList(value)}>
+          onValueChange={(value) => this.updateList(value)}
+        >
           {
+<<<<<<< HEAD
             allLists.map(list => (
               <Picker.Item style = {styles.item} key= {list.value} label={list.label} value={list.value} />
               )
             )
+=======
+            allLists.map((list) => (
+              <Picker.Item style={styles.item} label={list.label} value={list.value} />
+            ))
+>>>>>>> e163450e19e4b6b31fc22ffef61c65e5e85ee385
           }
         </Picker>
 
@@ -63,7 +73,7 @@ ListPickerModal.propTypes = {
   allLists: PropTypes.arrayOf(PropTypes.shape({
     label: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
-  })).isRequired
+  })).isRequired,
 };
 
 export default ListPickerModal;

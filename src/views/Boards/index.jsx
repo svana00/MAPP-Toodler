@@ -15,13 +15,19 @@ class Boards extends React.Component {
       isAddBoardModalOpen: false,
       isBeingModified: false,
       currentId: 0,
+      selectedBoard: { id: 0, name: '', description: '' },
       thumbnailPhoto: '',
       nextBoardId: 3,
       isConfirmationOpen: false,
     };
   }
 
-  setupModify(id) {
+  setupModify(id, name, description, thumbnailPhoto) {
+    this.setState({
+      selectedBoard: {
+        id, name, description, thumbnailPhoto,
+      },
+    });
     this.setState({ currentId: id, isBeingModified: true, isAddBoardModalOpen: true });
   }
 
@@ -38,7 +44,7 @@ class Boards extends React.Component {
     if (board.name.length === 0 || board.thumbnailPhoto.length === 0) {
       Alert.alert(
         'Blank fields',
-        'You can not have any blank fields, Please fill it all in',
+        'Name and thumbnail photo cannot be blank. Please fill them in.',
         [{ text: 'Understood' }],
       );
     } else {
@@ -88,18 +94,23 @@ class Boards extends React.Component {
       );
     } else {
       this.addBoardToState(name, description, thumbnailPhoto);
-      Alert.alert(
-        'Successful!',
-        `${name} has been created!`,
-        [
-          { text: 'OK', onPress: () => console.log('OK Pressed') },
-        ],
-        { cancelable: false },
-      );
       this.setState({
         isAddBoardModalOpen: false,
         thumbnailPhoto: '',
       });
+      setTimeout(() => {
+        Alert.alert(
+          'Successful!',
+          `${name} has been created!`,
+          [
+            {
+              text: 'OK',
+              onPress: () => {},
+            },
+          ],
+          { cancelable: false },
+        );
+      }, 500);
     }
   }
 
@@ -116,7 +127,12 @@ class Boards extends React.Component {
 
   render() {
     const {
-      currentId, boards, isAddBoardModalOpen, isBeingModified, isConfirmationOpen,
+      currentId,
+      boards,
+      isAddBoardModalOpen,
+      isBeingModified,
+      isConfirmationOpen,
+      selectedBoard,
     } = this.state;
     return (
       <View style={{ flex: 1 }}>
@@ -127,10 +143,12 @@ class Boards extends React.Component {
         <BoardList
           boards={boards}
           onDelete={(id) => this.setupDelete(id)}
-          onModify={(id) => this.setupModify(id)}
+          onModify={(id, name, description) => this.setupModify(id, name, description)}
         />
         <AddBoardModal
-          id={currentId}
+          id={selectedBoard.id}
+          oldDescription={selectedBoard.description}
+          oldName={selectedBoard.name}
           isOpen={isAddBoardModalOpen}
           closeModal={() => this.setState({ isAddBoardModalOpen: false })}
           takePhoto={() => this.takePhoto()}
@@ -138,6 +156,7 @@ class Boards extends React.Component {
           onSubmit={(name, description) => this.addBoard(name, description)}
           modify={isBeingModified}
           onModify={(id, name, description) => this.modify(id, name, description)}
+          isBeingModified={isBeingModified}
         />
         <ConfirmationModal
           isOpen={isConfirmationOpen}

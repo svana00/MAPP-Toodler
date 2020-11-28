@@ -55,13 +55,13 @@ class Tasks extends React.Component {
   }
 
   async makePicker() {
-    const dataList = data.lists
-    const finalList = []
-    for (var i in dataList){
-      var add = {label:  dataList[i].name, value: (dataList[i].id + ", " + dataList[i].name)}
+    const dataList = data.lists;
+    const finalList = [];
+    for (const i in dataList) {
+      const add = { label: dataList[i].name, value: (`${dataList[i].id}, ${dataList[i].name}`) };
       finalList[i] = add;
     }
-    await this.setState({lists: finalList});
+    await this.setState({ lists: finalList });
   }
 
   deleteTask(id) {
@@ -172,7 +172,7 @@ class Tasks extends React.Component {
       listName,
       isBeingModified,
       lists,
-      isListPickerOpen
+      isListPickerOpen,
     } = this.state;
     return (
       <View style={{ flex: 1 }}>
@@ -204,10 +204,17 @@ class Tasks extends React.Component {
           onModify={(id) => this.modify(id)}
         />
         <ListPickerModal
+<<<<<<< HEAD
           isOpen = {isListPickerOpen}
           closeModal = {() => this.setState({isListPickerOpen: false})}
           onSubmit = {(list) => this.toUpdate(list)}
           allLists = {lists}
+=======
+          isOpen={isListPickerOpen}
+          closeModal={() => this.setState({ isListPickerOpen: false })}
+          onSubmit={() => console.log('HERE DOGGO')}
+          allLists={lists}
+>>>>>>> e163450e19e4b6b31fc22ffef61c65e5e85ee385
         />
       </View>
     );

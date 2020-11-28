@@ -43,8 +43,7 @@ class AddTask extends React.Component {
           onChangeText={(text) => this.genericInputHandler('description', text)}
         />
         <TouchableOpacity
-          onPress={() =>
-            {modify  ? onModify({id, name, description}) : addTask({name, description}) }}
+          onPress={() => { modify ? onModify({ id, name, description }) : addTask({ name, description }); }}
         >
           <Text style={styles.submitButton}>Submit Changes</Text>
         </TouchableOpacity>
