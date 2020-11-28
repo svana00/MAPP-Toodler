@@ -8,20 +8,22 @@ class AddTask extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      description: '',
+      modifyName: '',
+      modifyDescription: ''
     };
   }
 
   genericInputHandler(name, value) {
+    console.log("Changing")
     this.setState({ [name]: value });
   }
 
   render() {
-    const { name, description } = this.state;
+    const {modifyName, modifyDescription} = this.state
     const {
-      id, isOpen, closeModal, addTask, modify, onModify,
+      id, isOpen, closeModal, addTask, modify, onModify, name, description
     } = this.props;
+
     return (
       <Modal
         isOpen={isOpen}
@@ -32,18 +34,21 @@ class AddTask extends React.Component {
         </Text>
         <TextInput
           style={styles.textInput}
-          placeholder="Please enter the task"
-          value={name}
-          onChangeText={(text) => this.genericInputHandler('name', text)}
+          placeholder={name}
+          value={modifyName}
+          onChangeText={(text) => this.genericInputHandler('modifyName', text)}
         />
         <TextInput
           style={styles.textInput}
-          placeholder="Please enter a description for the task"
-          value={description}
-          onChangeText={(text) => this.genericInputHandler('description', text)}
+          placeholder={description}
+          value={modifyDescription}
+          onChangeText={(text) => this.genericInputHandler('modifyDescription', text)}
         />
         <TouchableOpacity
-          onPress={() => { modify ? onModify({ id, name, description }) : addTask({ name, description }); }}
+          onPress={() => { modify ? onModify({ id, modifyName, modifyDescription }) : addTask({ modifyName, modifyDescription }); this.setState({
+            modifyName: '',
+            modifyDescription: '',
+          });}}
         >
           <Text style={styles.submitButton}>Submit Changes</Text>
         </TouchableOpacity>

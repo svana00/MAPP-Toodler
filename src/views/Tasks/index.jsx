@@ -27,6 +27,8 @@ class Tasks extends React.Component {
       isBeingModified: false,
       isListPickerOpen: false,
       currentTask:[],
+      name: 'Please enter task',
+      description: 'Please enter description'
     };
   }
 
@@ -40,7 +42,16 @@ class Tasks extends React.Component {
   }
 
   async setupModify(id) {
-    await this.setState({ currentId: id, isBeingModified: true, isAddModalOpen: true });
+    const {tasks} = this.state;
+    var name = '';
+    var description = '';
+    for (var i in tasks) {
+      if (tasks[i].id == id) {
+        name = tasks[i].name;
+        description = tasks[i].description
+      }
+    }
+    await this.setState({ currentId: id, name: name, description: description, isBeingModified: true, isAddModalOpen: true });
   }
 
   async getItems() {
@@ -106,7 +117,7 @@ class Tasks extends React.Component {
   async addTask(task) {
     const { tasks, listId, nextId } = this.state;
     const id = tasks.length + 1;
-    if (task.name.length === 0 || task.description.length === 0) {
+    if (task.modifyName.length === 0 || task.modifyDescription.length === 0) {
       Alert.alert(
         'Blank fields',
         'You can not have any blank fields, Please fill it all in',
@@ -115,8 +126,8 @@ class Tasks extends React.Component {
     } else {
       const newTask = {
         id: nextId,
-        name: task.name,
-        description: task.description,
+        name: task.modifyName,
+        description: task.modifyDescription,
         isFinished: false,
         ListId: listId,
       };
@@ -141,26 +152,54 @@ class Tasks extends React.Component {
   }
 
   async modify(task) {
-    const { tasks } = this.state;
-    if (task.name.length === 0 || task.description.length === 0) {
-      Alert.alert(
-        'Blank fields',
-        'You can not have any blank fields, Please fill it all in',
-        [{ text: 'Understood' }],
-      );
-    } else {
-      const newTasks = tasks.map((singleTask) => {
-        if (singleTask.id === task.id) {
-          singleTask.name = task.name;
-          singleTask.description = task.description;
+    console.log(task)
+    console.log(task.modifyName.length > 0 || task.modifyDescription.length > 0)
+    const {tasks} = this.state;
+    if (task.modifyName.length > 0 || task.modifyDescription.length > 0){
+      if (task.modifyName.length === 0){
+          for (var i in tasks){
+            if (tasks[i].id == task.id){
+              tasks[i].description = task.modifyDescription
+            }
+          }
         }
-        return singleTask;
-      });
+      else {
+        for (var i in tasks){
+          if (tasks[i].id == task.id){
+            tasks[i].name = task.modifyName
+            }
+          }
+        }
+      }
       this.setState({
-        tasks: newTasks, isAddModalOpen: false, isBeingModified: false, currentId: '',
+        isAddModalOpen: false, isBeingModified: false, currentId: '', name: 'Please enter task', description: 'please enter description' ,
       });
     }
-  }
+
+
+
+  // async modify(task) {
+  //   const { tasks } = this.state;
+  //   console.log(task)
+  //   if (task.modifyName.length === 0 || task.modifyDescription.length === 0) {
+  //     Alert.alert(
+  //       'Blank fields',
+  //       'You can not have any blank fields, Please fill it all in',
+  //       [{ text: 'Understood' }],
+  //     );
+  //   } else {
+  //     const newTasks = tasks.map((singleTask) => {
+  //       if (singleTask.id == task.id) {
+  //         singleTask.name = task.modifyName;
+  //         singleTask.description = task.modifyDescription;
+  //       }
+  //       return singleTask;
+  //     });
+  //     this.setState({
+  //       tasks: newTasks, isAddModalOpen: false, isBeingModified: false, currentId: '', name: 'Please enter task', description: 'please enter description' ,
+  //     });
+  //   }
+  // }
 
   render() {
     const {
@@ -172,6 +211,8 @@ class Tasks extends React.Component {
       isBeingModified,
       lists,
       isListPickerOpen,
+      name,
+      description
     } = this.state;
     return (
       <View style={{ flex: 1 }}>
@@ -195,9 +236,11 @@ class Tasks extends React.Component {
             )
         }
         <AddTask
-          id={currentId}
+          id={currentId.toString()}
+          name = {name}
+          description = {description}
           isOpen={isAddModalOpen}
-          closeModal={() => this.setState({ isAddModalOpen: false })}
+          closeModal={() => this.setState({ isAddModalOpen: false, name: 'Please enter task', description: 'please enter description' })}
           addTask={(task) => this.makeTask(task)}
           modify={isBeingModified}
           onModify={(id) => this.modify(id)}
