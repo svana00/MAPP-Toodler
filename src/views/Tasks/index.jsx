@@ -160,6 +160,7 @@ class Tasks extends React.Component {
   async modify(task) {
     const { tasks } = this.state;
     if (task.modifyName.length > 0 || task.modifyDescription.length > 0) {
+      console.log('here');
       if (task.modifyName.length === 0) {
         for (let i = 0; i < tasks.length; i += 1) {
           if (tasks[i].id.toString() === task.id.toString()) {
@@ -170,6 +171,7 @@ class Tasks extends React.Component {
         for (let i = 0; i < tasks.length; i += 1) {
           if (tasks[i].id.toString() === task.id.toString()) {
             tasks[i].name = task.modifyName;
+            tasks[i].description = task.modifyDescription;
           }
         }
       }
