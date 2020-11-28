@@ -17,7 +17,7 @@ class EditListModal extends React.Component {
 
   render() {
     const {
-      isOpen, closeModal, onModify, id, oldName, oldColor
+      isOpen, closeModal, onModify, id, oldName,
 
     } = this.props;
 
@@ -33,7 +33,7 @@ class EditListModal extends React.Component {
           Edit List
         </Text>
         <TextInput
-          onChangeText={(text) => this.setState({ name: text})}
+          onChangeText={(text) => this.setState({ name: text })}
           placeholder={oldName}
           maxLength={29}
           style={styles.textInput}
@@ -89,7 +89,6 @@ EditListModal.propTypes = {
   onModify: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
   oldName: PropTypes.string.isRequired,
-  oldColor: PropTypes.string.isRequired,
 };
 
 export default EditListModal;

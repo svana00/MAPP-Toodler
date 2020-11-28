@@ -4,26 +4,26 @@ import moment from 'moment';
 import { AppLoading } from 'expo';
 
 import {
-  useFonts, Alice_400Regular,
+  useFonts, Alice400Regular,
 } from '@expo-google-fonts/alice';
 
 import {
-  IBMPlexSans_300Light,
-  IBMPlexSans_400Regular,
-  IBMPlexSans_500Medium,
-  IBMPlexSans_700Bold,
+  IBMPlexSans300Light,
+  IBMPlexSans400Regular,
+  IBMPlexSans500Medium,
+  IBMPlexSans700Bold,
 } from '@expo-google-fonts/ibm-plex-sans';
 import AppContainer from './src/routes';
 
 moment.locale('en');
 
 export default function App() {
-  const [fontsLoaded, error] = useFonts({
-    Alice: Alice_400Regular,
-    IBMLight: IBMPlexSans_300Light,
-    IBMRegular: IBMPlexSans_400Regular,
-    IBMMedium: IBMPlexSans_500Medium,
-    IBMBold: IBMPlexSans_700Bold,
+  const [fontsLoaded] = useFonts({
+    Alice: Alice400Regular,
+    IBMLight: IBMPlexSans300Light,
+    IBMRegular: IBMPlexSans400Regular,
+    IBMMedium: IBMPlexSans500Medium,
+    IBMBold: IBMPlexSans700Bold,
   });
 
   if (!fontsLoaded) {

@@ -9,7 +9,7 @@ class AddTask extends React.Component {
     super(props);
     this.state = {
       modifyName: '',
-      modifyDescription: ''
+      modifyDescription: '',
     };
   }
 
@@ -18,9 +18,9 @@ class AddTask extends React.Component {
   }
 
   render() {
-    const {modifyName, modifyDescription} = this.state
+    const { modifyName, modifyDescription } = this.state;
     const {
-      id, isOpen, closeModal, addTask, modify, onModify, name, description
+      id, isOpen, closeModal, addTask, modify, onModify, name, description,
     } = this.props;
 
     return (
@@ -44,12 +44,17 @@ class AddTask extends React.Component {
           onChangeText={(text) => this.genericInputHandler('modifyDescription', text)}
         />
         <TouchableOpacity
-          onPress={() => { modify ? onModify({ id, modifyName, modifyDescription }) : addTask({ modifyName, modifyDescription }); this.setState({
-            modifyName: '',
-            modifyDescription: '',
-          });}}
+          style={styles.button}
+          onPress={() => {
+            modify
+              ? onModify({ id, modifyName, modifyDescription })
+              : addTask({ modifyName, modifyDescription }); this.setState({
+              modifyName: '',
+              modifyDescription: '',
+            });
+          }}
         >
-          <Text style={styles.submitButton}>Submit Changes</Text>
+          <Text style={styles.buttonText}>Submit Changes</Text>
         </TouchableOpacity>
       </Modal>
     );
@@ -63,6 +68,8 @@ AddTask.propTypes = {
   addTask: PropTypes.func.isRequired,
   modify: PropTypes.bool.isRequired,
   onModify: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
 };
 
 export default AddTask;

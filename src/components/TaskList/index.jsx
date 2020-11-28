@@ -5,7 +5,7 @@ import styles from './styles';
 import TaskThumbnail from '../TaskThumbnail';
 
 const TaskList = ({
-  tasks, flipFinished, onModify, onRemove, onMove
+  tasks, flipFinished, onModify, onRemove, onMove,
 }) => (
   <View style={styles.listContainer}>
     <FlatList
@@ -55,6 +55,7 @@ TaskList.propTypes = {
   flipFinished: PropTypes.func.isRequired,
   onModify: PropTypes.func.isRequired,
   onRemove: PropTypes.func.isRequired,
+  onMove: PropTypes.func.isRequired,
 };
 
 export default TaskList;

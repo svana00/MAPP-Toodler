@@ -8,8 +8,7 @@ class ListPickerModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      listId: '',
-      listName: ''
+      list: { id: '', name: '' },
     };
   }
 
@@ -36,10 +35,14 @@ class ListPickerModal extends React.Component {
           onValueChange={(value) => this.updateList(value)}
         >
           {
-            allLists.map(list => (
-              <Picker.Item style = {styles.item} key= {list.value} label={list.label} value={list.value} />
-              )
-            )
+            allLists.map((listItem) => (
+              <Picker.Item
+                style={styles.item}
+                key={listItem.value}
+                label={listItem.label}
+                value={listItem.value}
+              />
+            ))
           }
         </Picker>
 
