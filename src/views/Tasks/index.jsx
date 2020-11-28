@@ -45,14 +45,12 @@ class Tasks extends React.Component {
     const { tasks } = this.state;
     let name = '';
     let description = '';
-
     for (let i = 0; i < tasks.length; i += 1) {
       if (tasks[i].id === id) {
         name = tasks[i].name;
         description = tasks[i].description;
       }
     }
-
     await this.setState({
       currentId: id, name, description, isBeingModified: true, isAddModalOpen: true,
     });
@@ -61,7 +59,7 @@ class Tasks extends React.Component {
   async getItems() {
     this.setState({ loadingTasks: true });
     const { listId, currentTask } = this.state;
-    let tasks = data.tasks.filter((task) => task.listId === listId);
+    let tasks = data.tasks.filter((task) => task.listId.toString() === listId.toString());
     if (currentTask.length !== 0) {
       tasks = [...tasks, currentTask];
     }
@@ -70,16 +68,13 @@ class Tasks extends React.Component {
 
   async setupMove(id) {
     const { tasks } = this.state;
-
     let task = [];
-
     for (let i = 0; i < tasks.length; i += 1) {
-      if (tasks[i].id === id) {
+      if (tasks[i].id.toString() === id.toString()) {
         task = tasks[i];
         break;
       }
     }
-
     await this.setState({ isListPickerOpen: true, currentTask: task });
   }
 
@@ -93,12 +88,10 @@ class Tasks extends React.Component {
   async makePicker() {
     const dataList = data.lists;
     const finalList = [];
-
     for (let i = 0; i < dataList.length; i += 1) {
       const add = { label: dataList[i].name, value: (`${dataList[i].id}, ${dataList[i].name}`) };
       finalList[i] = add;
     }
-
     await this.setState({ lists: finalList });
   }
 
@@ -106,8 +99,19 @@ class Tasks extends React.Component {
     const navigateTo = list.split(', ');
     const listId = navigateTo[0];
     const listName = navigateTo[1];
-
-
+    setTimeout(() => {
+      Alert.alert(
+        'Moving Task',
+        `You have been moved with the task to "${listName}"`,
+        [
+          {
+            text: 'OK',
+            onPress: () => {},
+          },
+        ],
+        { cancelable: false },
+      );
+    }, 500);
     await this.setState({ isListPickerOpen: false, listId, listName });
     await this.getItems();
   }
@@ -158,14 +162,14 @@ class Tasks extends React.Component {
     if (task.modifyName.length > 0 || task.modifyDescription.length > 0) {
       if (task.modifyName.length === 0) {
         for (let i = 0; i < tasks.length; i += 1) {
-          if (tasks[i].id === task.id) {
+          if (tasks[i].id.toString() === task.id.toString()) {
             tasks[i].description = task.modifyDescription;
           }
         }
       } else {
-        for (let j = 0; j < tasks.length; j += 1) {
-          if (tasks[j].id === task.id) {
-            tasks[j].name = task.modifyName;
+        for (let i = 0; i < tasks.length; i += 1) {
+          if (tasks[i].id.toString() === task.id.toString()) {
+            tasks[i].name = task.modifyName;
           }
         }
       }

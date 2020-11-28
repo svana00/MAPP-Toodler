@@ -6,15 +6,17 @@ export default StyleSheet.create({
     borderWidth: 2,
   },
   button: {
-    paddingTop: 10,
-    paddingBottom: 10,
-    paddingLeft: 20,
-    paddingRight: 20,
+    paddingTop: 7,
+    paddingBottom: 7,
+    paddingLeft: 4,
+    paddingRight: 4,
     borderColor: 'white',
     borderWidth: 2,
-    backgroundColor: 'pink',
+    backgroundColor: 'green',
+    borderRadius: 10,
   },
   buttonText: {
+    fontWeight: 'bold',
     color: 'white',
   },
   modalTitleText: {

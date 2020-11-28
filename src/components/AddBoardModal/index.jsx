@@ -31,19 +31,28 @@ class AddBoardModal extends React.Component {
 
   render() {
     const {
-      isOpen, closeModal, takePhoto, selectFromCameraRoll, oldName, oldDescription, isBeingModified,
+      isOpen,
+      closeModal,
+      takePhoto,
+      selectFromCameraRoll,
+      oldName,
+      oldDescription,
+      isBeingModified,
     } = this.props;
     const { name, description } = this.state;
-
+    let title;
+    if (isBeingModified) {
+      title = <Text style={styles.modalTitleText}>Modify Board</Text>;
+    } else {
+      title = <Text style={styles.modalTitleText}>Create Board</Text>;
+    }
     return (
       <Modal
         isOpen={isOpen}
         closeModal={closeModal}
       >
         <View style={styles.modalStyle}>
-          <Text style={styles.modalTitleText}>
-            Create Board
-          </Text>
+          {title}
           <TextInput
             onChangeText={(text) => this.setState({ name: text })}
             value={name}

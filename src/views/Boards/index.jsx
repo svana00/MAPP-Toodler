@@ -22,13 +22,17 @@ class Boards extends React.Component {
     };
   }
 
-  setupModify(id, name, description, thumbnailPhoto) {
+  setupModify(id, name, description) {
     this.setState({
       selectedBoard: {
-        id, name, description, thumbnailPhoto,
+        id, name, description,
       },
     });
-    this.setState({ currentId: id, isBeingModified: true, isAddBoardModalOpen: true });
+    this.setState({
+      currentId: id,
+      isBeingModified: true,
+      isAddBoardModalOpen: true,
+    });
   }
 
   setupDelete(id) {
@@ -37,29 +41,45 @@ class Boards extends React.Component {
 
   /* eslint no-param-reassign: ["error", { "props": false }] */
   modify(id, name, description) {
-    const { boards, thumbnailPhoto } = this.state;
+    const { boards, thumbnailPhoto, selectedBoard } = this.state;
     const board = {
       id, name, description, thumbnailPhoto,
     };
-    if (board.name.length === 0 || board.thumbnailPhoto.length === 0) {
-      Alert.alert(
-        'Blank fields',
-        'Name and thumbnail photo cannot be blank. Please fill them in.',
-        [{ text: 'Understood' }],
-      );
-    } else {
-      const newBoards = boards.map((singleBoard) => {
-        if (singleBoard.id === board.id) {
-          singleBoard.name = board.name;
+    const newBoards = boards.map((singleBoard) => {
+      if (singleBoard.id === board.id) {
+        if (thumbnailPhoto === '') {
+          setTimeout(() => {
+            Alert.alert(
+              'Blank Photo',
+              'Please use a photo from your camera roll/take a picture',
+              [
+                {
+                  text: 'OK',
+                  onPress: () => {},
+                },
+              ],
+              { cancelable: false },
+            );
+          }, 500);
+        } else {
+          if (name !== '') {
+            singleBoard.name = board.name;
+          } else {
+            singleBoard.name = selectedBoard.name;
+          }
+          if (description !== '') {
+            singleBoard.description = board.description;
+          } else {
+            singleBoard.description = selectedBoard.description;
+          }
           singleBoard.thumbnailPhoto = thumbnailPhoto;
-          singleBoard.description = description;
         }
-        return singleBoard;
-      });
-      this.setState({
-        boards: newBoards, isAddBoardModalOpen: false, isBeingModified: false, currentId: 0,
-      });
-    }
+      }
+      return singleBoard;
+    });
+    this.setState({
+      boards: newBoards, isAddBoardModalOpen: false, isBeingModified: false, currentId: 0,
+    });
   }
 
   async takePhoto() {

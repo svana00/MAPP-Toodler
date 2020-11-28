@@ -76,7 +76,7 @@ class EditListModal extends React.Component {
             this.setState({ name: '', color: '' });
           }}
         >
-          <Text style={styles.buttonText}>Submit</Text>
+          <Text style={styles.buttonText}>Submit changes</Text>
         </TouchableHighlight>
       </Modal>
     );

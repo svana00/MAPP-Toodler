@@ -52,7 +52,7 @@ class ListPickerModal extends React.Component {
             onSubmit(list);
           }}
         >
-          <Text style={styles.buttonText}>Submit</Text>
+          <Text style={styles.buttonText}>Submit changes</Text>
         </TouchableOpacity>
       </Modal>
     );

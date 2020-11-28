@@ -73,7 +73,7 @@ class AddListModal extends React.Component {
             });
           }}
         >
-          <Text style={styles.buttonText}>Submit</Text>
+          <Text style={styles.buttonText}>Submit changes</Text>
         </TouchableOpacity>
       </Modal>
     );
