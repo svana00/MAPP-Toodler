@@ -56,6 +56,7 @@ class Board extends React.Component {
     } else {
       if (color === '') {
         await this.addListToState(name, '#FFFFFF');
+        return;
       }
       await this.addListToState(name, color);
       this.setState({
@@ -148,7 +149,7 @@ class Board extends React.Component {
           closeModal={() => this.setState({ isEditModalOpen: false })}
           onModify={(id, name, color) => this.modifyList(id, name, color)}
           id={selectedList.id}
-          color={selectedList.color}
+          oldColor={selectedList.color}
           oldName={selectedList.name}
         />
         <ConfirmationModal
