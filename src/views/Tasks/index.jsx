@@ -140,7 +140,6 @@ class Tasks extends React.Component {
     await this.setState({ tasks: newTasks });
   }
 
-  /* eslint no-param-reassign: ["error", { "props": false }] */
   async modify(task) {
     const { tasks } = this.state;
     if (task.name.length === 0 || task.description.length === 0) {
@@ -204,17 +203,10 @@ class Tasks extends React.Component {
           onModify={(id) => this.modify(id)}
         />
         <ListPickerModal
-<<<<<<< HEAD
           isOpen = {isListPickerOpen}
           closeModal = {() => this.setState({isListPickerOpen: false})}
           onSubmit = {(list) => this.toUpdate(list)}
           allLists = {lists}
-=======
-          isOpen={isListPickerOpen}
-          closeModal={() => this.setState({ isListPickerOpen: false })}
-          onSubmit={() => console.log('HERE DOGGO')}
-          allLists={lists}
->>>>>>> e163450e19e4b6b31fc22ffef61c65e5e85ee385
         />
       </View>
     );

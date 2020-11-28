@@ -53,7 +53,7 @@ class AddTask extends React.Component {
 }
 
 AddTask.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   isOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
   addTask: PropTypes.func.isRequired,

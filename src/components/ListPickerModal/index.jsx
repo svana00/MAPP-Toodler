@@ -22,10 +22,6 @@ class ListPickerModal extends React.Component {
     const {
       isOpen, closeModal, onSubmit, allLists,
     } = this.props;
-<<<<<<< HEAD
-=======
-    console.log('here', allLists);
->>>>>>> e163450e19e4b6b31fc22ffef61c65e5e85ee385
     return (
       <Modal
         isOpen={isOpen}
@@ -40,16 +36,10 @@ class ListPickerModal extends React.Component {
           onValueChange={(value) => this.updateList(value)}
         >
           {
-<<<<<<< HEAD
             allLists.map(list => (
               <Picker.Item style = {styles.item} key= {list.value} label={list.label} value={list.value} />
               )
             )
-=======
-            allLists.map((list) => (
-              <Picker.Item style={styles.item} label={list.label} value={list.value} />
-            ))
->>>>>>> e163450e19e4b6b31fc22ffef61c65e5e85ee385
           }
         </Picker>
 
