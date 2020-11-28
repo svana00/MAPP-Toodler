@@ -29,5 +29,4 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-
 });

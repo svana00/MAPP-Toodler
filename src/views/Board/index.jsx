@@ -59,10 +59,22 @@ class Board extends React.Component {
         return;
       }
       await this.addListToState(name, color);
-      Alert.alert(`${name} has been created!`);
       this.setState({
         isAddModalOpen: false,
       });
+      setTimeout(() => {
+        Alert.alert(
+          'Successful!',
+          `${name} has been created!`,
+          [
+            {
+              text: 'OK',
+              onPress: () => {},
+            },
+          ],
+          { cancelable: false },
+        );
+      }, 500);
     }
   }
 

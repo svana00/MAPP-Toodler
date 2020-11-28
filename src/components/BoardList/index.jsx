@@ -28,7 +28,7 @@ const BoardList = ({ boards, onDelete, onModify }) => (
             </View>
 
             <View style={styles.buttonItem}>
-              <Button color="green" title="Edit Board" onPress={() => { onModify(id); }} />
+              <Button color="green" title="Edit Board" onPress={() => { onModify(id, name, description); }} />
             </View>
           </View>
         </View>
