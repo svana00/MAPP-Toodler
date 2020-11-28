@@ -10,7 +10,7 @@ const ListThumbnail = ({
   id, name, color, navigation: { navigate },
 }) => (
   <View style={{ backgroundColor: color }}>
-    <TouchableOpacity onPress={() => navigate('Tasks', { listId: id, listName: name })}>
+    <TouchableOpacity onPress={() => navigate('Tasks', { listId: id, listName: name, currentTask: "This Works" })}>
       <Text style={styles.boardTitle}>
         List:
         {' '}

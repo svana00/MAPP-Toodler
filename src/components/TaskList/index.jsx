@@ -5,7 +5,7 @@ import styles from './styles';
 import TaskThumbnail from '../TaskThumbnail';
 
 const TaskList = ({
-  tasks, flipFinished, onModify, onRemove,
+  tasks, flipFinished, onModify, onRemove, onMove
 }) => (
   <View style={styles.listContainer}>
     <FlatList
@@ -32,6 +32,9 @@ const TaskList = ({
 
             <View style={styles.buttonItem}>
               <Button color="green" title="Edit Task" onPress={() => { onModify(id); }} />
+            </View>
+            <View style={styles.buttonItem}>
+              <Button color="blue" title="Move Task" onPress={() => { onMove(id); }} />
             </View>
           </View>
         </View>

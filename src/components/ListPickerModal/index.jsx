@@ -9,7 +9,8 @@ class ListPickerModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: '',
+      listId: '',
+      listName: ''
     };
   }
 
@@ -22,7 +23,6 @@ class ListPickerModal extends React.Component {
     const {
       isOpen, closeModal, onSubmit, allLists
     } = this.props;
-    console.log("here",allLists)
     return (
       <Modal
         isOpen={isOpen}
@@ -37,7 +37,7 @@ class ListPickerModal extends React.Component {
           onValueChange={value => this.updateList(value)}>
           {
             allLists.map(list => (
-              <Picker.Item style = {styles.item} label={list.label} value={list.value} />
+              <Picker.Item style = {styles.item} key= {list.value} label={list.label} value={list.value} />
               )
             )
           }
@@ -46,7 +46,7 @@ class ListPickerModal extends React.Component {
         <TouchableOpacity
           style={styles.button}
           onPress={() => {
-            onSubmit(this.list);
+            onSubmit(list);
           }}
         >
           <Text style={styles.buttonText}>Submit</Text>
