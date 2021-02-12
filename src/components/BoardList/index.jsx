@@ -20,7 +20,6 @@ const BoardList = ({ boards, onDelete, onModify }) => (
             name={name}
             description={description}
             thumbnailPhoto={thumbnailPhoto}
-            onDelete={onDelete}
           />
           <View style={styles.buttonContainer}>
             <View style={styles.buttonItem}>
